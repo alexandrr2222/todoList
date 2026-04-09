@@ -1,0 +1,35 @@
+nav{
+    background-color: var(--navBackground);
+    position: fixed;
+    height: 100vh;
+    width: 70vw;
+    z-index: 11;
+    transform: translateX(-100%);
+}
+nav.open{
+    transform: translateX(0%);
+    transition: transform 0.3s ease;
+}
+.overlay{
+    position: fixed;
+    z-index: 10;
+    background: rgba(0, 0, 0, 0.25);
+    opacity: 0;
+    pointer-events: none;
+    inset: 0;
+}
+.overlay.open{
+    opacity: 1;
+    pointer-events: all;
+}
+header.open{
+    transform: translateX(70vw);
+}
+main.open{
+    transform: translateX(70vw);
+}
+.dividerLine svg{
+    width: 130px;
+    height: 10px;
+}
+

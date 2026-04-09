@@ -1,5 +1,5 @@
 {
-  "name": "template_js",
+  "name": "todo_list",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -11,16 +11,16 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alexandrr2222/Template_JS.git"
+    "url": "git+https://github.com/alexandrr2222/todoList"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "type": "module",
   "bugs": {
-    "url": "https://github.com/alexandrr2222/Template_JS/issues"
+    "url": "https://github.com/alexandrr2222/todoList/issues"
   },
-  "homepage": "https://github.com/alexandrr2222/Template_JS#readme",
+  "homepage": "https://github.com/alexandrr2222/todoList#readme",
   "devDependencies": {
     "css-loader": "^7.1.4",
     "html-loader": "^5.1.0",

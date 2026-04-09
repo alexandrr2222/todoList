@@ -1,0 +1,15 @@
+main{
+    background-color: var(--mainBackground);
+    flex: 1;
+}
+.plusButton svg{
+    color: var(--primaryAccent);
+    pointer-events: none;
+    width: 4rem;
+    height: auto;
+}
+.plusButton{
+    position: fixed;
+    bottom: 2rem;
+    right: 2rem;
+}

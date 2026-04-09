@@ -1,0 +1,31 @@
+header{
+    position: sticky;
+    top: 0;
+    background-color: var(--headerBackground);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: var(--headerHeight);
+}
+.leftHeader{
+    display: flex;
+    align-items: center;
+    gap: var(--headerGap);
+    margin-left: var(--cornerMargin);
+}
+.rightHeader{
+    display: flex;
+    align-items: center;
+    gap: var(--headerGap);
+    margin-right: var(--cornerMargin);
+}
+.menuButton svg, .searchButton svg, .moreOptionsButton svg{
+    pointer-events: none;
+    color: var(--primaryAccent);
+    pointer-events: none;
+    width: var(--textIcons);
+    height: auto;
+}
+.menuButton:hover svg, .searchButton:hover svg, .moreOptionsButton:hover svg{
+    color: var(--hoverAccent);
+}

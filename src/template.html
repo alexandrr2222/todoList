@@ -3,9 +3,47 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>OlexTask - To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet">
 </head>
 <body>
-    
+    <div class="overlay"></div>
+    <header>
+        <div class="leftHeader">
+            <button class="menuButton"></button>
+            <h2 class="currentTitle">All tasks</h2>
+        </div>
+        <div class="rightHeader">
+            <button class="searchButton"></button>
+            <button class="moreOptionsButton"></button>
+        </div>
+    </header>
+    <nav>
+        <h1>OlexTask</h1>
+        <div class="dividerLine"></div>
+
+        <button class="allTasks">All tasks</button>
+        <button class="today">Today</button>
+        <button class="weekly">Weekly</button>
+        <button class="monthly">Monthly</button>
+        <div class="dividerLine"></div>
+
+        <h2 class="categories">Categories</h2>
+        <button class="job">Job</button>
+        <button class="personal">Personal</button>
+        <button class="projects">Projects</button>
+        <button class="newCategory">New category</button>
+        <div class="dividerLine"></div>
+
+        <h2 class="other">Other</h2>
+        <button class="settings">Settings</button>
+        <button class="statistics">Statistics</button>
+        <button class="completed">Completed</button>
+    </nav>
+    <main>
+        <button class="plusButton"></button>
+    </main>
 </body>
 </html>

@@ -1,3 +1,35 @@
 :root{
-    
+    --primaryAccent: #973F3B;
+    --hoverAccent: #812424;
+    --cornerMargin: 1rem;
+    /* header */
+    --headerBackground: #2A2826;
+    --headerHeight: 4rem;
+    --headerGap: 1rem;
+    /* nav */
+    --navBackground: #25221F;
+    /* main */
+    --mainBackground: #1E1C1A;
+    /* text */
+    font-family: "Literata", 'Times New Roman', Times, serif;
+    --mainTextColor: #F5F2EC;
+    color: var(--mainTextColor);
+    font-size: 1.2rem;
+    /* icons */
+    --standaloneIcons: 1.5rem;
+    --textIcons: 1.5em
+}
+body{
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+nav.transition, .overlay.transition, main.transition, header.transition {
+    transition: transform 0.3s ease;
+}
+button{
+    color: var(--mainTextColor);
+    background-color: transparent;
+    border: none;
+    padding: 0;
 }
