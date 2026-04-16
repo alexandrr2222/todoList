@@ -1,35 +1,42 @@
-:root{
-    --primaryAccent: #973F3B;
-    --hoverAccent: #812424;
-    --cornerMargin: 1rem;
-    /* header */
-    --headerBackground: #2A2826;
-    --headerHeight: 4rem;
-    --headerGap: 1rem;
-    /* nav */
-    --navBackground: #25221F;
-    /* main */
-    --mainBackground: #1E1C1A;
-    /* text */
-    font-family: "Literata", 'Times New Roman', Times, serif;
-    --mainTextColor: #F5F2EC;
-    color: var(--mainTextColor);
-    font-size: 1.2rem;
-    /* icons */
-    --standaloneIcons: 1.5rem;
-    --textIcons: 1.5em
+:root {
+  --primaryAccent: #973f3b;
+  --hoverAccent: #812424;
+  --cornerMargin: 1rem;
+  /* header */
+  --headerBackground: #2a2826;
+  --headerHeight: 4rem;
+  --headerGap: 1rem;
+  /* nav */
+  --navBackground: #25221f;
+  /* main */
+  --mainBackground: #1e1c1a;
+  /* text */
+  font-family: "Literata", "Times New Roman", Times, serif;
+  --mainTextColor: #f5f2ec;
+  color: var(--mainTextColor);
+  font-size: 1.2rem;
+  /* icons */
+  --standaloneIcons: 1.5rem;
+  --textIcons: 1.5em;
 }
-body{
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
-nav.transition, .overlay.transition, main.transition, header.transition {
-    transition: transform 0.3s ease;
+body.noScroll {
+  overflow: hidden;
 }
-button{
-    color: var(--mainTextColor);
-    background-color: transparent;
-    border: none;
-    padding: 0;
+nav.transition,
+.overlay.transition,
+main.transition,
+header.transition {
+  transition: transform 0.3s ease;
+}
+button {
+  color: var(--mainTextColor);
+  background-color: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
 }

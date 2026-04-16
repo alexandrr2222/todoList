@@ -1,24 +1,33 @@
-import {dividerLineIcon, burgerMenuIcon, moreOptionsIcon, searchIcon, plusIcon, plusSymbol} from "./icons.js";
+import * as icons from "./icons.js";
 
-export function initIcons(){
-    // header
-    const menuButton = document.querySelector(".menuButton");
-    menuButton.innerHTML = burgerMenuIcon;
-    const moreOptionsButton = document.querySelector(".moreOptionsButton");
-    moreOptionsButton.innerHTML = moreOptionsIcon;
-    const searchButton = document.querySelector(".searchButton");
-    searchButton.innerHTML = searchIcon;
-
-    // main
-    const plusButton = document.querySelector(".plusButton");
-    plusButton.insertAdjacentHTML("afterbegin", plusIcon)
-
-    // nav
-    const dividerLineIcons = document.querySelectorAll(".dividerLine")
-    dividerLineIcons.forEach(div => {
-        div.innerHTML = dividerLineIcon;
+function injectIcon(className) {
+  if (document.querySelectorAll(`.${className}`).length > 1) {
+    let classes = document.querySelectorAll(`.${className}`);
+    classes.forEach((c) => {
+      c.innerHTML = icons[`${className}Icon`];
     });
-
-    
+  } else
+    document.querySelector(`.${className}`).innerHTML =
+      icons[`${className}Icon`];
 }
 
+export function initIcons() {
+  // header
+  injectIcon("menu");
+  injectIcon("date");
+  injectIcon("search");
+  // main
+  injectIcon("add");
+  // nav
+  injectIcon("dividerLine");
+  injectIcon("allTasksSVG");
+  injectIcon("uncategorizedSVG");
+  injectIcon("completedSVG");
+  injectIcon("bookmarkSVG1");
+  injectIcon("bookmarkSVG2");
+  injectIcon("bookmarkSVG3");
+  // lower nav
+  injectIcon("notesSVG");
+  injectIcon("statsSVG");
+  injectIcon("settingsSVG");
+}

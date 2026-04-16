@@ -1,35 +1,98 @@
-nav{
-    background-color: var(--navBackground);
-    position: fixed;
-    height: 100vh;
-    width: 70vw;
-    z-index: 11;
-    transform: translateX(-100%);
+nav {
+  background-color: var(--navBackground);
+  position: fixed;
+  height: 100vh;
+  overflow-y: auto;
+  width: 70vw;
+  z-index: 11;
+  transform: translateX(-100%);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
 }
-nav.open{
-    transform: translateX(0%);
-    transition: transform 0.3s ease;
+nav.open {
+  transform: translateX(0%);
+  transition: transform 0.3s ease;
 }
-.overlay{
-    position: fixed;
-    z-index: 10;
-    background: rgba(0, 0, 0, 0.25);
-    opacity: 0;
-    pointer-events: none;
-    inset: 0;
+.overlay {
+  position: fixed;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.25);
+  opacity: 0;
+  pointer-events: none;
+  inset: 0;
 }
-.overlay.open{
-    opacity: 1;
-    pointer-events: all;
+.overlay.open {
+  opacity: 1;
+  pointer-events: all;
 }
-header.open{
-    transform: translateX(70vw);
+header.open {
+  transform: translateX(70vw);
 }
-main.open{
-    transform: translateX(70vw);
+main.open {
+  transform: translateX(70vw);
 }
-.dividerLine svg{
-    width: 130px;
-    height: 10px;
+.dividerLine {
+  text-align: center;
+  display: flex;
+  align-items: center;
+  margin: 0.5rem var(--cornerMargin);
 }
-
+.dividerLine svg {
+  width: 100%;
+  height: auto;
+  margin-bottom: -0.3rem;
+  color: var(--primaryAccent);
+  filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
+}
+nav h1 {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-size: 2rem;
+  margin-top: var(--cornerMargin);
+  font-weight: bold;
+  margin-bottom: -1rem;
+  text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
+  letter-spacing: 0.15rem;
+}
+nav button {
+  display: flex;
+  align-self: start;
+  gap: 0.3rem;
+  margin: 0 var(--cornerMargin);
+  letter-spacing: 0.05rem;
+  width: 100%;
+}
+nav button span {
+  display: flex;
+  align-items: center;
+}
+nav button span svg {
+  height: 1rem;
+  width: auto;
+  color: var(--primaryAccent);
+}
+.bookmarkSVG1 svg {
+  color: #4a7a3b;
+}
+.bookmarkSVG2 svg {
+  color: #3b5a97;
+}
+.bookmarkSVG3 svg {
+  color: #977a3b;
+}
+nav button.selectedTitle {
+  border-radius: 1rem;
+  /* background-color: #4A7A3B; */
+}
+@media (min-width: 480px) {
+  nav {
+    width: 320px;
+  }
+  header.open {
+    transform: translateX(320px);
+  }
+  main.open {
+    transform: translateX(320px);
+  }
+}
