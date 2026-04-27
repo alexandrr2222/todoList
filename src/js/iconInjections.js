@@ -18,14 +18,13 @@ export function initIcons() {
   injectIcon("search");
   // main
   injectIcon("add");
+  injectIcon("closeDialog");
   // nav
   injectIcon("dividerLine");
   injectIcon("allTasksSVG");
   injectIcon("uncategorizedSVG");
   injectIcon("completedSVG");
-  injectIcon("bookmarkSVG1");
-  injectIcon("bookmarkSVG2");
-  injectIcon("bookmarkSVG3");
+  injectIcon("bookmarkSVG");
   // lower nav
   injectIcon("notesSVG");
   injectIcon("statsSVG");

@@ -1,6 +1,7 @@
 main {
   background-color: var(--mainBackground);
   flex: 1;
+  position: relative;
 }
 .add svg {
   color: var(--primaryAccent);
@@ -13,4 +14,135 @@ main {
   position: fixed;
   bottom: 2rem;
   right: 2rem;
+}
+.addDialog {
+  background-color: var(--dialogBackground);
+  border: none;
+  border-radius: 0.3rem;
+  padding: var(--cornerMargin);
+}
+.addDialog form {
+  display: flex;
+  flex-direction: column;
+}
+.closeDialog {
+  width: 1.5rem;
+  height: auto;
+  color: var(--primaryAccent);
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+}
+dialog form h2 {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  color: var(--mainTextColor);
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+.newOptions {
+  background-color: var(--inputBackground);
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+}
+.optionButton {
+  font-size: 0.75rem;
+  color: var(--dialogTextColor);
+  padding: 0.5rem 1rem;
+  border-radius: 0.3rem;
+}
+.submitButton {
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  color: var(--mainTextColor);
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 0.5rem 0.2rem;
+  border-radius: 0.3rem;
+  background-color: var(--primaryAccent);
+}
+.categoryTitleContainer label {
+  color: var(--dialogTextColor);
+}
+.categoryTitleSubcontainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.categoryErrorField {
+  color: red;
+  opacity: 0.5;
+  font-size: 0.75rem;
+  visibility: hidden;
+}
+#colorLabel {
+  color: var(--dialogTextColor);
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+}
+.inputContainer input {
+  background-color: var(--inputBackground);
+  border: var(--primaryAccent) 1px solid;
+  padding: 0.2rem;
+  border-radius: 0.3rem;
+  color: var(--mainTextColor);
+}
+.inputContainer input:focus {
+  border: var(--hoverAccent) 1px solid;
+  outline: none;
+}
+.inputContainer input::placeholder {
+  opacity: 1;
+  color: var(--dialogTextColor);
+}
+.colorButton {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+.selectedColor {
+  outline: var(--mainTextColor) 2px solid;
+}
+.redColor {
+  background-color: rgb(151 63 59);
+}
+.greenColor {
+  background-color: rgb(74 122 59);
+}
+.blueColor {
+  background-color: rgb(59 90 151);
+}
+.yellowColor {
+  background-color: rgb(151 122 59);
+}
+.pinkColor {
+  background-color: rgb(151 59 106);
+}
+.purpleColor {
+  background-color: rgb(90 59 151);
+}
+.tealColor {
+  background-color: rgb(59 122 106);
+}
+.orangeColor {
+  background-color: rgb(151 96 59);
+}
+.activeButton {
+  background-color: var(--primaryAccent);
+  color: var(--mainTextColor);
+}
+dialog[open] {
+  animation: dialogOpen 0.3s ease-out forwards;
+}
+@keyframes dialogOpen {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }

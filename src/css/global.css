@@ -10,6 +10,10 @@
   --navBackground: #25221f;
   /* main */
   --mainBackground: #1e1c1a;
+  /* main dialog */
+  --dialogTextColor: #92908f;
+  --dialogBackground: #25221f;
+  --inputBackground: #161616;
   /* text */
   font-family: "Literata", "Times New Roman", Times, serif;
   --mainTextColor: #f5f2ec;

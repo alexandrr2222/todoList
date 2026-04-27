@@ -24,9 +24,9 @@
       </div>
     </header>
     <nav>
+      <div class="navIndicator"></div>
       <h1>OlexTask</h1>
       <div class="dividerLine"></div>
-
       <button class="allTasks selectedTitle">
         <span class="allTasksSVG"></span>All Tasks
       </button>
@@ -36,17 +36,17 @@
       <button class="completed">
         <span class="completedSVG"></span>Completed
       </button>
-      <button class="job bookmark">
-        <span class="bookmarkSVG1"></span>Work
+      <button class="bookmark bookmark0">
+        <span class="bookmarkSVG bookmarkIcon0"></span>Work
       </button>
-      <button class="personal bookmark">
-        <span class="bookmarkSVG2"></span>Personal
+      <button class="bookmark bookmark1">
+        <span class="bookmarkSVG bookmarkIcon1"></span>Personal
       </button>
-      <button class="projects bookmark">
-        <span class="bookmarkSVG3"></span>Reading
+      <button class="bookmark bookmark2">
+        <span class="bookmarkSVG bookmarkIcon2"></span>Reading
       </button>
 
-      <div class="dividerLine"></div>
+      <div class="dividerLine bookmarkInsert"></div>
 
       <button class="notes"><span class="notesSVG"></span>Notes</button>
       <button class="stats"><span class="statsSVG"></span>Statistics</button>
@@ -56,6 +56,108 @@
     </nav>
     <main>
       <button class="add"></button>
+      <dialog class="addDialog">
+        <form action="/" class="addForm" method="get" novalidate>
+          <button class="closeDialog" type="button"></button>
+          <h2>Add New</h2>
+          <div class="newOptions" aria-label="Add options">
+            <button
+              type="button"
+              role="radio"
+              aria-checked="true"
+              class="optionButton activeButton taskButton"
+            >
+              Task
+            </button>
+            <button
+              role="radio"
+              aria-checked="false"
+              class="optionButton noteButton"
+              type="button"
+            >
+              Note
+            </button>
+            <button
+              role="radio"
+              aria-checked="false"
+              class="optionButton categoryButton"
+              type="button"
+            >
+              Category
+            </button>
+          </div>
+          <div class="categoryContent">
+            <div class="categoryTitleContainer inputContainer">
+              <div class="categoryTitleSubcontainer">
+                <label for="categoryTitle">Name</label>
+                <div class="categoryErrorField">Name can't be empty!</div>
+              </div>
+              <input
+                type="text"
+                id="categoryTitle"
+                name="categoryTitle"
+                required
+                maxlength="100"
+                minlength="3"
+                placeholder="Category Name..."
+                autocomplete="off"
+              />
+            </div>
+            <div id="colorLabel">Color</div>
+            <div class="colorOptions" aria-labelledby="colorLabel" role="group">
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton redColor selectedColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton greenColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton blueColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton yellowColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton pinkColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton purpleColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton tealColor"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton orangeColor"
+              ></button>
+            </div>
+          </div>
+          <button class="submitButton" type="submit">Add</button>
+        </form>
+      </dialog>
     </main>
   </body>
 </html>

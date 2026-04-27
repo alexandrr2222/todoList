@@ -9,7 +9,9 @@ nav {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 0rem;
+  padding: 0 var(--cornerMargin);
+  gap: 0.3rem;
 }
 nav.open {
   transform: translateX(0%);
@@ -37,7 +39,7 @@ main.open {
   text-align: center;
   display: flex;
   align-items: center;
-  margin: 0.5rem var(--cornerMargin);
+  margin: 1rem 0rem;
 }
 .dividerLine svg {
   width: 100%;
@@ -51,39 +53,56 @@ nav h1 {
   font-size: 2rem;
   margin-top: var(--cornerMargin);
   font-weight: bold;
-  margin-bottom: -1rem;
+  margin-bottom: -0.75rem;
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   letter-spacing: 0.15rem;
 }
 nav button {
+  box-sizing: border-box;
   display: flex;
-  align-self: start;
+  align-items: start;
   gap: 0.3rem;
-  margin: 0 var(--cornerMargin);
   letter-spacing: 0.05rem;
   width: 100%;
+  height: auto;
+  padding: 0.4rem;
 }
 nav button span {
   display: flex;
   align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+}
+nav button span {
+  color: var(--primaryAccent);
 }
 nav button span svg {
   height: 1rem;
   width: auto;
-  color: var(--primaryAccent);
 }
-.bookmarkSVG1 svg {
-  color: #4a7a3b;
+.bookmarkIcon0 svg {
+  color: rgb(74 122 59);
 }
-.bookmarkSVG2 svg {
-  color: #3b5a97;
+.bookmarkIcon1 svg {
+  color: rgb(59 90 151);
 }
-.bookmarkSVG3 svg {
-  color: #977a3b;
+.bookmarkIcon2 svg {
+  color: rgb(151 122 59);
 }
-nav button.selectedTitle {
-  border-radius: 1rem;
-  /* background-color: #4A7A3B; */
+.navIndicator {
+  height: 2rem;
+  left: var(--cornerMargin);
+  width: calc(100% - 2 * var(--cornerMargin));
+  position: absolute;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 10px;
+  background-color: #33312e;
+  z-index: -1;
+}
+.navIndicator.transitionIndicator {
+  transition: transform 0.15s ease;
 }
 @media (min-width: 480px) {
   nav {
