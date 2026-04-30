@@ -18,7 +18,9 @@ export function initIcons() {
   injectIcon("search");
   // main
   injectIcon("add");
-  injectIcon("closeDialog");
+  injectIcon("closeSVG");
+  injectIcon("editSVG");
+  injectIcon("deleteSVG");
   // nav
   injectIcon("dividerLine");
   injectIcon("allTasksSVG");
@@ -27,6 +29,6 @@ export function initIcons() {
   injectIcon("bookmarkSVG");
   // lower nav
   injectIcon("notesSVG");
-  injectIcon("statsSVG");
+  injectIcon("statisticsSVG");
   injectIcon("settingsSVG");
 }

@@ -2,6 +2,7 @@
   --primaryAccent: #973f3b;
   --hoverAccent: #812424;
   --cornerMargin: 1rem;
+  --cornerRadius: 0.3rem;
   /* header */
   --headerBackground: #2a2826;
   --headerHeight: 4rem;
@@ -10,6 +11,7 @@
   --navBackground: #25221f;
   /* main */
   --mainBackground: #1e1c1a;
+  --todoBackground: #2c2a27;
   /* main dialog */
   --dialogTextColor: #92908f;
   --dialogBackground: #25221f;
@@ -31,6 +33,9 @@ body {
 body.noScroll {
   overflow: hidden;
 }
+li {
+  list-style-type: none;
+}
 nav.transition,
 .overlay.transition,
 main.transition,
@@ -43,4 +48,9 @@ button {
   border: none;
   padding: 0;
   cursor: pointer;
+}
+.notesSectionContainer,
+.statisticsSectionContainer,
+.settingsSectionContainer {
+  display: none;
 }

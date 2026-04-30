@@ -1,0 +1,63 @@
+.noteContent {
+  display: none;
+}
+.noteTitleContainer label {
+  color: var(--dialogTextColor);
+}
+.noteTitleSubcontainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.noteErrorField {
+  color: red;
+  opacity: 0.5;
+  font-size: 0.75rem;
+  display: none;
+}
+.noteDescriptionContainer label {
+  color: var(--dialogTextColor);
+}
+
+.notesSectionSubcontainer {
+  padding: var(--cornerMargin);
+  columns: 2;
+  /* display: grid;
+  align-items: start;
+  grid-template-columns: repeat(auto-fit, minmax(100px, 170px)); */
+  gap: 0.5rem;
+}
+.noteItem {
+  color: var(--mainTextColor);
+  font-size: 0.75rem;
+  margin-bottom: 0.5rem;
+  break-inside: avoid;
+  background-color: var(--todoBackground);
+  border-radius: var(--cornerRadius);
+  padding: 1rem;
+  position: relative;
+  user-select: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+.noteItemTitle {
+  color: var(--mainTextColor);
+  font-size: 1rem;
+  font-weight: bold;
+  margin-bottom: 0.5rem;
+  margin-top: -0.15rem;
+}
+
+.noteItem .closeSVG {
+  display: none;
+  color: var(--primaryAccent);
+  height: 1rem;
+  width: 1rem;
+  position: absolute;
+  top: 0.5rem;
+  right: 0.5rem;
+}
+@media (min-width: 1024px) {
+  .noteItem .closeSVG {
+    display: block;
+  }
+}

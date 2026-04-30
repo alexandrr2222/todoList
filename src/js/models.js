@@ -19,7 +19,7 @@ export class TaskClass {
 }
 export class NoteClass {
   static all = [];
-  constructor({ id, title, description = null }) {
+  constructor(id, title, description = null) {
     this.id = id;
     this.title = title;
     this.description = description;

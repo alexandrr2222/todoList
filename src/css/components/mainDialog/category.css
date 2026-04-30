@@ -1,0 +1,52 @@
+.categoryContent {
+  display: none;
+}
+.categoryTitleContainer label {
+  color: var(--dialogTextColor);
+}
+.categoryTitleSubcontainer {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+.categoryErrorField {
+  color: red;
+  opacity: 0.5;
+  font-size: 0.75rem;
+  display: none;
+}
+#colorLabel {
+  color: var(--dialogTextColor);
+}
+.colorButton {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+.selectedColor {
+  outline: var(--mainTextColor) 2px solid;
+}
+.redColor {
+  background-color: rgb(151 63 59);
+}
+.greenColor {
+  background-color: rgb(74 122 59);
+}
+.blueColor {
+  background-color: rgb(59 90 151);
+}
+.yellowColor {
+  background-color: rgb(151 122 59);
+}
+.pinkColor {
+  background-color: rgb(151 59 106);
+}
+.purpleColor {
+  background-color: rgb(90 59 151);
+}
+.tealColor {
+  background-color: rgb(59 122 106);
+}
+.orangeColor {
+  background-color: rgb(151 96 59);
+}
