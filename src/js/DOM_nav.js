@@ -24,7 +24,7 @@ export function navBar() {
   });
 }
 // bugger: after it moves u can scroll down in navBar
-function moveIndicator(currentButton) {
+export function moveIndicator(currentButton) {
   const btnTop = currentButton.offsetTop;
   navIndicator.style.transform = `translateY(${btnTop}px)`;
 }

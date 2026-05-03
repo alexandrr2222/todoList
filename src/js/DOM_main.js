@@ -1,41 +1,54 @@
-import { bookmarkSVGIcon, closeSVGIcon } from "./icons.js";
-import { changePageNewCategory } from "./DOM_nav.js";
-import { NoteClass, CategoryClass } from "./models.js";
-// TaskClass,
+import { switchColors, submitCategory } from "./mainDialog/DOM_category.js";
+import { submitNote } from "./mainDialog/DOM_note.js";
+import { NoteClass, CategoryClass, TaskClass } from "./models.js";
+let isEditMode = false;
+
 let addButton,
   addDialogBtn,
   closeDialogBtn,
   optionButtons,
-  colorButtons,
   addForm,
-  nav,
-  bookmarkInsert,
   categoryErrorField,
   categoryContent,
   taskContent,
   noteErrorField,
   noteContent,
-  noteSection,
   contextMenu,
-  deleteCont;
+  editCont,
+  deleteCont,
+  newOptions,
+  submitButton,
+  dialogTitle,
+  taskButton,
+  noteTitle,
+  noteDescription,
+  categoryTitle,
+  redColor;
 
 export function dialogMaster() {
   addButton = document.querySelector(".add");
   addDialogBtn = document.querySelector(".addDialog");
   closeDialogBtn = document.querySelector(".closeDialog");
   optionButtons = document.querySelectorAll(".optionButton");
-  colorButtons = document.querySelectorAll(".colorButton");
+  submitButton = document.querySelector(".submitButton");
+  dialogTitle = document.querySelector(".dialogTitle");
+  taskButton = document.querySelector(".taskButton");
+  noteTitle = document.querySelector("#noteTitle");
+  noteDescription = document.querySelector("#noteDescription");
+  categoryTitle = document.querySelector("#categoryTitle");
+  redColor = document.querySelector(".redColor");
   addForm = document.querySelector(".addForm");
-  nav = document.querySelector("nav");
-  bookmarkInsert = document.querySelector(".bookmarkInsert");
+
   categoryErrorField = document.querySelector(".categoryErrorField");
   categoryContent = document.querySelector(".categoryContent");
   taskContent = document.querySelector(".taskContent");
   noteContent = document.querySelector(".noteContent");
   noteErrorField = document.querySelector(".noteErrorField");
-  noteSection = document.querySelector(".notesSectionSubcontainer");
+
   contextMenu = document.querySelector(".contextMenu");
   deleteCont = document.querySelector(".deleteCont");
+  editCont = document.querySelector(".editCont");
+  newOptions = document.querySelector(".newOptions");
   openDialog();
   closeDialog();
   switchDialogOptions();
@@ -43,15 +56,36 @@ export function dialogMaster() {
   submit();
   closeContextMenu();
   deleteItem();
+  editItem();
+}
+function resetDialog() {
+  helpDisplayOptions(taskContent, noteContent, categoryContent);
+  newOptions.style.display = "block";
+  submitButton.textContent = "Add";
+  dialogTitle.textContent = "Add New";
+  noteErrorField.style.display = "none";
+  categoryErrorField.style.display = "none";
+  isEditMode = false;
+  noteTitle.value = "";
+  noteDescription.value = "";
+  categoryTitle.value = "";
+  const selectedColor = document.querySelector(".selectedColor");
+  selectedColor.classList.remove("selectedColor");
+  redColor.classList.add("selectedColor");
+  // questionable, should be settings
+  const activeButton = document.querySelector(".activeButton");
+  activeButton.classList.remove("activeButton");
+  taskButton.classList.add("activeButton");
 }
 function openDialog() {
   addButton.addEventListener("click", () => {
+    resetDialog();
     addDialogBtn.showModal();
   });
 }
 function closeDialog() {
-  // more cleanups
   closeDialogBtn.addEventListener("click", () => {
+    resetDialog();
     addDialogBtn.close();
   });
 }
@@ -92,12 +126,17 @@ function routeOptions() {
 function submit() {
   addForm.addEventListener("submit", (e) => {
     e.preventDefault();
-    if (!routeOptions()) return;
+    if (isEditMode) {
+      let { interactiveItem, chosenClass, index } = interactItem(editCont);
+      editSubmission(interactiveItem, chosenClass, index);
+    } else {
+      if (!routeOptions()) return;
+    }
     addDialogBtn.close();
     addForm.reset();
   });
 }
-function addContextMenuControls(container) {
+export function addContextMenuControls(container) {
   let pressTimer;
   container.addEventListener("touchstart", () => {
     pressTimer = setTimeout(() => {
@@ -123,93 +162,63 @@ function showContextMenu(item) {
   contextMenu.style.top = `calc(${itemPosition.bottom}px - 1rem)`;
   contextMenu.style.left = itemPosition.left + "px";
   deleteCont.dataset.currentItem = item.dataset.dataID;
+  editCont.dataset.currentItem = item.dataset.dataID;
+}
+function interactItem(container) {
+  const id = container.dataset.currentItem;
+  let chosenClass;
+  //   replace if with loop
+  if (NoteClass.all.find((ind) => ind.id === id)) {
+    chosenClass = NoteClass.all;
+  } else if (TaskClass.all.find((ind) => ind.id === id)) {
+    chosenClass = TaskClass.all;
+  } else if (CategoryClass.all.find((ind) => ind.id === id)) {
+    chosenClass = CategoryClass.all;
+  }
+  const interactiveItem = document.querySelector(`[data-data-i-d="${id}"]`);
+  const index = chosenClass.findIndex((ind) => ind.id === id);
+  return { interactiveItem, index, chosenClass };
 }
 function deleteItem() {
   deleteCont.addEventListener("click", () => {
-    const id = deleteCont.dataset.currentItem;
-    const index = NoteClass.all.findIndex((ind) => ind.id === id);
-    NoteClass.all.splice(index, 1);
-    const DOMToDelete = document.querySelector(`[data-data-i-d="${id}"]`);
-    DOMToDelete.remove();
+    let { interactiveItem, index, chosenClass } = interactItem(deleteCont);
+    chosenClass.splice(index, 1);
+    interactiveItem.remove();
   });
 }
-function submitNote() {
-  if (
-    document.querySelector("#noteTitle").value.trim() === "" &&
-    document.querySelector("#noteDescription").value.trim() === ""
-  ) {
-    noteErrorField.style.display = "block";
-    return false;
-  }
-  createNoteDOM(createNoteClass());
-  return true;
-}
-function createNoteClass() {
-  const noteTitle = document.querySelector("#noteTitle").value.trim();
-  const noteDescription = document
-    .querySelector("#noteDescription")
-    .value.trim();
-  const noteID = "ID" + crypto.randomUUID();
-  return new NoteClass(noteID, noteTitle, noteDescription);
-}
-
-function createNoteDOM(noteFromClass) {
-  console.log(noteFromClass.title);
-  const newNote = document.createElement("div");
-  const closeNote = document.createElement("buttom");
-  closeNote.classList.add("closeSVG");
-  closeNote.innerHTML = closeSVGIcon;
-
-  newNote.classList.add("noteItem");
-  newNote.dataset.dataID = noteFromClass.id;
-  newNote.textContent = noteFromClass.description;
-  if (noteFromClass.title.trim() !== "") {
-    const headerNote = document.createElement("h2");
-    headerNote.textContent = noteFromClass.title;
-    headerNote.classList.add("noteItemTitle");
-    newNote.prepend(headerNote);
-    if (noteFromClass.description.trim() === "")
-      headerNote.style.marginBottom = "0rem";
-  }
-  newNote.prepend(closeNote);
-  noteSection.append(newNote);
-  addContextMenuControls(newNote);
-}
-function switchColors() {
-  colorButtons.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const selectedColorBtn = document.querySelector(".selectedColor");
-      selectedColorBtn.classList.remove("selectedColor");
-      btn.classList.add("selectedColor");
-    });
+function editItem() {
+  editCont.addEventListener("click", () => {
+    isEditMode = true;
+    let { index, chosenClass } = interactItem(editCont);
+    newOptions.style.display = "none";
+    submitButton.textContent = "Edit";
+    if (chosenClass === TaskClass.all) {
+      dialogTitle.textContent = "Edit Task";
+      helpDisplayOptions(taskContent, noteContent, categoryContent);
+    } else if (chosenClass === NoteClass.all) {
+      dialogTitle.textContent = "Edit Note";
+      noteDescription.value = chosenClass[index].description;
+      noteTitle.value = chosenClass[index].title;
+      helpDisplayOptions(noteContent, taskContent, categoryContent);
+    } else if (chosenClass === CategoryClass.all) {
+      dialogTitle.textContent = "Edit Category";
+      categoryTitle.value = chosenClass[index].name;
+      helpDisplayOptions(categoryContent, noteContent, taskContent);
+    }
+    addDialogBtn.showModal();
   });
 }
-function submitCategory() {
-  if (document.querySelector("#categoryTitle").value.trim() === "") {
-    categoryErrorField.style.display = "block";
-    return false;
+function editSubmission(interactiveItem, chosenClass, index) {
+  if (interactiveItem.classList.contains("noteItem")) {
+    const noteTitle = document.querySelector("#noteTitle").value.trim();
+    const noteDescription = document
+      .querySelector("#noteDescription")
+      .value.trim();
+    interactiveItem.querySelector("h2").textContent = noteTitle;
+    interactiveItem.querySelector("p").textContent = noteDescription;
+    chosenClass[index].title = noteTitle;
+    chosenClass[index].description = noteDescription;
+  } else if (interactiveItem.classList.contains("categoryItem")) {
+    console.log("k");
   }
-  createCategoryDOM(createCategoryClass());
-  return true;
-}
-function createCategoryClass() {
-  const categoryName = document.querySelector("#categoryTitle").value;
-  const categoryColor = getComputedStyle(
-    document.querySelector(".selectedColor"),
-  ).backgroundColor;
-  const categoryID = "ID" + crypto.randomUUID();
-  return new CategoryClass(categoryID, categoryName, categoryColor);
-}
-function createCategoryDOM(categoryFromClass) {
-  const newCategory = document.createElement("button");
-  const newCategoryIcon = document.createElement("span");
-  newCategory.dataset.dataID = categoryFromClass.id;
-  newCategory.textContent = categoryFromClass.name;
-  newCategory.dataset.pageType = "task";
-  newCategoryIcon.classList.add("bookmarkSVG");
-  newCategoryIcon.style.color = categoryFromClass.color;
-  newCategoryIcon.innerHTML = bookmarkSVGIcon;
-  newCategory.prepend(newCategoryIcon);
-  nav.insertBefore(newCategory, bookmarkInsert);
-  changePageNewCategory(newCategory);
 }
