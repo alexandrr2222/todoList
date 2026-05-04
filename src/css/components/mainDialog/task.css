@@ -1,0 +1,76 @@
+.taskTitleSubcontainer {
+  display: flex;
+}
+.taskErrorField {
+  display: none;
+}
+.dateCont {
+  display: flex;
+  flex-direction: column;
+}
+.datePrioCont {
+  display: flex;
+  flex-direction: row;
+}
+.belongCont {
+  display: flex;
+  flex-direction: column;
+}
+#taskBelong,
+#taskBelong::picker(select) {
+  appearance: base-select;
+}
+
+#taskBelong option:checked {
+  color: var(--mainTextColor);
+}
+#taskBelong::picker-icon {
+  color: var(--mainTextColor);
+}
+#taskBelong {
+  border: var(--primaryAccent) 1px solid;
+  background-color: var(--inputBackground);
+  border-radius: var(--cornerRadius);
+  touch-action: manipulation;
+  anchor-name: --taskBelong;
+}
+#taskBelong::picker(select) {
+  background-color: var(--inputBackground);
+  border-radius: var(--cornerRadius);
+  border: var(--primaryAccent) 1px solid;
+  color: var(--dialogTextColor);
+  position-anchor: --taskBelong;
+  position-area: bottom span-inline-end;
+}
+#taskBelong selectedcontent {
+  color: var(--mainTextColor);
+}
+.prioButton {
+  width: 1rem;
+  height: 1rem;
+  border-radius: 50%;
+}
+.selectedPrio {
+  outline: 2px solid var(--mainTextColor);
+}
+.lowPrio {
+  background-color: rgb(3, 109, 10);
+}
+.midPrio {
+  background-color: rgb(204, 163, 3);
+}
+.highPrio {
+  background-color: rgb(109, 3, 5);
+}
+.descCont {
+  display: flex;
+  flex-direction: column;
+}
+.taskTitleLabel,
+.taskDateLabel,
+#prioLabel,
+.taskBelongLabel,
+.taskDescriptionLabel,
+.addDescButton {
+  color: var(--dialogTextColor);
+}

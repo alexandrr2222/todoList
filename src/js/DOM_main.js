@@ -1,5 +1,6 @@
 import { switchColors, submitCategory } from "./mainDialog/DOM_category.js";
 import { submitNote } from "./mainDialog/DOM_note.js";
+import { switchPrio } from "./mainDialog/DOM_task.js";
 import { NoteClass, CategoryClass, TaskClass } from "./models.js";
 let isEditMode = false;
 
@@ -23,7 +24,8 @@ let addButton,
   noteTitle,
   noteDescription,
   categoryTitle,
-  redColor;
+  redColor,
+  taskBelong;
 
 export function dialogMaster() {
   addButton = document.querySelector(".add");
@@ -38,6 +40,7 @@ export function dialogMaster() {
   categoryTitle = document.querySelector("#categoryTitle");
   redColor = document.querySelector(".redColor");
   addForm = document.querySelector(".addForm");
+  taskBelong = document.querySelector("#taskBelong");
 
   categoryErrorField = document.querySelector(".categoryErrorField");
   categoryContent = document.querySelector(".categoryContent");
@@ -54,6 +57,7 @@ export function dialogMaster() {
   switchDialogOptions();
   switchColors();
   submit();
+  switchPrio();
   closeContextMenu();
   deleteItem();
   editItem();
@@ -77,8 +81,20 @@ function resetDialog() {
   activeButton.classList.remove("activeButton");
   taskButton.classList.add("activeButton");
 }
+function populateCategorySelection() {
+  taskBelong.querySelectorAll("option").forEach((opt) => {
+    opt.remove();
+  });
+  CategoryClass.all.forEach((ctg) => {
+    const selectionOption = document.createElement("option");
+    selectionOption.value = ctg.id;
+    selectionOption.textContent = ctg.name;
+    taskBelong.append(selectionOption);
+  });
+}
 function openDialog() {
   addButton.addEventListener("click", () => {
+    populateCategorySelection();
     resetDialog();
     addDialogBtn.showModal();
   });

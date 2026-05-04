@@ -11,7 +11,8 @@ import { navBar, changePage } from "./DOM_nav.js";
 import { transitionLoad } from "./DOM_global.js";
 import { dialogMaster } from "./DOM_main.js";
 import { TaskClass, NoteClass, CategoryClass } from "./models.js";
-
+import { createExampleCategories } from "./mainDialog/DOM_category.js";
+import { createExampleNotes } from "./mainDialog/DOM_note.js";
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -21,6 +22,8 @@ handleResize();
 initIcons();
 navBar();
 transitionLoad();
+createExampleCategories();
+createExampleNotes();
 changePage();
 dialogMaster();
 
@@ -63,3 +66,6 @@ function handleResize() {
 // get rid of dom component and instead do queries with let
 
 // add category editor
+// CSS features to use: starting style
+
+// CSS: anchor positioning for next project

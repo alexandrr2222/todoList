@@ -2,6 +2,7 @@ import { changePageNewCategory } from "../DOM_nav.js";
 import { bookmarkSVGIcon } from "../icons.js";
 import { CategoryClass } from "../models.js";
 import { moveIndicator } from "../DOM_nav.js";
+import exampleData from "../exampleData.json" with { type: "json" };
 
 let nav, bookmarkInsert, colorButtons, categoryErrorField;
 
@@ -18,6 +19,14 @@ export function switchColors() {
       btn.classList.add("selectedColor");
     });
   });
+}
+export function createExampleCategories() {
+  new CategoryClass("uncategorizedID", "Uncategorized", "null");
+  exampleData.categories.forEach((ctg) => {
+    createCategoryDOM(new CategoryClass(ctg.id, ctg.name, ctg.color));
+  });
+  // const selectedTitle = document.querySelector(".selectedTitle");
+  // moveIndicator(selectedTitle);
 }
 export function submitCategory() {
   if (document.querySelector("#categoryTitle").value.trim() === "") {

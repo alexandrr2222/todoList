@@ -16,6 +16,7 @@ export function initIcons() {
   injectIcon("menu");
   injectIcon("date");
   injectIcon("search");
+
   // main
   injectIcon("add");
   injectIcon("closeSVG");
@@ -26,7 +27,7 @@ export function initIcons() {
   injectIcon("allTasksSVG");
   injectIcon("uncategorizedSVG");
   injectIcon("completedSVG");
-  injectIcon("bookmarkSVG");
+  // injectIcon("bookmarkSVG");
   // lower nav
   injectIcon("notesSVG");
   injectIcon("statisticsSVG");

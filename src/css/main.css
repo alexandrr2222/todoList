@@ -67,18 +67,21 @@ dialog form h2 {
   display: flex;
   flex-direction: column;
 }
-.inputContainer input {
+.inputContainer input,
+textarea {
   background-color: var(--inputBackground);
   border: var(--primaryAccent) 1px solid;
   padding: 0.2rem;
   border-radius: 0.3rem;
   color: var(--mainTextColor);
 }
-.inputContainer input:focus {
+.inputContainer input:focus,
+textarea:focus {
   border: var(--hoverAccent) 1px solid;
   outline: none;
 }
-.inputContainer input::placeholder {
+.inputContainer input::placeholder,
+textarea::placeholder {
   opacity: 1;
   color: var(--dialogTextColor);
 }

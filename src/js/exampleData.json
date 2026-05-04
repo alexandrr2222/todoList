@@ -1,0 +1,55 @@
+{
+  "tasks": [],
+  "notes": [
+    {
+      "id": "exampleNote1",
+      "title": "Books to Read",
+      "description": "The Decline of the West, Being and Time, Revolt Against the Modern World, Storm of Steel, Beyond Good and Evil"
+    },
+    {
+      "id": "exampleNote2",
+      "title": "Prague Cafes",
+      "description": "Café Louvre, Kavárna Slavia, EMA Espresso Bar, Můj šálek kávy — all worth visiting"
+    },
+    {
+      "id": "exampleNote3",
+      "title": "German Words",
+      "description": "Weltanschauung — worldview, Schadenfreude — pleasure from others pain, Zeitgeist — spirit of the age"
+    },
+    {
+      "id": "exampleNote4",
+      "title": "JS Reminders",
+      "description": "find() returns undefined not error. filter() creates new array. splice() mutates original. at(-1) gets last item."
+    },
+    {
+      "id": "exampleNote5",
+      "title": "Workout",
+      "description": "Monday: push. Wednesday: pull. Friday: legs. Saturday: cardio. Rest Sunday."
+    },
+    {
+      "id": "exampleNote6",
+      "title": "JS Patterns",
+      "description": "Module pattern: one master export function. DOM queries inside init. Pass elements as arguments not query inside functions."
+    },
+    {
+      "id": "exampleNote7",
+      "title": "Vienna Trip",
+      "description": "Kunsthistorisches Museum, Schönbrunn Palace, Stephansdom, Naschmarkt, Prater park"
+    },
+    {
+      "id": "exampleNote8",
+      "title": "SOLID Quick",
+      "description": "S: one job per function. O: extend dont modify. D: depend on abstractions. Strategy object over long if else chains."
+    },
+    {
+      "id": "exampleNote9",
+      "title": "JS Gotchas",
+      "description": "setCustomValidity needs empty string to clear. findIndex returns -1 if not found. innerHTML overwrites all children."
+    }
+  ],
+  "categories": [
+    { "id": "exampleCategory1", "name": "Work", "color": "rgb(74 122 59)" },
+    { "id": "exampleCategory2", "name": "Personal", "color": "rgb(59 90 151)" },
+    { "id": "exampleCategory3", "name": "Coding", "color": "rgb(151 122 59)" }
+  ]
+}

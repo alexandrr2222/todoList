@@ -1,11 +1,18 @@
 import { closeSVGIcon } from "../icons.js";
 import { NoteClass } from "../models.js";
 import { addContextMenuControls } from "../DOM_main.js";
+import exampleData from "../exampleData.json" with { type: "json" };
 
 let noteSection, noteErrorField;
 
 noteSection = document.querySelector(".notesSectionSubcontainer");
 noteErrorField = document.querySelector(".noteErrorField");
+
+export function createExampleNotes() {
+  exampleData.notes.forEach((note) => {
+    createNoteDOM(new NoteClass(note.id, note.title, note.description));
+  });
+}
 
 export function submitNote() {
   if (

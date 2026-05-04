@@ -17,6 +17,7 @@
       <div class="leftHeader">
         <button class="menu"></button>
         <h2 class="currentTitle">All Tasks</h2>
+        <div class="threeDots"></div>
       </div>
       <div class="rightHeader">
         <button class="date"></button>
@@ -31,13 +32,17 @@
       <button class="allTasks selectedTitle" data-page-type="task">
         <span class="allTasksSVG"></span>All Tasks
       </button>
-      <button class="uncategorized" data-page-type="task">
+      <button
+        data-data-i-d="uncategorizedID"
+        class="uncategorized"
+        data-page-type="task"
+      >
         <span class="uncategorizedSVG"></span>Uncategorized
       </button>
       <button class="completed" data-page-type="task">
         <span class="completedSVG"></span>Completed
       </button>
-      <button class="bookmark bookmark0" data-page-type="task">
+      <!-- <button class="bookmark bookmark0" data-page-type="task">
         <span class="bookmarkSVG bookmarkIcon0"></span>Work
       </button>
       <button class="bookmark bookmark1" data-page-type="task">
@@ -45,7 +50,7 @@
       </button>
       <button class="bookmark bookmark2" data-page-type="task">
         <span class="bookmarkSVG bookmarkIcon2"></span>Reading
-      </button>
+      </button> -->
 
       <div class="dividerLine bookmarkInsert"></div>
 
@@ -74,7 +79,7 @@
       <div class="taskSectionContainer section">tasks</div>
       <div class="notesSectionContainer section">
         <div class="notesSectionSubcontainer">
-          <div class="noteItem" spellcheck="false">
+          <!-- <div class="noteItem" spellcheck="false">
             <button class="closeSVG"></button>
             Lorem ipsum, dolor sit amet consectetur adipisicing elit. Enim, vero
             totam! Ullam culpa aliquam temporibus quaerat tempora non corporis
@@ -93,7 +98,7 @@
             corporis a accusamus voluptate amet quod sequi vero expedita quidem,
             maxime officia magni nisi obcaecati itaque perferendis adipisci?
             Aliquam, blanditiis.
-          </div>
+          </div> -->
         </div>
       </div>
       <div class="statisticsSectionContainer section">stats</div>
@@ -128,7 +133,75 @@
               Category
             </button>
           </div>
-          <div class="taskContent">task</div>
+
+          <div class="taskContent">
+            <div class="taskTitleContainer inputContainer">
+              <div class="taskTitleSubcontainer">
+                <label class="taskTitleLabel" for="taskTitle">Title</label>
+                <div class="taskErrorField">Title can't be empty!</div>
+              </div>
+              <input
+                type="text"
+                id="taskTitle"
+                name="taskTitle"
+                required
+                maxlength="100"
+                minlength="3"
+                placeholder="Task Title..."
+                autocomplete="off"
+              />
+            </div>
+            <div class="datePrioCont">
+              <div class="dateCont inputContainer">
+                <label class="taskDateLabel" for="taskDate">Due Date</label>
+                <input type="date" id="taskDate" name="taskDate" required />
+              </div>
+              <div class="prioCont">
+                <div id="prioLabel">Priority</div>
+                <div
+                  class="prioOptions"
+                  aria-labelledby="prioLabel"
+                  role="group"
+                ></div>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked="true"
+                  class="prioButton lowPrio selectedPrio"
+                ></button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked="false"
+                  class="prioButton midPrio"
+                ></button>
+                <button
+                  type="button"
+                  role="radio"
+                  aria-checked="false"
+                  class="prioButton highPrio"
+                ></button>
+              </div>
+            </div>
+            <div class="belongCont">
+              <label class="taskBelongLabel" for="taskBelong">Category</label>
+              <select name="taskBelong" id="taskBelong">
+                <button>
+                  <selectedcontent>Uncategorized</selectedcontent>
+                </button>
+              </select>
+            </div>
+            <div class="descCont">
+              <label class="taskDescriptionLabel" for="taskDescription"
+                >Description</label
+              >
+              <textarea
+                name="taskDescription"
+                id="taskDescription"
+                placeholder="Describe your task..."
+              ></textarea>
+            </div>
+          </div>
 
           <div class="noteContent">
             <div class="noteTitleContainer inputContainer">
@@ -149,14 +222,11 @@
             </div>
             <div class="noteDescriptionContainer inputContainer">
               <label for="noteDescription">Description</label>
-              <input
-                type="text"
-                id="noteDescription"
+              <textarea
                 name="noteDescription"
-                required
+                id="noteDescription"
                 placeholder="Describe your note..."
-                autocomplete="off"
-              />
+              ></textarea>
             </div>
           </div>
 
@@ -188,43 +258,43 @@
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton greenColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton blueColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton yellowColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton pinkColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton purpleColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton tealColor"
               ></button>
               <button
                 type="button"
                 role="radio"
-                aria-checked="true"
+                aria-checked="false"
                 class="colorButton orangeColor"
               ></button>
             </div>
