@@ -24,11 +24,11 @@ handleResize();
 initIcons();
 navBar();
 transitionLoad();
+changePage();
+dialogMaster();
 createExampleCategories();
 createExampleNotes();
 createExampleTasks();
-changePage();
-dialogMaster();
 
 function handleResize() {
   let resizeTimer;

@@ -5,6 +5,9 @@ import {
   overlay,
 } from "./DOM_components.js";
 
+import { removeTasksFromDom, loadTasks } from "./mainDialog/DOM_task.js";
+import { TaskClass } from "./models.js";
+
 let firstSelectedTitle, initialButtons;
 
 export function navBar() {
@@ -23,7 +26,7 @@ export function navBar() {
     document.body.classList.toggle("noScroll");
   });
 }
-// bugger: after it moves u can scroll down in navBar
+// bug: after it moves u can scroll down in navBar
 export function moveIndicator(currentButton) {
   const btnTop = currentButton.offsetTop;
   navIndicator.style.transform = `translateY(${btnTop}px)`;
@@ -65,8 +68,25 @@ function showPage(btn) {
     `.${btn.dataset.pageType}SectionContainer`,
   );
   sectionContainer.style.display = "block";
+  if (btn.dataset.pageType === "task") {
+    if (btn.dataset.dataID === "allTasksID") {
+      removeTasksFromDom();
+      loadTasks(TaskClass.all);
+    } else if (btn.dataset.dataID === "completedID") {
+      const completedOnly = TaskClass.all.filter(
+        (task) => task.completion === true,
+      );
+      removeTasksFromDom();
+      loadTasks(completedOnly);
+      // delete everything dom (if not on same page already)
+    } else {
+      const localID = btn.dataset.dataID;
+      const matchingCategory = TaskClass.all.filter(
+        (task) => task.inCategory === localID,
+      );
+      removeTasksFromDom();
+      loadTasks(matchingCategory);
+      // delete everything dom (if not on same page already)
+    }
+  }
 }
-
-// all tasks > render every task that has completed:no
-// completed > render every task that has completed:yes
-// taskCategoryClass > take DOM's ID from data(or class) and then select only arrays that match that ID + completed:no

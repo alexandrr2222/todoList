@@ -23,6 +23,14 @@ export function createExampleTasks() {
     );
   });
 }
+export function removeTasksFromDom() {
+  taskSectionContainer.innerHTML = "";
+}
+export function loadTasks(tasklist) {
+  tasklist.forEach((task) => {
+    createTaskDOM(task);
+  });
+}
 
 export function taskInit() {
   addGlobalEventListener(
