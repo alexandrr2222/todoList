@@ -25,8 +25,6 @@ export function createExampleCategories() {
   exampleData.categories.forEach((ctg) => {
     createCategoryDOM(new CategoryClass(ctg.id, ctg.name, ctg.color));
   });
-  // const selectedTitle = document.querySelector(".selectedTitle");
-  // moveIndicator(selectedTitle);
 }
 export function submitCategory() {
   if (document.querySelector("#categoryTitle").value.trim() === "") {

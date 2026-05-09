@@ -6,6 +6,7 @@ import "../css/components/nav.css";
 import "../css/components/mainDialog/category.css";
 import "../css/components/mainDialog/note.css";
 import "../css/components/mainDialog/task.css";
+import "../css/components/todoItem.css";
 import { initIcons } from "./iconInjections.js";
 import { navBar, changePage } from "./DOM_nav.js";
 import { transitionLoad } from "./DOM_global.js";
@@ -13,6 +14,7 @@ import { dialogMaster } from "./DOM_main.js";
 import { TaskClass, NoteClass, CategoryClass } from "./models.js";
 import { createExampleCategories } from "./mainDialog/DOM_category.js";
 import { createExampleNotes } from "./mainDialog/DOM_note.js";
+import { createExampleTasks } from "./mainDialog/DOM_task.js";
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -24,6 +26,7 @@ navBar();
 transitionLoad();
 createExampleCategories();
 createExampleNotes();
+createExampleTasks();
 changePage();
 dialogMaster();
 
@@ -57,15 +60,18 @@ function handleResize() {
   });
 }
 
-// High Prio:create mockup todoItem(class),
-// if task > title, note, due date, priority (progress, subtask) = add task
+// task addons - progress, subtask
 // Low Prio: add amount of uncompleted tasks in each section, sort by priority or anything else rly
-
-// settings > enforce style (always capitalize start)
 
 // get rid of dom component and instead do queries with let
 
 // add category editor
-// CSS features to use: starting style
 
+// CSS features to use: starting style
 // CSS: anchor positioning for next project
+
+// stats - FIRST SECTION: total tasks, overdue amount, total notes, total categories
+// SECOND SECTION: PROGRESSION OF EACH CATEGORY TO FULL COMPLETE
+
+// settings > enforce style (always capitalize start)
+//  choose theme color

@@ -1,0 +1,124 @@
+.taskSectionContainer {
+  padding: var(--cornerMargin);
+  display: flex;
+  flex-direction: column;
+}
+.taskItem {
+  padding: 0.5rem;
+  position: relative;
+  border-radius: 0.6rem;
+  background-color: var(--todoBackground);
+  margin-bottom: 1rem;
+  /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
+
+  /* border-top-left-radius: 0rem;
+  border-bottom-left-radius: 0rem; */
+}
+.taskStatic {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+.priorityIndicator {
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 8px;
+  background: #2d8f3a;
+  border-top-left-radius: 0.6rem;
+  border-bottom-left-radius: 0.6rem;
+  /* box-shadow: -1px 4px 4px rgba(0, 0, 0, 0.25); */
+}
+.taskItemCheckbox {
+  height: 1.5rem;
+  width: 1.5rem;
+  margin-left: 0.75rem;
+  border-radius: 0.2rem;
+  background-color: #232120;
+  border: 1.5px solid #555250;
+  /* box-shadow:
+    inset 2px 2px 2px 1px rgba(0, 0, 0, 0.25),
+    2px 2px 5px 2px rgba(0, 0, 0, 0.25); */
+}
+.checkboxSVG svg {
+  color: var(--primaryAccent);
+  height: 1.2rem;
+  width: 1.2rem;
+}
+.checkboxSVG {
+  opacity: 0;
+}
+.checkboxInput:checked + .checkboxSVG {
+  opacity: 1;
+}
+.checkboxSVG.open {
+  opacity: 1;
+}
+.taskItemContent {
+  display: flex;
+  flex-direction: column;
+  gap: 0.1rem;
+}
+.taskItemTitle {
+  color: var(--mainTextColor);
+  font-size: 1rem;
+}
+.taskItemDate {
+  color: var(--todoDate);
+  font-size: 0.55rem;
+}
+.dateSVG svg {
+  height: 0.55rem;
+  width: 0.55rem;
+}
+.taskItemOptions {
+  color: var(--dialogTextColor);
+  position: absolute;
+  right: 1.5rem;
+  transition: transform 0.3s ease;
+}
+.taskItemOptions.spin {
+  transform: rotate(180deg);
+}
+.taskExpandCont {
+  padding: 0rem;
+  max-height: 0;
+  opacity: 0;
+  margin-left: 2.5rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    padding 0.5s ease;
+}
+.taskExpandCont.open {
+  padding: 0.5rem;
+  max-height: 200px;
+  opacity: 1;
+}
+.taskDesc {
+  color: var(--todoDesc);
+  font-size: 0.55rem;
+}
+.taskExpandButtonCont {
+  display: flex;
+  gap: 0.5rem;
+}
+.taskEdit {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: #3a3835;
+  color: #d4d2cf;
+  border-radius: 0.15rem;
+}
+.taskDelete {
+  font-size: 0.75rem;
+  padding: 0.4rem 0.8rem;
+  background: rgba(151, 63, 59, 0.25);
+  color: #c96b67;
+  border-radius: 0.15rem;
+}

@@ -2,6 +2,9 @@
   display: flex;
 }
 .taskErrorField {
+  color: red;
+  opacity: 0.5;
+  font-size: 0.75rem;
   display: none;
 }
 .dateCont {
@@ -54,13 +57,13 @@
   outline: 2px solid var(--mainTextColor);
 }
 .lowPrio {
-  background-color: rgb(3, 109, 10);
+  background-color: #2d8f3a;
 }
 .midPrio {
-  background-color: rgb(204, 163, 3);
+  background-color: #b8952e;
 }
 .highPrio {
-  background-color: rgb(109, 3, 5);
+  background-color: #973f3b;
 }
 .descCont {
   display: flex;

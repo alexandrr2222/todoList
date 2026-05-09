@@ -15,16 +15,6 @@
   font-size: 0.75rem;
   display: none;
 }
-.threeDots {
-  pointer-events: none;
-  color: var(--primaryAccent);
-  pointer-events: none;
-  width: var(--textIcons);
-  height: auto;
-  display: flex;
-  align-content: center;
-  margin-left: -0.5rem;
-}
 #colorLabel {
   color: var(--dialogTextColor);
 }

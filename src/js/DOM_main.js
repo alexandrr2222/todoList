@@ -1,6 +1,7 @@
 import { switchColors, submitCategory } from "./mainDialog/DOM_category.js";
 import { submitNote } from "./mainDialog/DOM_note.js";
-import { switchPrio } from "./mainDialog/DOM_task.js";
+import { switchPrio, submitTask, taskInit } from "./mainDialog/DOM_task.js";
+
 import { NoteClass, CategoryClass, TaskClass } from "./models.js";
 let isEditMode = false;
 
@@ -25,7 +26,11 @@ let addButton,
   noteDescription,
   categoryTitle,
   redColor,
-  taskBelong;
+  taskBelong,
+  taskErrorField,
+  taskTitle,
+  taskDueDate,
+  taskDesc;
 
 export function dialogMaster() {
   addButton = document.querySelector(".add");
@@ -41,6 +46,10 @@ export function dialogMaster() {
   redColor = document.querySelector(".redColor");
   addForm = document.querySelector(".addForm");
   taskBelong = document.querySelector("#taskBelong");
+  taskErrorField = document.querySelector(".taskErrorField");
+  taskTitle = document.querySelector("#taskTitle");
+  taskDueDate = document.querySelector("#taskDate");
+  taskDesc = document.querySelector("#taskDescription");
 
   categoryErrorField = document.querySelector(".categoryErrorField");
   categoryContent = document.querySelector(".categoryContent");
@@ -58,24 +67,39 @@ export function dialogMaster() {
   switchColors();
   submit();
   switchPrio();
+  taskInit();
   closeContextMenu();
   deleteItem();
   editItem();
+}
+function resetNoteDialog() {
+  noteErrorField.style.display = "none";
+  noteTitle.value = "";
+  noteDescription.value = "";
+}
+function resetCategoryDialog() {
+  categoryErrorField.style.display = "none";
+  categoryTitle.value = "";
+  const selectedColor = document.querySelector(".selectedColor");
+  selectedColor.classList.remove("selectedColor");
+  redColor.classList.add("selectedColor");
+}
+
+function resetTaskDialog() {
+  taskErrorField.style.display = "none";
+  taskTitle.value = "";
+  taskDueDate.value = "";
+  taskDesc.value = "";
 }
 function resetDialog() {
   helpDisplayOptions(taskContent, noteContent, categoryContent);
   newOptions.style.display = "block";
   submitButton.textContent = "Add";
   dialogTitle.textContent = "Add New";
-  noteErrorField.style.display = "none";
-  categoryErrorField.style.display = "none";
   isEditMode = false;
-  noteTitle.value = "";
-  noteDescription.value = "";
-  categoryTitle.value = "";
-  const selectedColor = document.querySelector(".selectedColor");
-  selectedColor.classList.remove("selectedColor");
-  redColor.classList.add("selectedColor");
+  resetNoteDialog();
+  resetCategoryDialog();
+  resetTaskDialog();
   // questionable, should be settings
   const activeButton = document.querySelector(".activeButton");
   activeButton.classList.remove("activeButton");
@@ -129,7 +153,8 @@ function switchDialogOptions() {
 function routeOptions() {
   const activeButton = document.querySelector(".activeButton");
   if (activeButton.classList.contains("taskButton")) {
-    console.log("toBeDone");
+    if (!submitTask()) return false;
+    taskErrorField.style.display = "none";
   } else if (activeButton.classList.contains("noteButton")) {
     if (!submitNote()) return false;
     noteErrorField.style.display = "none";

@@ -12,6 +12,9 @@
   /* main */
   --mainBackground: #1e1c1a;
   --todoBackground: #2c2a27;
+  --todoDate: #6e6c6a;
+  --todoDesc: #92908f;
+  --todoNoDesc: #5a5856;
   /* main dialog */
   --dialogTextColor: #92908f;
   --dialogBackground: #25221f;
@@ -35,6 +38,16 @@ body.noScroll {
 }
 li {
   list-style-type: none;
+}
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  border: 0;
 }
 nav.transition,
 .overlay.transition,

@@ -1,19 +1,21 @@
 export class TaskClass {
   static all = [];
-  constructor({
+  constructor(
     id,
     title,
     dueDate = null,
     priority = "low",
     inCategory = null,
     description = null,
-  }) {
+    completion,
+  ) {
     this.id = id;
     this.title = title;
     this.dueDate = dueDate;
     this.priority = priority;
     this.inCategory = inCategory;
     this.description = description;
+    this.completion = completion;
     TaskClass.all.push(this);
   }
 }

@@ -30,7 +30,7 @@ header {
 }
 .menu svg,
 .search svg,
-.date svg {
+.threeDots svg {
   pointer-events: none;
   color: var(--primaryAccent);
   pointer-events: none;

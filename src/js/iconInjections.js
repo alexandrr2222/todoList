@@ -14,8 +14,9 @@ function injectIcon(className) {
 export function initIcons() {
   // header
   injectIcon("menu");
-  injectIcon("date");
+  // injectIcon("date");
   injectIcon("search");
+  injectIcon("threeDots");
 
   // main
   injectIcon("add");
@@ -27,7 +28,6 @@ export function initIcons() {
   injectIcon("allTasksSVG");
   injectIcon("uncategorizedSVG");
   injectIcon("completedSVG");
-  // injectIcon("bookmarkSVG");
   // lower nav
   injectIcon("notesSVG");
   injectIcon("statisticsSVG");
