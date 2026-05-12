@@ -39,6 +39,9 @@ header {
 }
 .menu:hover svg,
 .search:hover svg,
-.date:hover svg {
+.threeDots:hover svg {
   color: var(--hoverAccent);
+}
+.rightHeader.hidden {
+  display: none;
 }

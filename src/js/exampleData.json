@@ -16,7 +16,7 @@
       "priority": "#b8952e",
       "inCategory": "exampleCategory2",
       "description": "",
-      "completion": false
+      "completion": true
     },
     {
       "id": "exampleTask3",
@@ -52,7 +52,7 @@
       "priority": "low",
       "inCategory": "exampleCategory2",
       "description": "",
-      "completion": false
+      "completion": true
     },
     {
       "id": "exampleTask7",
@@ -104,9 +104,9 @@
       "title": "Pick up dry cleaning",
       "dueDate": "2026-05-10T17:00",
       "priority": "low",
-      "inCategory": "exampleCategory2",
+      "inCategory": "uncategorizedID",
       "description": "",
-      "completion": false
+      "completion": true
     },
     {
       "id": "exampleTask13",
@@ -178,7 +178,7 @@
       "priority": "low",
       "inCategory": "exampleCategory2",
       "description": "",
-      "completion": false
+      "completion": true
     }
   ],
   "notes": [

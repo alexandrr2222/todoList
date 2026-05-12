@@ -21,7 +21,7 @@ export function switchColors() {
   });
 }
 export function createExampleCategories() {
-  new CategoryClass("uncategorizedID", "Uncategorized", "null");
+  new CategoryClass("uncategorizedID", "Uncategorized", "grey");
   exampleData.categories.forEach((ctg) => {
     createCategoryDOM(new CategoryClass(ctg.id, ctg.name, ctg.color));
   });

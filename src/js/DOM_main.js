@@ -1,7 +1,7 @@
 import { switchColors, submitCategory } from "./mainDialog/DOM_category.js";
 import { submitNote } from "./mainDialog/DOM_note.js";
 import { switchPrio, submitTask, taskInit } from "./mainDialog/DOM_task.js";
-
+import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 import { NoteClass, CategoryClass, TaskClass } from "./models.js";
 let isEditMode = false;
 
@@ -175,6 +175,8 @@ function submit() {
     }
     addDialogBtn.close();
     addForm.reset();
+    updateStatOverview();
+    updateStatProgress();
   });
 }
 export function addContextMenuControls(container) {

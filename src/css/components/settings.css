@@ -1,0 +1,111 @@
+.settingsSectionContainer {
+  padding: var(--cornerMargin);
+  display: flex;
+  flex-direction: column;
+}
+.settingsGroup {
+  margin-bottom: 1.5rem;
+}
+.settingsGroupLabel {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--todoDate);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+.settingRow {
+  background: var(--todoBackground);
+  padding: 0.9rem 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+}
+.settingRow:first-of-type {
+  border-radius: var(--cornerRadius) var(--cornerRadius) 0 0;
+}
+.settingRow:last-of-type {
+  border-radius: 0 0 var(--cornerRadius) var(--cornerRadius);
+}
+.settingRow:only-of-type {
+  border-radius: var(--cornerRadius);
+}
+.settingRow + .settingRow {
+  border-top: 1px solid var(--mainBackground);
+}
+.settingLabel {
+  display: block;
+  font-size: 0.85rem;
+  color: var(--mainTextColor);
+}
+.settingDesc {
+  display: block;
+  font-size: 0.6rem;
+  color: var(--todoDate);
+  margin-top: 0.15rem;
+}
+.settingSelect {
+  background: #3a3835;
+  color: var(--mainTextColor);
+  font-size: 0.75rem;
+  font-family: "Literata", serif;
+  padding: 0.4rem 0.75rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+}
+.toggle {
+  width: 2.75rem;
+  height: 1.5rem;
+  background: #3a3835;
+  border-radius: 0.75rem;
+  position: relative;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: background 0.2s;
+  border: none;
+  padding: 0;
+}
+.toggle.on {
+  background: var(--primaryAccent);
+}
+.toggleKnob {
+  width: 1.1rem;
+  height: 1.1rem;
+  background: var(--mainTextColor);
+  border-radius: 50%;
+  position: absolute;
+  top: 0.2rem;
+  left: 0.2rem;
+  transition: left 0.2s;
+}
+.toggle.on .toggleKnob {
+  left: 1.45rem;
+}
+.colorSwatches {
+  display: flex;
+  gap: 0.3rem;
+}
+.swatch {
+  width: 1.4rem;
+  height: 1.4rem;
+  border-radius: 50%;
+  cursor: pointer;
+  border: 2px solid transparent;
+  padding: 0;
+  transition: border-color 0.15s;
+}
+.swatch.active {
+  border-color: var(--mainTextColor);
+}
+.dangerBtn {
+  background: rgba(151, 63, 59, 0.25);
+  color: #c96b67;
+  font-size: 0.75rem;
+  font-family: "Literata", serif;
+  padding: 0.5rem 1rem;
+  border-radius: 0.4rem;
+  border: none;
+  cursor: pointer;
+}

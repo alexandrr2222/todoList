@@ -111,8 +111,141 @@
       <div class="notesSectionContainer section">
         <div class="notesSectionSubcontainer"></div>
       </div>
-      <div class="statisticsSectionContainer section">stats</div>
-      <div class="settingsSectionContainer section">set</div>
+
+      <section class="statisticsSectionContainer section">
+        <h3 class="statSubheader">Overview</h3>
+        <div class="statBlocks">
+          <div class="statBlock totalTasksBlock">
+            <span class="totalTasksStat">0</span>Total Tasks
+          </div>
+          <div class="statBlock overdueBlock">
+            <span class="overdueStat">0</span>Overdue
+          </div>
+          <div class="statBlock totalNotesBlock">
+            <span class="totalNotesStat">0</span>Total Notes
+          </div>
+          <div class="statBlock categoriesBlock">
+            <span class="categoriesStat">0</span>Categories
+          </div>
+        </div>
+        <h3 class="statSubheader">Progress</h3>
+        <ul class="statProgress">
+          <!-- <li class="progressItem">
+            <span>Work</span>
+            <div
+              class="progressBar"
+              role="progressbar"
+              aria-valuenow="60"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              <div class="progressBarFill"></div>
+            </div>
+            <span>3/5</span>
+          </li> -->
+        </ul>
+      </section>
+      <section class="settingsSectionContainer section">
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Appearance</span>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Accent color</span>
+              <span class="settingDesc"
+                >Changes buttons, highlights, and UI accents</span
+              >
+            </div>
+          </div>
+          <div class="settingRow swatchRow">
+            <div class="colorSwatches">
+              <button
+                class="swatch redColor active"
+                data-color="rgb(151 63 59)"
+              ></button>
+              <button
+                class="swatch greenColor"
+                data-color="rgb(74 122 59)"
+              ></button>
+              <button
+                class="swatch blueColor"
+                data-color="rgb(59 90 151)"
+              ></button>
+              <button
+                class="swatch yellowColor"
+                data-color="rgb(151 122 59)"
+              ></button>
+              <button
+                class="swatch pinkColor"
+                data-color="rgb(151 59 106)"
+              ></button>
+              <button
+                class="swatch purpleColor"
+                data-color="rgb(90 59 151)"
+              ></button>
+              <button
+                class="swatch tealColor"
+                data-color="rgb(59 122 106)"
+              ></button>
+              <button
+                class="swatch orangeColor"
+                data-color="rgb(151 96 59)"
+              ></button>
+            </div>
+          </div>
+        </div>
+
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Behavior</span>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Default priority</span>
+              <span class="settingDesc"
+                >Priority for new tasks when not specified</span
+              >
+            </div>
+            <select class="settingSelect" id="defaultPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected>Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Show completed tasks</span>
+              <span class="settingDesc"
+                >Display completed tasks in category views</span
+              >
+            </div>
+            <button class="toggle on" id="showCompleted">
+              <span class="toggleKnob"></span>
+            </button>
+          </div>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Enforce category naming</span>
+              <span class="settingDesc"
+                >Auto-capitalize first letter, lowercase rest</span
+              >
+            </div>
+            <button class="toggle on" id="enforceNaming">
+              <span class="toggleKnob"></span>
+            </button>
+          </div>
+        </div>
+
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Data</span>
+          <div class="settingRow dangerRow">
+            <div>
+              <span class="settingLabel">Delete all data</span>
+              <span class="settingDesc"
+                >Remove all tasks, notes, and categories</span
+              >
+            </div>
+            <button class="dangerBtn">Reset</button>
+          </div>
+        </div>
+      </section>
       <dialog class="addDialog">
         <form action="/" class="addForm" method="get" novalidate>
           <button class="closeDialog closeSVG" type="button"></button>

@@ -120,6 +120,9 @@ dialog[open] {
   height: 1.2rem;
   flex-shrink: 0;
 }
+.add.hidden {
+  display: none;
+}
 @keyframes dialogOpen {
   from {
     opacity: 0;

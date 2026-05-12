@@ -7,6 +7,8 @@ import "../css/components/mainDialog/category.css";
 import "../css/components/mainDialog/note.css";
 import "../css/components/mainDialog/task.css";
 import "../css/components/todoItem.css";
+import "../css/components/statistics.css";
+import "../css/components/settings.css";
 import { initIcons } from "./iconInjections.js";
 import { navBar, changePage } from "./DOM_nav.js";
 import { transitionLoad } from "./DOM_global.js";
@@ -61,17 +63,16 @@ function handleResize() {
 }
 
 // task addons - progress, subtask
-// Low Prio: add amount of uncompleted tasks in each section, sort by priority or anything else rly
+
+// JS
 
 // get rid of dom component and instead do queries with let
 
-// add category editor
-
-// CSS features to use: starting style
-// CSS: anchor positioning for next project
-
-// stats - FIRST SECTION: total tasks, overdue amount, total notes, total categories
-// SECOND SECTION: PROGRESSION OF EACH CATEGORY TO FULL COMPLETE
-
+// CSS
+// add amount of uncompleted tasks in each section
+// sort by priority, due date, name, new creation
 // settings > enforce style (always capitalize start)
 //  choose theme color
+// add category editor
+// features to use: starting style
+// anchor positioning for next project

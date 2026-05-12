@@ -4,11 +4,14 @@ import {
   menu,
   overlay,
 } from "./DOM_components.js";
+import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 
 import { removeTasksFromDom, loadTasks } from "./mainDialog/DOM_task.js";
 import { TaskClass } from "./models.js";
 
 let firstSelectedTitle, initialButtons;
+const rightHeader = document.querySelector(".rightHeader");
+const addButton = document.querySelector(".add");
 
 export function navBar() {
   firstSelectedTitle = document.querySelector(".selectedTitle");
@@ -62,13 +65,30 @@ function hideAllPages() {
     btn.style.display = "none";
   });
 }
+function hideRightHeaderAndPlusButton() {
+  rightHeader.classList.add("hidden");
+  addButton.classList.add("hidden");
+}
+function openRightHeaderAndPlusButton() {
+  rightHeader.classList.remove("hidden");
+  addButton.classList.remove("hidden");
+}
 function showPage(btn) {
   hideAllPages();
   const sectionContainer = document.querySelector(
     `.${btn.dataset.pageType}SectionContainer`,
   );
   sectionContainer.style.display = "block";
-  if (btn.dataset.pageType === "task") {
+  if (btn.dataset.pageType === "settings") {
+    hideRightHeaderAndPlusButton();
+  } else if (btn.dataset.pageType === "notes") {
+    openRightHeaderAndPlusButton();
+  } else if (btn.dataset.pageType === "statistics") {
+    hideRightHeaderAndPlusButton();
+    updateStatOverview();
+    updateStatProgress();
+  } else if (btn.dataset.pageType === "task") {
+    openRightHeaderAndPlusButton();
     if (btn.dataset.dataID === "allTasksID") {
       removeTasksFromDom();
       loadTasks(TaskClass.all);
