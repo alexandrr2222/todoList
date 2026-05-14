@@ -17,13 +17,7 @@ import { TaskClass, NoteClass, CategoryClass } from "./models.js";
 import { createExampleCategories } from "./mainDialog/DOM_category.js";
 import { createExampleNotes } from "./mainDialog/DOM_note.js";
 import { createExampleTasks } from "./mainDialog/DOM_task.js";
-import {
-  selectAccent,
-  initCategoryNaming,
-  initDeleteAllData,
-  initRestoreExamples,
-  initShowCompletedTasks,
-} from "./DOM_settings.js";
+import { initSettings } from "./DOM_settings.js";
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -33,16 +27,12 @@ handleResize();
 initIcons();
 navBar();
 transitionLoad();
-initCategoryNaming();
-initDeleteAllData();
-initShowCompletedTasks();
-initRestoreExamples();
+initSettings();
 changePage();
 dialogMaster();
 createExampleCategories();
 createExampleNotes();
 createExampleTasks();
-selectAccent();
 
 function handleResize() {
   let resizeTimer;
@@ -83,8 +73,6 @@ function handleResize() {
 // CSS
 // add amount of uncompleted tasks in each section
 // sort by priority, due date, name, new creation
-// settings > enforce style (always capitalize start)
-//  choose theme color
 // add category editor
 // features to use: starting style
 // anchor positioning for next project

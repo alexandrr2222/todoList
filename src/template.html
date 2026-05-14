@@ -147,6 +147,13 @@
         </ul>
       </section>
       <section class="settingsSectionContainer section">
+        <dialog class="confirmDialog">
+          <p>This will delete all data, are you sure?</p>
+          <div class="confirmButtons">
+            <button class="confirmYes">Delete</button>
+            <button class="confirmNo">Cancel</button>
+          </div>
+        </dialog>
         <div class="settingsGroup">
           <span class="settingsGroupLabel">Appearance</span>
           <div class="settingRow">
@@ -214,7 +221,7 @@
             <div>
               <span class="settingLabel">Delete all data</span>
               <span class="settingDesc"
-                >Remove all tasks, notes, and categories</span
+                >Delete all tasks, notes, and categories</span
               >
             </div>
             <button class="dataReset">Delete</button>
@@ -223,8 +230,8 @@
             <div>
               <span class="settingLabel">Restore examples</span>
               <span class="settingDesc"
-                >Remove everything and restore default exemplary tasks, notes,
-                and categories</span
+                >Delete all data and restore default exemplary tasks, notes, and
+                categories</span
               >
             </div>
             <button class="dataRestore">Restore</button>

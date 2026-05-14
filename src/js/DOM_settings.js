@@ -17,16 +17,25 @@ const settings = document.querySelector(".settings");
 const dataRestore = document.querySelector(".dataRestore");
 const enforceNamingBtn = document.querySelector("#enforceNaming");
 const showCompletedBtn = document.querySelector("#showCompleted");
+const confirmDialog = document.querySelector(".confirmDialog");
+const confirmYes = document.querySelector(".confirmYes");
+const confirmNo = document.querySelector(".confirmNo");
 
-export function selectAccent() {
+export function initSettings() {
+  initSelectAccent();
+  initShowCompletedTasks();
+  initCategoryNaming();
+  initDeleteAllData();
+  initRestoreExamples();
+  initCancelConfirmation();
+}
+function initSelectAccent() {
   swatches.forEach((btn) => {
     btn.addEventListener("click", () => {
       const active = document.querySelector(".swatch.active");
       active.classList.remove("active");
       btn.classList.add("active");
-      const categoryColor = getComputedStyle(
-        document.querySelector(".swatch.active"),
-      ).backgroundColor;
+      const categoryColor = getComputedStyle(btn).backgroundColor;
       document.documentElement.style.setProperty(
         "--primaryAccent",
         categoryColor,
@@ -56,14 +65,13 @@ export function selectDefaultPriority() {
   else if (settingSelectValue === "high")
     selectDefaultPriorityHelper(highPrio, lowPrio, midPrio);
 }
-export function initShowCompletedTasks() {
+function initShowCompletedTasks() {
   showCompletedBtn.addEventListener("click", () => {
     showCompletedBtn.classList.toggle("on");
   });
 }
 
 export function adjustCompletedTasks(taskList) {
-  const showCompletedBtn = document.querySelector("#showCompleted");
   if (!showCompletedBtn.classList.contains("on")) {
     return taskList.filter((task) => task.completion === false);
   } else return taskList;
@@ -87,7 +95,7 @@ function removeCategoryNaming() {
   });
 }
 
-export function initCategoryNaming() {
+function initCategoryNaming() {
   enforceNamingBtn.addEventListener("click", () => {
     enforceNamingBtn.classList.toggle("on");
     if (enforceNamingBtn.classList.contains("on")) enforceCategoryNaming();
@@ -106,19 +114,35 @@ function deleteAllData() {
     category.remove();
   });
 }
+function useConfirmationDialog(callback) {
+  confirmDialog.showModal();
+  confirmYes.onclick = () => {
+    callback();
+    moveIndicator(settings);
+    confirmDialog.close();
+  };
+}
+
 export function initDeleteAllData() {
   dataReset.addEventListener("click", () => {
-    deleteAllData();
-    moveIndicator(settings);
+    useConfirmationDialog(() => {
+      deleteAllData();
+    });
+  });
+}
+export function initCancelConfirmation() {
+  confirmNo.addEventListener("click", () => {
+    confirmDialog.close();
   });
 }
 
 export function initRestoreExamples() {
   dataRestore.addEventListener("click", () => {
-    deleteAllData();
-    createExampleCategories();
-    createExampleTasks();
-    createExampleNotes();
-    moveIndicator(settings);
+    useConfirmationDialog(() => {
+      deleteAllData();
+      createExampleTasks();
+      createExampleNotes();
+      createExampleCategories();
+    });
   });
 }
