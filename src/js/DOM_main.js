@@ -3,6 +3,7 @@ import { submitNote } from "./mainDialog/DOM_note.js";
 import { switchPrio, submitTask, taskInit } from "./mainDialog/DOM_task.js";
 import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 import { NoteClass, CategoryClass, TaskClass } from "./models.js";
+import { selectDefaultPriority } from "./DOM_settings.js";
 let isEditMode = false;
 
 let addButton,
@@ -120,6 +121,7 @@ function openDialog() {
   addButton.addEventListener("click", () => {
     populateCategorySelection();
     resetDialog();
+    selectDefaultPriority();
     addDialogBtn.showModal();
   });
 }

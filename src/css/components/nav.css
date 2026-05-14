@@ -67,7 +67,7 @@ nav button {
   height: auto;
   padding: 0.4rem;
 }
-nav button span {
+nav button span:not(.categoryName) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -75,7 +75,7 @@ nav button span {
   height: 1.2rem;
   flex-shrink: 0;
 }
-nav button span {
+nav button span:not(.categoryName) {
   color: var(--primaryAccent);
 }
 nav button span svg {

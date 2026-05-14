@@ -17,6 +17,13 @@ import { TaskClass, NoteClass, CategoryClass } from "./models.js";
 import { createExampleCategories } from "./mainDialog/DOM_category.js";
 import { createExampleNotes } from "./mainDialog/DOM_note.js";
 import { createExampleTasks } from "./mainDialog/DOM_task.js";
+import {
+  selectAccent,
+  initCategoryNaming,
+  initDeleteAllData,
+  initRestoreExamples,
+  initShowCompletedTasks,
+} from "./DOM_settings.js";
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -26,11 +33,16 @@ handleResize();
 initIcons();
 navBar();
 transitionLoad();
+initCategoryNaming();
+initDeleteAllData();
+initShowCompletedTasks();
+initRestoreExamples();
 changePage();
 dialogMaster();
 createExampleCategories();
 createExampleNotes();
 createExampleTasks();
+selectAccent();
 
 function handleResize() {
   let resizeTimer;

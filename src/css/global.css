@@ -1,6 +1,6 @@
 :root {
   --primaryAccent: #973f3b;
-  --hoverAccent: #812424;
+  --hoverAccent: color-mix(in srgb, var(--primaryAccent), black 30%);
   --cornerMargin: 1rem;
   --cornerRadius: 0.3rem;
   /* header */
@@ -17,8 +17,8 @@
   --todoNoDesc: #5a5856;
   /* main dialog */
   --dialogTextColor: #92908f;
-  --dialogBackground: #25221f;
-  --inputBackground: #161616;
+  --dialogBackground: #25221fff;
+  --inputBackground: #3a3835;
   --dialogWarn: #bc4545;
   /* text */
   font-family: "Literata", "Times New Roman", Times, serif;

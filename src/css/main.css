@@ -19,20 +19,24 @@ main {
 .addDialog {
   background-color: var(--dialogBackground);
   border: none;
-  border-radius: 0.3rem;
-  padding: var(--cornerMargin);
+  border-radius: var(--cornerRadius);
+  padding: 1.5rem;
+  max-width: 90vw;
+  width: 24rem;
 }
-.addDialog form {
+.addForm {
   display: flex;
   flex-direction: column;
+  gap: 1rem;
+  position: relative;
 }
 .closeDialog {
   width: 1.5rem;
   height: auto;
   color: var(--primaryAccent);
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 0rem;
+  right: 0rem;
 }
 dialog form h2 {
   font-family: "Cormorant Garamond", "Times New Roman", Times, serif;

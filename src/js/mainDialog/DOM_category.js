@@ -3,12 +3,12 @@ import { bookmarkSVGIcon } from "../icons.js";
 import { CategoryClass } from "../models.js";
 import { moveIndicator } from "../DOM_nav.js";
 import exampleData from "../exampleData.json" with { type: "json" };
+import { enforceCategoryNaming } from "../DOM_settings.js";
 
-let nav, bookmarkInsert, colorButtons, categoryErrorField;
+let dividerLine, colorButtons, categoryErrorField;
 
-nav = document.querySelector("nav");
 colorButtons = document.querySelectorAll(".colorButton");
-bookmarkInsert = document.querySelector(".bookmarkInsert");
+dividerLine = document.querySelector(".bookmarkInsert");
 categoryErrorField = document.querySelector(".categoryErrorField");
 
 export function switchColors() {
@@ -26,6 +26,10 @@ export function createExampleCategories() {
     createCategoryDOM(new CategoryClass(ctg.id, ctg.name, ctg.color));
   });
 }
+function checkCategoryNaming() {
+  const enforceNamingBtn = document.querySelector("#enforceNaming");
+  if (enforceNamingBtn.classList.contains("on")) return true;
+}
 export function submitCategory() {
   if (document.querySelector("#categoryTitle").value.trim() === "") {
     categoryErrorField.style.display = "block";
@@ -34,6 +38,7 @@ export function submitCategory() {
   createCategoryDOM(createCategoryClass());
   const selectedTitle = document.querySelector(".selectedTitle");
   moveIndicator(selectedTitle);
+  if (checkCategoryNaming()) enforceCategoryNaming();
   return true;
 }
 function createCategoryClass() {
@@ -45,16 +50,13 @@ function createCategoryClass() {
   return new CategoryClass(categoryID, categoryName, categoryColor);
 }
 function createCategoryDOM(categoryFromClass) {
-  const newCategory = document.createElement("button");
-  const newCategoryIcon = document.createElement("span");
-  newCategory.dataset.dataID = categoryFromClass.id;
-  newCategory.textContent = categoryFromClass.name;
-  newCategory.dataset.pageType = "task";
-  newCategory.classList.add("categoryItem");
-  newCategoryIcon.classList.add("bookmarkSVG");
-  newCategoryIcon.style.color = categoryFromClass.color;
-  newCategoryIcon.innerHTML = bookmarkSVGIcon;
-  newCategory.prepend(newCategoryIcon);
-  nav.insertBefore(newCategory, bookmarkInsert);
+  const html = `
+    <button class="categoryItem" data-data-i-d="${categoryFromClass.id}" data-page-type="task">
+      <span class="bookmarkSVG" style="color: ${categoryFromClass.color};">${bookmarkSVGIcon}</span>
+      <span class="categoryName"> ${categoryFromClass.name} </span>
+    </button>
+  `;
+  dividerLine.insertAdjacentHTML("beforebegin", html);
+  const newCategory = dividerLine.previousElementSibling;
   changePageNewCategory(newCategory);
 }

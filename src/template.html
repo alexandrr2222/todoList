@@ -40,7 +40,8 @@
         class="uncategorized"
         data-page-type="task"
       >
-        <span class="uncategorizedSVG"></span>Uncategorized
+        <span class="uncategorizedSVG"></span
+        ><span class="categoryName"> Uncategorized </span>
       </button>
       <button
         data-data-i-d="completedID"
@@ -154,42 +155,16 @@
               <span class="settingDesc"
                 >Changes buttons, highlights, and UI accents</span
               >
-            </div>
-          </div>
-          <div class="settingRow swatchRow">
-            <div class="colorSwatches">
-              <button
-                class="swatch redColor active"
-                data-color="rgb(151 63 59)"
-              ></button>
-              <button
-                class="swatch greenColor"
-                data-color="rgb(74 122 59)"
-              ></button>
-              <button
-                class="swatch blueColor"
-                data-color="rgb(59 90 151)"
-              ></button>
-              <button
-                class="swatch yellowColor"
-                data-color="rgb(151 122 59)"
-              ></button>
-              <button
-                class="swatch pinkColor"
-                data-color="rgb(151 59 106)"
-              ></button>
-              <button
-                class="swatch purpleColor"
-                data-color="rgb(90 59 151)"
-              ></button>
-              <button
-                class="swatch tealColor"
-                data-color="rgb(59 122 106)"
-              ></button>
-              <button
-                class="swatch orangeColor"
-                data-color="rgb(151 96 59)"
-              ></button>
+              <div class="colorSwatches">
+                <button class="swatch redColorSet active"></button>
+                <button class="swatch greenColorSet"></button>
+                <button class="swatch blueColorSet"></button>
+                <button class="swatch yellowColorSet"></button>
+                <button class="swatch pinkColorSet"></button>
+                <button class="swatch purpleColorSet"></button>
+                <button class="swatch tealColorSet"></button>
+                <button class="swatch orangeColorSet"></button>
+              </div>
             </div>
           </div>
         </div>
@@ -235,14 +210,24 @@
 
         <div class="settingsGroup">
           <span class="settingsGroupLabel">Data</span>
-          <div class="settingRow dangerRow">
+          <div class="settingRow deleteRow">
             <div>
               <span class="settingLabel">Delete all data</span>
               <span class="settingDesc"
                 >Remove all tasks, notes, and categories</span
               >
             </div>
-            <button class="dangerBtn">Reset</button>
+            <button class="dataReset">Delete</button>
+          </div>
+          <div class="settingRow loadExampelsRow">
+            <div>
+              <span class="settingLabel">Restore examples</span>
+              <span class="settingDesc"
+                >Remove everything and restore default exemplary tasks, notes,
+                and categories</span
+              >
+            </div>
+            <button class="dataRestore">Restore</button>
           </div>
         </div>
       </section>
@@ -310,25 +295,26 @@
                   class="prioOptions"
                   aria-labelledby="prioLabel"
                   role="group"
-                ></div>
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="true"
-                  class="prioButton lowPrio selectedPrio"
-                ></button>
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="false"
-                  class="prioButton midPrio"
-                ></button>
-                <button
-                  type="button"
-                  role="radio"
-                  aria-checked="false"
-                  class="prioButton highPrio"
-                ></button>
+                >
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="true"
+                    class="prioButton lowPrio selectedPrio"
+                  ></button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    class="prioButton midPrio"
+                  ></button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    class="prioButton highPrio"
+                  ></button>
+                </div>
               </div>
             </div>
             <div class="belongCont">
@@ -402,48 +388,56 @@
                 role="radio"
                 aria-checked="true"
                 class="colorButton redColor selectedColor"
+                aria-label="Red"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton greenColor"
+                aria-label="Green"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton blueColor"
+                aria-label="Blue"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton yellowColor"
+                aria-label="Yellow"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton pinkColor"
+                aria-label="Pink"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton purpleColor"
+                aria-label="Purple"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton tealColor"
+                aria-label="Teal"
               ></button>
               <button
                 type="button"
                 role="radio"
                 aria-checked="false"
                 class="colorButton orangeColor"
+                aria-label="Orange"
               ></button>
             </div>
           </div>

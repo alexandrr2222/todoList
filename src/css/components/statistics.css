@@ -9,6 +9,9 @@
   font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
   font-weight: bold;
   font-size: 1.5rem;
+  letter-spacing: 0.06rem;
+  /* font-size: 0.8rem;
+  color: var(--todoDate); */
   margin-bottom: 1rem;
 }
 .statisticsSectionContainer > .statSubheader:nth-of-type(2) {

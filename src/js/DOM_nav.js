@@ -8,6 +8,7 @@ import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 
 import { removeTasksFromDom, loadTasks } from "./mainDialog/DOM_task.js";
 import { TaskClass } from "./models.js";
+import { adjustCompletedTasks } from "./DOM_settings.js";
 
 let firstSelectedTitle, initialButtons;
 const rightHeader = document.querySelector(".rightHeader");
@@ -75,6 +76,7 @@ function openRightHeaderAndPlusButton() {
 }
 function showPage(btn) {
   hideAllPages();
+
   const sectionContainer = document.querySelector(
     `.${btn.dataset.pageType}SectionContainer`,
   );
@@ -91,7 +93,7 @@ function showPage(btn) {
     openRightHeaderAndPlusButton();
     if (btn.dataset.dataID === "allTasksID") {
       removeTasksFromDom();
-      loadTasks(TaskClass.all);
+      loadTasks(adjustCompletedTasks(TaskClass.all));
     } else if (btn.dataset.dataID === "completedID") {
       const completedOnly = TaskClass.all.filter(
         (task) => task.completion === true,
@@ -105,7 +107,7 @@ function showPage(btn) {
         (task) => task.inCategory === localID,
       );
       removeTasksFromDom();
-      loadTasks(matchingCategory);
+      loadTasks(adjustCompletedTasks(matchingCategory));
       // delete everything dom (if not on same page already)
     }
   }

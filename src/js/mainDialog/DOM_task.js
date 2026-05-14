@@ -8,6 +8,7 @@ const prioButtons = document.querySelectorAll(".prioButton");
 const taskErrorField = document.querySelector(".taskErrorField");
 const taskSectionContainer = document.querySelector(".taskSectionContainer");
 
+// BUG: on creation of task in wrong category still creates DOM
 export function createExampleTasks() {
   exampleData.tasks.forEach((task) => {
     createTaskDOM(

@@ -4,19 +4,18 @@
   flex-direction: column;
 }
 .settingsGroup {
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
 }
 .settingsGroupLabel {
   display: block;
-  font-size: 0.6rem;
+  font-size: 0.8rem;
   color: var(--todoDate);
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  letter-spacing: 0.06rem;
   margin-bottom: 0.5rem;
 }
 .settingRow {
   background: var(--todoBackground);
-  padding: 0.9rem 1rem;
+  padding: 0.8rem 1rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -46,19 +45,42 @@
   margin-top: 0.15rem;
 }
 .settingSelect {
-  background: #3a3835;
+  background: var(--inputBackground);
   color: var(--mainTextColor);
   font-size: 0.75rem;
   font-family: "Literata", serif;
-  padding: 0.4rem 0.75rem;
-  border-radius: 0.4rem;
+  padding: 0.6rem 0.95rem;
+  margin-bottom: 0.3rem;
+  width: 7rem;
+  border-radius: 0.3rem;
   border: none;
   cursor: pointer;
+}
+.settingSelect,
+.settingSelect::picker(select) {
+  appearance: base-select;
+  color: var(--mainTextColor);
+  background-color: var(--inputBackground);
+}
+.settingSelect::picker(select) {
+  border: none;
+  border-top: var(--todoBackground) 3px solid;
+  outline: none;
+  border-radius: 0.4rem;
+  padding: 0.4rem 0rem;
+  padding-top: 0.2rem;
+  color: var(--dialogTextColor);
+}
+.settingSelect option:checked {
+  color: var(--mainTextColor);
+}
+.settingSelect::picker-icon {
+  color: var(--mainTextColor);
 }
 .toggle {
   width: 2.75rem;
   height: 1.5rem;
-  background: #3a3835;
+  background: var(--inputBackground);
   border-radius: 0.75rem;
   position: relative;
   cursor: pointer;
@@ -84,6 +106,7 @@
   left: 1.45rem;
 }
 .colorSwatches {
+  margin-top: 0.5rem;
   display: flex;
   gap: 0.3rem;
 }
@@ -99,7 +122,8 @@
 .swatch.active {
   border-color: var(--mainTextColor);
 }
-.dangerBtn {
+.dataReset,
+.dataRestore {
   background: rgba(151, 63, 59, 0.25);
   color: #c96b67;
   font-size: 0.75rem;
@@ -108,4 +132,28 @@
   border-radius: 0.4rem;
   border: none;
   cursor: pointer;
+}
+.redColorSet {
+  background-color: rgb(151 63 59);
+}
+.greenColorSet {
+  background-color: rgb(74 122 59);
+}
+.blueColorSet {
+  background-color: rgb(59 90 151);
+}
+.yellowColorSet {
+  background-color: rgb(151 122 59);
+}
+.pinkColorSet {
+  background-color: rgb(151 59 106);
+}
+.purpleColorSet {
+  background-color: rgb(90 59 151);
+}
+.tealColorSet {
+  background-color: rgb(59 122 106);
+}
+.orangeColorSet {
+  background-color: rgb(151 96 59);
 }
