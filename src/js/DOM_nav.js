@@ -9,6 +9,7 @@ import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 import { removeTasksFromDom, loadTasks } from "./mainDialog/DOM_task.js";
 import { TaskClass } from "./models.js";
 import { adjustCompletedTasks } from "./DOM_settings.js";
+import { resetSearchbar } from "./DOM_header.js";
 
 let firstSelectedTitle, initialButtons;
 const rightHeader = document.querySelector(".rightHeader");
@@ -76,7 +77,7 @@ function openRightHeaderAndPlusButton() {
 }
 function showPage(btn) {
   hideAllPages();
-
+  resetSearchbar();
   const sectionContainer = document.querySelector(
     `.${btn.dataset.pageType}SectionContainer`,
   );

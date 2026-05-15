@@ -18,6 +18,7 @@ import { createExampleCategories } from "./mainDialog/DOM_category.js";
 import { createExampleNotes } from "./mainDialog/DOM_note.js";
 import { createExampleTasks } from "./mainDialog/DOM_task.js";
 import { initSettings } from "./DOM_settings.js";
+import { initHeader } from "./DOM_header.js";
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -27,6 +28,7 @@ handleResize();
 initIcons();
 navBar();
 transitionLoad();
+initHeader();
 initSettings();
 changePage();
 dialogMaster();
@@ -76,3 +78,10 @@ function handleResize() {
 // add category editor
 // features to use: starting style
 // anchor positioning for next project
+
+// BUG: on initial open in AllTasks when u scroll down u see settings and stats
+// BUG: editing on pc window doesn't change texts in class
+// BUG: Not newest first on task/note creation
+// IMPORTANT: category editor, sorter, searchbar, functioning edit/delete buttons on tasks, localstorage
+
+// habits improve for next: comments and commits

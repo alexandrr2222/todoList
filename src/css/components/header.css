@@ -11,6 +11,16 @@ header {
 }
 .currentTitle {
   font-size: 1.2rem;
+  transition:
+    opacity 0.2s ease,
+    width 0.2s ease;
+  white-space: nowrap;
+  overflow: hidden;
+}
+.currentTitle.hidden {
+  opacity: 0;
+  width: 0;
+  pointer-events: none;
 }
 .menu {
   display: flex;
@@ -21,6 +31,8 @@ header {
   align-items: center;
   gap: var(--headerGap);
   margin-left: var(--cornerMargin);
+  flex: 1;
+  min-width: 0;
 }
 .rightHeader {
   display: flex;
@@ -44,4 +56,70 @@ header {
 }
 .rightHeader.hidden {
   display: none;
+}
+.searchbar {
+  background-color: var(--inputBackground);
+  border: none;
+  height: calc(var(--headerHeight) - 2.25rem);
+  border-radius: var(--cornerRadius);
+  color: var(--mainTextColor);
+  font-family: "Literata", serif;
+  font-size: 0.85rem;
+  flex: 0;
+  width: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    flex 0.25s ease,
+    opacity 0.2s ease,
+    padding 0.25s ease;
+}
+
+.searchbar:focus {
+  border: 1px solid var(--primaryAccent);
+  outline: none;
+}
+.searchbar::placeholder {
+  color: #555250;
+}
+.searchbar.expanded {
+  flex: 1;
+  opacity: 1;
+  padding: 0.5rem 0.75rem;
+}
+.sortMenuLabel {
+  font-size: 0.6rem;
+  color: var(--todoDate);
+  padding: 0.4rem 0.75rem 0.2rem;
+}
+.sortMenu {
+  display: none;
+  flex-direction: column;
+  position: absolute;
+  top: calc(var(--headerHeight) - 1rem);
+  right: var(--cornerMargin);
+  background-color: var(--navBackground);
+  border-radius: var(--cornerRadius);
+  padding: 0.4rem;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.35);
+  z-index: 105;
+  min-width: 10rem;
+}
+.sortMenu.open {
+  display: flex;
+}
+.sortMenu button {
+  width: 100%;
+  text-align: left;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+  font-family: "Literata", serif;
+  color: var(--dialogTextColor);
+  border-radius: var(--cornerRadius);
+}
+.sortMenu button:hover {
+  background-color: rgba(255, 255, 255, 0.06);
+}
+.sortMenu button.selected {
+  color: var(--mainTextColor);
 }

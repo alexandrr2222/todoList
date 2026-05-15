@@ -34,7 +34,7 @@ function createNoteClass() {
   return new NoteClass(noteID, noteTitle, noteDescription);
 }
 
-function createNoteDOM(noteFromClass) {
+export function createNoteDOM(noteFromClass) {
   const newNote = document.createElement("div");
   const newNoteText = document.createElement("p");
   const closeNote = document.createElement("button");

@@ -57,7 +57,6 @@ export function selectDefaultPriority() {
   const selectedPrio = document.querySelector(".selectedPrio");
   selectedPrio.classList.remove("selectedPrio");
   const settingSelectValue = document.querySelector(".settingSelect").value;
-  console.log(settingSelectValue);
   if (settingSelectValue === "low")
     selectDefaultPriorityHelper(lowPrio, midPrio, highPrio);
   else if (settingSelectValue === "medium")

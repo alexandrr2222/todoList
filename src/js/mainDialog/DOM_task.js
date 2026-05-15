@@ -96,7 +96,7 @@ function createTaskClass() {
   );
 }
 
-function createTaskDOM(taskFromClass) {
+export function createTaskDOM(taskFromClass) {
   taskSectionContainer.insertAdjacentHTML(
     "beforeend",
     `<li class="taskItem" data-data-i-d="${taskFromClass.id}">

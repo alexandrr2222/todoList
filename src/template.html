@@ -17,10 +17,33 @@
       <div class="leftHeader">
         <button class="menu"></button>
         <h2 class="currentTitle">All Tasks</h2>
+        <input class="searchbar" placeholder="Search..." />
       </div>
       <div class="rightHeader">
+        <input class="searchbar" />
         <button class="search"></button>
         <button class="threeDots"></button>
+        <menu class="sortMenu">
+          <span class="sortMenuLabel">Sort by</span>
+          <li>
+            <button class="sortNewest selected">Newest first</button>
+          </li>
+          <li>
+            <button class="sortTitleAZ">Title A-Z</button>
+          </li>
+          <li>
+            <button class="sortTitleZA">Title Z-A</button>
+          </li>
+          <li>
+            <button class="sortDueDate">Due date</button>
+          </li>
+          <li>
+            <button class="sortPriorityLH">Priority (low first)</button>
+          </li>
+          <li>
+            <button class="sortPriorityHL">Priority (high first)</button>
+          </li>
+        </menu>
       </div>
     </header>
     <nav class="mainNav">
