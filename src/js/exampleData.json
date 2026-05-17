@@ -4,7 +4,7 @@
       "id": "exampleTask1",
       "title": "Fix webpack config",
       "dueDate": "2026-05-10T14:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory3",
       "description": "Entry point keeps breaking when adding new modules. Check output path and devtool settings.",
       "completion": false
@@ -13,7 +13,7 @@
       "id": "exampleTask2",
       "title": "Buy groceries",
       "dueDate": "2026-05-09T18:00",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "exampleCategory2",
       "description": "",
       "completion": true
@@ -22,7 +22,7 @@
       "id": "exampleTask3",
       "title": "Prepare quarterly report",
       "dueDate": "2026-05-12T09:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "Compile revenue figures and expense breakdowns for Q1.",
       "completion": true
@@ -40,7 +40,7 @@
       "id": "exampleTask5",
       "title": "Send invoice to client",
       "dueDate": "2026-05-08T11:00",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "exampleCategory1",
       "description": "Invoice #2024-047 for monthly services. Check if VAT is correct.",
       "completion": true
@@ -58,7 +58,7 @@
       "id": "exampleTask7",
       "title": "Review pull request",
       "dueDate": "",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory3",
       "description": "Check the DOM helper refactor branch before merging.",
       "completion": false
@@ -67,7 +67,7 @@
       "id": "exampleTask8",
       "title": "Schedule team meeting",
       "dueDate": "2026-05-15T08:00",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "uncategorizedID",
       "description": "",
       "completion": false
@@ -85,7 +85,7 @@
       "id": "exampleTask10",
       "title": "Email accountant",
       "dueDate": "2026-05-09T09:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "",
       "completion": true
@@ -94,7 +94,7 @@
       "id": "exampleTask11",
       "title": "Write unit tests",
       "dueDate": "",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "uncategorizedID",
       "description": "Cover task creation and deletion logic with Jest tests.",
       "completion": false
@@ -112,7 +112,7 @@
       "id": "exampleTask13",
       "title": "Refactor CSS variables",
       "dueDate": "",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "exampleCategory3",
       "description": "Consolidate duplicate color values and clean up naming conventions.",
       "completion": false
@@ -121,7 +121,7 @@
       "id": "exampleTask14",
       "title": "Call dentist",
       "dueDate": "2026-05-14T08:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory2",
       "description": "Reschedule appointment to next week.",
       "completion": false
@@ -130,7 +130,7 @@
       "id": "exampleTask15",
       "title": "Prepare client presentation",
       "dueDate": "2026-05-16T13:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "Slides on monthly financial overview. Include charts for revenue and expenses.",
       "completion": false
@@ -139,7 +139,7 @@
       "id": "exampleTask16",
       "title": "Fix responsive layout",
       "dueDate": "",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "uncategorizedID",
       "description": "",
       "completion": true
@@ -157,7 +157,7 @@
       "id": "exampleTask18",
       "title": "File monthly tax return",
       "dueDate": "2026-05-20T09:00",
-      "priority": "#973f3b",
+      "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "",
       "completion": false
@@ -166,7 +166,7 @@
       "id": "exampleTask19",
       "title": "Debug event delegation",
       "dueDate": "",
-      "priority": "#b8952e",
+      "priority": "mid",
       "inCategory": "exampleCategory3",
       "description": "Click handler not firing on dynamically added tasks. Check closest selector.",
       "completion": true

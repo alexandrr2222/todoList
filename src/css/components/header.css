@@ -107,6 +107,7 @@ header {
 }
 .sortMenu.open {
   display: flex;
+  z-index: 105;
 }
 .sortMenu button {
   width: 100%;
@@ -122,4 +123,18 @@ header {
 }
 .sortMenu button.selected {
   color: var(--mainTextColor);
+}
+.sortDueDate.hidden,
+.sortPriorityLH.hidden,
+.sortPriorityHL.hidden {
+  display: none;
+}
+.checkIcon {
+  display: none;
+  color: var(--mainTextColor);
+  font-size: 0.75rem;
+  margin-right: 0.3rem;
+}
+.sortMenu button.selected .checkIcon {
+  display: inline;
 }

@@ -7,13 +7,24 @@ import {
 import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 
 import { removeTasksFromDom, loadTasks } from "./mainDialog/DOM_task.js";
-import { TaskClass } from "./models.js";
+import { TaskClass, NoteClass } from "./models.js";
 import { adjustCompletedTasks } from "./DOM_settings.js";
-import { resetSearchbar } from "./DOM_header.js";
+import {
+  resetSearchbar,
+  sortByNewest,
+  restartSortMenu,
+  buildContent,
+  disableInvalidSortersForNotes,
+  restoreSorters,
+} from "./DOM_header.js";
+import { createNoteDOM } from "./mainDialog/DOM_note.js";
 
 let firstSelectedTitle, initialButtons;
 const rightHeader = document.querySelector(".rightHeader");
 const addButton = document.querySelector(".add");
+const notesSectionSubcontainer = document.querySelector(
+  ".notesSectionSubcontainer",
+);
 
 export function navBar() {
   firstSelectedTitle = document.querySelector(".selectedTitle");
@@ -78,6 +89,8 @@ function openRightHeaderAndPlusButton() {
 function showPage(btn) {
   hideAllPages();
   resetSearchbar();
+  restartSortMenu();
+  restoreSorters();
   const sectionContainer = document.querySelector(
     `.${btn.dataset.pageType}SectionContainer`,
   );
@@ -85,7 +98,13 @@ function showPage(btn) {
   if (btn.dataset.pageType === "settings") {
     hideRightHeaderAndPlusButton();
   } else if (btn.dataset.pageType === "notes") {
+    disableInvalidSortersForNotes();
     openRightHeaderAndPlusButton();
+    buildContent(
+      sortByNewest(NoteClass.all),
+      notesSectionSubcontainer,
+      createNoteDOM,
+    );
   } else if (btn.dataset.pageType === "statistics") {
     hideRightHeaderAndPlusButton();
     updateStatOverview();
@@ -94,13 +113,14 @@ function showPage(btn) {
     openRightHeaderAndPlusButton();
     if (btn.dataset.dataID === "allTasksID") {
       removeTasksFromDom();
-      loadTasks(adjustCompletedTasks(TaskClass.all));
+      loadTasks(adjustCompletedTasks(sortByNewest(TaskClass.all)));
     } else if (btn.dataset.dataID === "completedID") {
       const completedOnly = TaskClass.all.filter(
         (task) => task.completion === true,
       );
       removeTasksFromDom();
-      loadTasks(completedOnly);
+      loadTasks(sortByNewest(completedOnly));
+
       // delete everything dom (if not on same page already)
     } else {
       const localID = btn.dataset.dataID;
@@ -108,7 +128,8 @@ function showPage(btn) {
         (task) => task.inCategory === localID,
       );
       removeTasksFromDom();
-      loadTasks(adjustCompletedTasks(matchingCategory));
+      loadTasks(adjustCompletedTasks(sortByNewest(matchingCategory)));
+
       // delete everything dom (if not on same page already)
     }
   }

@@ -78,9 +78,10 @@ function createTaskClass() {
   const taskID = "ID" + crypto.randomUUID();
   const taskTitle = document.querySelector("#taskTitle").value.trim();
   const taskDueDate = document.querySelector("#taskDate").value;
-  const taskPrio = getComputedStyle(
-    document.querySelector(".selectedPrio"),
-  ).backgroundColor;
+  // const taskPrio = getComputedStyle(
+  //   document.querySelector(".selectedPrio"),
+  // ).backgroundColor;
+  const taskPrio = document.querySelector(".selectedPrio").dataset.prio;
   const taskInCategory = document.querySelector("#taskBelong").value;
   const taskDesc = document.querySelector("#taskDescription").value.trim();
   const completion = false;
@@ -100,7 +101,7 @@ export function createTaskDOM(taskFromClass) {
   taskSectionContainer.insertAdjacentHTML(
     "beforeend",
     `<li class="taskItem" data-data-i-d="${taskFromClass.id}">
-    <div class="priorityIndicator" style="background: ${taskFromClass.priority};"></div>
+    <div class="priorityIndicator ${taskFromClass.priority}Prio"></div>
     <div class="taskStatic">
       <label class="taskItemCheckbox">
         <input type="checkbox" class="sr-only checkboxInput" />

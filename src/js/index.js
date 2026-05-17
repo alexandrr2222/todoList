@@ -78,10 +78,13 @@ function handleResize() {
 // add category editor
 // features to use: starting style
 // anchor positioning for next project
+// hover on categories
 
 // BUG: on initial open in AllTasks when u scroll down u see settings and stats
 // BUG: editing on pc window doesn't change texts in class
 // BUG: Not newest first on task/note creation
-// IMPORTANT: category editor, sorter, searchbar, functioning edit/delete buttons on tasks, localstorage
+// IMPORTANT: category editor, sorter, functioning edit/delete buttons on tasks, localstorage
 
 // habits improve for next: comments and commits
+
+// make sort and search compatible

@@ -67,6 +67,10 @@ nav button {
   height: auto;
   padding: 0.4rem;
 }
+nav button:hover {
+  background-color: #33312e84;
+  border-radius: 10px;
+}
 nav button span:not(.categoryName) {
   display: flex;
   align-items: center;

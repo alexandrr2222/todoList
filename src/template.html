@@ -26,22 +26,39 @@
         <menu class="sortMenu">
           <span class="sortMenuLabel">Sort by</span>
           <li>
-            <button class="sortNewest selected">Newest first</button>
+            <button class="sortNewest selected" data-sort="sortByNewest">
+              <span class="checkIcon">✓</span>Newest first
+            </button>
           </li>
           <li>
-            <button class="sortTitleAZ">Title A-Z</button>
+            <button class="sortOldest" data-sort="sortByOldest">
+              <span class="checkIcon">✓</span>Oldest first
+            </button>
           </li>
           <li>
-            <button class="sortTitleZA">Title Z-A</button>
+            <button class="sortTitleAZ" data-sort="sortByTitleAZ">
+              <span class="checkIcon">✓</span>Title A-Z
+            </button>
           </li>
           <li>
-            <button class="sortDueDate">Due date</button>
+            <button class="sortTitleZA" data-sort="sortByTitleZA">
+              <span class="checkIcon">✓</span>Title Z-A
+            </button>
           </li>
           <li>
-            <button class="sortPriorityLH">Priority (low first)</button>
+            <button class="sortDueDate" data-sort="sortByDueDate">
+              <span class="checkIcon">✓</span>Due date
+            </button>
           </li>
           <li>
-            <button class="sortPriorityHL">Priority (high first)</button>
+            <button class="sortPriorityLH" data-sort="sortByPriorityLH">
+              <span class="checkIcon">✓</span>Priority (low first)
+            </button>
+          </li>
+          <li>
+            <button class="sortPriorityHL" data-sort="sortByPriorityHL">
+              <span class="checkIcon">✓</span>Priority (high first)
+            </button>
           </li>
         </menu>
       </div>
@@ -331,18 +348,21 @@
                     role="radio"
                     aria-checked="true"
                     class="prioButton lowPrio selectedPrio"
+                    data-prio="low"
                   ></button>
                   <button
                     type="button"
                     role="radio"
                     aria-checked="false"
                     class="prioButton midPrio"
+                    data-prio="mid"
                   ></button>
                   <button
                     type="button"
                     role="radio"
                     aria-checked="false"
                     class="prioButton highPrio"
+                    data-prio="high"
                   ></button>
                 </div>
               </div>
