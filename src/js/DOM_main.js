@@ -3,7 +3,10 @@ import { submitNote } from "./mainDialog/DOM_note.js";
 import { switchPrio, submitTask, taskInit } from "./mainDialog/DOM_task.js";
 import { updateStatOverview, updateStatProgress } from "./DOM_statistics.js";
 import { NoteClass, CategoryClass, TaskClass } from "./models.js";
-import { selectDefaultPriority } from "./DOM_settings.js";
+import {
+  selectDefaultPriority,
+  enforceCategoryNaming,
+} from "./DOM_settings.js";
 let isEditMode = false;
 
 let addButton,
@@ -31,7 +34,8 @@ let addButton,
   taskErrorField,
   taskTitle,
   taskDueDate,
-  taskDesc;
+  taskDesc,
+  addDialog;
 
 export function dialogMaster() {
   addButton = document.querySelector(".add");
@@ -62,6 +66,7 @@ export function dialogMaster() {
   deleteCont = document.querySelector(".deleteCont");
   editCont = document.querySelector(".editCont");
   newOptions = document.querySelector(".newOptions");
+  addDialog = document.querySelector(".addDialog");
   openDialog();
   closeDialog();
   switchDialogOptions();
@@ -170,8 +175,21 @@ function submit() {
   addForm.addEventListener("submit", (e) => {
     e.preventDefault();
     if (isEditMode) {
-      let { interactiveItem, chosenClass, index } = interactItem(editCont);
-      editSubmission(interactiveItem, chosenClass, index);
+      if (dialogTitle.textContent === "Edit Category") {
+        const selectedCategory = CategoryClass.all.find(
+          (category) => category.id === addDialog.dataset.dataID,
+        );
+        const index = CategoryClass.all.findIndex(
+          (category) => category.id === selectedCategory.id,
+        );
+        const selectedDOM = document.querySelector(
+          `[data-data-i-d="${selectedCategory.id}"]`,
+        );
+        editSubmission(selectedDOM, CategoryClass.all, index);
+      } else {
+        let { interactiveItem, chosenClass, index } = interactItem(editCont);
+        editSubmission(interactiveItem, chosenClass, index);
+      }
     } else {
       if (!routeOptions()) return;
     }
@@ -231,26 +249,42 @@ function deleteItem() {
     interactiveItem.remove();
   });
 }
+function normalizeColor(color) {
+  return color.match(/\d+/g).join(",");
+}
+export function routeEdit(index, selectedClass) {
+  isEditMode = true;
+  newOptions.style.display = "none";
+  submitButton.textContent = "Edit";
+  if (selectedClass === TaskClass.all) {
+    dialogTitle.textContent = "Edit Task";
+    helpDisplayOptions(taskContent, noteContent, categoryContent);
+  } else if (selectedClass === NoteClass.all) {
+    dialogTitle.textContent = "Edit Note";
+    noteDescription.value = selectedClass[index].description;
+    noteTitle.value = selectedClass[index].title;
+    helpDisplayOptions(noteContent, taskContent, categoryContent);
+  } else if (selectedClass === CategoryClass.all) {
+    addDialog.dataset.dataID = selectedClass[index].id;
+    dialogTitle.textContent = "Edit Category";
+    categoryTitle.value = selectedClass[index].name;
+    const colorButtons = Array.from(document.querySelectorAll(".colorButton"));
+    const ourButton = colorButtons.find(
+      (btn) =>
+        normalizeColor(getComputedStyle(btn).backgroundColor) ===
+        normalizeColor(selectedClass[index].color),
+    );
+    const selectedColor = document.querySelector(".selectedColor");
+    selectedColor.classList.remove("selectedColor");
+    ourButton.classList.add("selectedColor");
+    helpDisplayOptions(categoryContent, noteContent, taskContent);
+  }
+  addDialogBtn.showModal();
+}
 function editItem() {
   editCont.addEventListener("click", () => {
-    isEditMode = true;
     let { index, chosenClass } = interactItem(editCont);
-    newOptions.style.display = "none";
-    submitButton.textContent = "Edit";
-    if (chosenClass === TaskClass.all) {
-      dialogTitle.textContent = "Edit Task";
-      helpDisplayOptions(taskContent, noteContent, categoryContent);
-    } else if (chosenClass === NoteClass.all) {
-      dialogTitle.textContent = "Edit Note";
-      noteDescription.value = chosenClass[index].description;
-      noteTitle.value = chosenClass[index].title;
-      helpDisplayOptions(noteContent, taskContent, categoryContent);
-    } else if (chosenClass === CategoryClass.all) {
-      dialogTitle.textContent = "Edit Category";
-      categoryTitle.value = chosenClass[index].name;
-      helpDisplayOptions(categoryContent, noteContent, taskContent);
-    }
-    addDialogBtn.showModal();
+    routeEdit(index, chosenClass);
   });
 }
 function editSubmission(interactiveItem, chosenClass, index) {
@@ -264,6 +298,14 @@ function editSubmission(interactiveItem, chosenClass, index) {
     chosenClass[index].title = noteTitle;
     chosenClass[index].description = noteDescription;
   } else if (interactiveItem.classList.contains("categoryItem")) {
-    console.log("k");
+    const categoryTitle = document.querySelector("#categoryTitle").value.trim();
+    const selectedColor = getComputedStyle(
+      document.querySelector(".selectedColor"),
+    ).backgroundColor;
+    chosenClass[index].name = categoryTitle;
+    chosenClass[index].color = selectedColor;
+    interactiveItem.querySelector(".categoryName").textContent = categoryTitle;
+    interactiveItem.querySelector(".bookmarkSVG").style.color = selectedColor;
+    if (document.querySelector("#enforceNaming.on")) enforceCategoryNaming();
   }
 }

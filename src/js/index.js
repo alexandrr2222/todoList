@@ -10,7 +10,7 @@ import "../css/components/todoItem.css";
 import "../css/components/statistics.css";
 import "../css/components/settings.css";
 import { initIcons } from "./iconInjections.js";
-import { navBar, changePage } from "./DOM_nav.js";
+import { navBar, changePage, initNav } from "./DOM_nav.js";
 import { transitionLoad } from "./DOM_global.js";
 import { dialogMaster } from "./DOM_main.js";
 import { TaskClass, NoteClass, CategoryClass } from "./models.js";
@@ -27,6 +27,7 @@ window.CategoryClass = CategoryClass;
 handleResize();
 initIcons();
 navBar();
+initNav();
 transitionLoad();
 initHeader();
 initSettings();
@@ -35,6 +36,10 @@ dialogMaster();
 createExampleCategories();
 createExampleNotes();
 createExampleTasks();
+
+// last
+const allTasksButton = document.querySelector(".allTasks");
+allTasksButton.click();
 
 function handleResize() {
   let resizeTimer;
@@ -74,17 +79,19 @@ function handleResize() {
 
 // CSS
 // add amount of uncompleted tasks in each section
-// sort by priority, due date, name, new creation
-// add category editor
 // features to use: starting style
 // anchor positioning for next project
-// hover on categories
 
 // BUG: on initial open in AllTasks when u scroll down u see settings and stats
 // BUG: editing on pc window doesn't change texts in class
 // BUG: Not newest first on task/note creation
-// IMPORTANT: category editor, sorter, functioning edit/delete buttons on tasks, localstorage
+// IMPORTANT: functioning edit/delete buttons on tasks, localstorage
+
+// tasks:
+//
+
+// nav less relevant:
+// content resets position when opening nav
+// eclipse/limit too long categories
 
 // habits improve for next: comments and commits
-
-// make sort and search compatible

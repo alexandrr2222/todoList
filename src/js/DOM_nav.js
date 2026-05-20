@@ -26,6 +26,11 @@ const notesSectionSubcontainer = document.querySelector(
   ".notesSectionSubcontainer",
 );
 
+// functional edit category
+
+export function initNav() {
+  closeCategoryOptions();
+}
 export function navBar() {
   firstSelectedTitle = document.querySelector(".selectedTitle");
   navIndicator.style.transform = `translateY(${firstSelectedTitle.offsetTop}px)`;
@@ -42,13 +47,77 @@ export function navBar() {
     document.body.classList.toggle("noScroll");
   });
 }
-// bug: after it moves u can scroll down in navBar
+// refactor slop indicator code
 export function moveIndicator(currentButton) {
-  const btnTop = currentButton.offsetTop;
-  navIndicator.style.transform = `translateY(${btnTop}px)`;
+  const wasOpen = document.querySelector(".categoryItem.open");
+  let categoryHeight;
+  const selTitle = document.querySelector(".selectedTitle");
+  if (currentButton === selTitle) return;
+  if (selTitle.compareDocumentPosition(currentButton) & 2) {
+    const btnTop = currentButton.offsetTop;
+    navIndicator.style.transform = `translateY(${btnTop}px)`;
+    return;
+  }
+  if (wasOpen) {
+    categoryHeight = wasOpen.getBoundingClientRect().height;
+    const indicatorHeight = navIndicator.getBoundingClientRect().height;
+    const expandedFieldHeight = categoryHeight - indicatorHeight;
+    const btnTop = currentButton.offsetTop - expandedFieldHeight;
+    navIndicator.style.transform = `translateY(${btnTop}px)`;
+  } else {
+    const btnTop = currentButton.offsetTop;
+    navIndicator.style.transform = `translateY(${btnTop}px)`;
+  }
+}
+function addCategoryOptions(categoryDOM) {
+  categoryDOM.addEventListener("click", () => {
+    if (categoryDOM.classList.contains("firstClick")) {
+      categoryDOM.classList.toggle("open");
+      categoryDOM
+        .querySelector(".categoryOptions svg")
+        .classList.toggle("spin");
+    }
+    if (!categoryDOM.classList.contains("firstClick")) {
+      const allFirstClicks = document.querySelectorAll(".firstClick");
+      if (allFirstClicks.length > 0) {
+        allFirstClicks.forEach((fc) => {
+          fc.classList.remove("firstClick");
+        });
+      }
+      categoryDOM.classList.add("firstClick");
+    }
+  });
+}
+function closeCategoryOptions() {
+  document.addEventListener("click", (e) => {
+    if (
+      e.target.closest("dialog") &&
+      !e.target.closest(".closeDialog") &&
+      !e.target.closest(".submitButton")
+    )
+      return;
+    if (
+      document.querySelector(".firstClick") &&
+      !e.target.closest(".firstClick") &&
+      e.target.closest(".navButton")
+    ) {
+      const firstClick = document.querySelector(".firstClick");
+      firstClick.classList.remove("firstClick");
+    }
+    if (
+      !e.target.closest(".categoryItem.open") &&
+      document.querySelector(".categoryItem.open")
+    ) {
+      const openCategory = document.querySelector(".categoryItem.open");
+      openCategory.classList.remove("open");
+      openCategory
+        .querySelector(".categoryOptions svg")
+        .classList.remove("spin");
+    }
+  });
 }
 export function changePage() {
-  initialButtons = document.querySelectorAll("nav button");
+  initialButtons = document.querySelectorAll(".navButton");
   initialButtons.forEach((btn) => {
     btn.addEventListener("click", () => {
       const currentTitle = document.querySelector(".currentTitle");
@@ -62,13 +131,15 @@ export function changePage() {
   });
 }
 export function changePageNewCategory(insertedCategory) {
+  addCategoryOptions(insertedCategory);
   insertedCategory.addEventListener("click", () => {
     const currentTitle = document.querySelector(".currentTitle");
     const selectedTitle = document.querySelector(".selectedTitle");
+    const currentCategoryName = insertedCategory.querySelector(".categoryName");
     moveIndicator(insertedCategory);
     selectedTitle.classList.remove("selectedTitle");
     insertedCategory.classList.add("selectedTitle");
-    currentTitle.textContent = insertedCategory.textContent;
+    currentTitle.textContent = currentCategoryName.textContent;
     showPage(insertedCategory);
   });
 }

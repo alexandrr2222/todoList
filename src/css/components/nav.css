@@ -17,6 +17,10 @@ nav.open {
   transform: translateX(0%);
   transition: transform 0.3s ease;
 }
+body:has(nav.open) {
+  position: fixed;
+  width: 100%;
+}
 .overlay {
   position: fixed;
   z-index: 10;
@@ -57,21 +61,24 @@ nav h1 {
   text-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25);
   letter-spacing: 0.15rem;
 }
-nav button {
+.navButton {
   box-sizing: border-box;
   display: flex;
   align-items: start;
-  gap: 0.3rem;
+  /* gap: 0.3rem; */
   letter-spacing: 0.05rem;
   width: 100%;
   height: auto;
   padding: 0.4rem;
+  margin: 0;
 }
-nav button:hover {
+
+.navButton:not(.firstClick):hover {
   background-color: #33312e84;
   border-radius: 10px;
 }
-nav button span:not(.categoryName) {
+
+.navButton div span:not(.categoryName) {
   display: flex;
   align-items: center;
   justify-content: center;
@@ -79,12 +86,27 @@ nav button span:not(.categoryName) {
   height: 1.2rem;
   flex-shrink: 0;
 }
-nav button span:not(.categoryName) {
+.navButton div span:not(.categoryName) {
   color: var(--primaryAccent);
 }
-nav button span svg {
+.navButton div span svg {
   height: 1rem;
   width: auto;
+}
+.navButton span:not(.categoryName) {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.2rem;
+  height: 1.2rem;
+  flex-shrink: 0;
+}
+.navButton span svg {
+  height: 1rem;
+  width: auto;
+}
+.navButton span:not(.categoryName) {
+  color: var(--primaryAccent);
 }
 .bookmarkIcon0 svg {
   color: rgb(74 122 59);
@@ -108,6 +130,7 @@ nav button span svg {
 .navIndicator.transitionIndicator {
   transition: transform 0.15s ease;
 }
+
 @media (min-width: 480px) {
   nav {
     width: 320px;
@@ -118,4 +141,122 @@ nav button span svg {
   main.open {
     transform: translateX(320px);
   }
+}
+.navButton div {
+  box-sizing: border-box;
+  display: flex;
+  align-items: start;
+  gap: 0.3rem;
+  letter-spacing: 0.05rem;
+  width: 100%;
+  height: auto;
+}
+.navButton {
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+}
+.categoryName {
+  align-self: center;
+  margin-bottom: 0.15rem;
+}
+.categoryItem {
+  display: flex;
+  flex-direction: column;
+}
+.categoryItem.open {
+  background-color: #33312e84;
+  border-radius: 10px;
+}
+.categoryItem .categoryOptions {
+  display: flex;
+  align-items: center;
+  align-self: center;
+  padding: 0.3rem;
+}
+.categoryItem .categoryOptions svg {
+  display: none;
+  position: absolute;
+  height: 1rem;
+  width: auto;
+  right: 2rem;
+  color: var(--dialogTextColor);
+  transition: transform 0.3s ease;
+}
+.categoryOptions svg.spin {
+  transform: rotate(180deg);
+}
+.categoryItem.selectedTitle .categoryOptions svg {
+  display: block;
+}
+.expandCategory {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  padding-top: 0;
+  max-height: 0;
+  opacity: 0;
+  overflow: hidden;
+  transition:
+    max-height 0.3s ease,
+    opacity 0.2s ease,
+    padding-top 0.3s ease;
+}
+.categoryItem.open .expandCategory {
+  max-height: 10rem;
+  opacity: 1;
+  padding-top: 0.8rem;
+}
+.categoryEditBtn,
+.categoryDeleteBtn {
+  font-size: 0.7rem;
+  padding: 0.35rem 1rem;
+  border-radius: var(--cornerRadius);
+}
+.categoryEditBtn {
+  margin-right: 0.1rem;
+  background: var(--inputBackground);
+  color: var(--mainTextColor);
+}
+.categoryDeleteBtn {
+  background: rgba(151, 63, 59, 0.25);
+  color: #c96b67;
+}
+
+.confirmDialogItem {
+  background-color: var(--dialogBackground);
+  border: none;
+  border-radius: var(--cornerRadius);
+  padding: 1rem;
+  text-align: center;
+}
+.confirmDialogItem::backdrop {
+  background: rgba(0, 0, 0, 0.6);
+}
+.confirmDialogItem p {
+  color: var(--mainTextColor);
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+}
+.confirmButtonsItem {
+  display: flex;
+  gap: 0.75rem;
+  justify-content: center;
+}
+.confirmYesItem {
+  background: rgba(151, 63, 59, 0.25);
+  color: #c96b67;
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--cornerRadius);
+  font-family: "Literata", serif;
+  font-size: 0.85rem;
+}
+.confirmNoItem {
+  background: #3a3835;
+  color: var(--mainTextColor);
+  padding: 0.5rem 1.25rem;
+  border-radius: var(--cornerRadius);
+  font-family: "Literata", serif;
+  font-size: 0.85rem;
 }

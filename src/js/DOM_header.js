@@ -68,6 +68,7 @@ function initSwitchSorters() {
       selectedButton.classList.remove("selected");
       btn.classList.add("selected");
       routePageType(btn);
+      sortMenu.classList.remove("open");
     });
   });
 }
@@ -144,8 +145,10 @@ export function resetSearchbar() {
   searchbar.classList.remove("expanded");
   currentTitle.classList.remove("hidden");
   //   searchbar.dispatchEvent(new Event("input"));
+  // const selectedButton = document.querySelector(".sortMenu li button.selected");
+  // selectedButton.click();
   const selectedButton = document.querySelector(".sortMenu li button.selected");
-  selectedButton.click();
+  routePageType(selectedButton);
 }
 
 function initOpenSearchbar() {

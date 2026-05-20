@@ -34,6 +34,7 @@ function getOverdueTasks() {
 }
 
 function createProgressBar(tasks, barName, color) {
+  const barID = crypto.randomUUID();
   const taskCount = tasks.length;
   const completedCount = tasks.filter((task) => task.completion).length;
   const finishedPercentage =
@@ -42,7 +43,7 @@ function createProgressBar(tasks, barName, color) {
       : Number(((100 / taskCount) * completedCount).toFixed(2));
   statProgress.insertAdjacentHTML(
     "beforeend",
-    `<li class="progressItem">
+    `<li class="progressItem" data-bar="${barID}">
             <span>${barName}</span>
             <div
               class="progressBar"
@@ -56,4 +57,11 @@ function createProgressBar(tasks, barName, color) {
             <span>${completedCount + "/" + taskCount}</span>
           </li>`,
   );
+  document
+    .querySelector(`[data-bar="${barID}"] .progressBarFill`)
+    .animate([{ width: "0%" }, { width: `${finishedPercentage}%` }], {
+      duration: 600,
+      iterations: 1,
+      easing: "ease-in-out",
+    });
 }

@@ -77,11 +77,11 @@
   overflow: hidden;
 }
 .progressBarFill {
-  width: 60%;
+  width: 0%;
   height: 100%;
   border-radius: 0.25rem;
-  transition: width 0.3s ease;
 }
+
 .progressItem > span:last-child {
   font-size: 0.7rem;
   color: var(--todoDate);

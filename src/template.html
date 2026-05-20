@@ -64,44 +64,57 @@
       </div>
     </header>
     <nav class="mainNav">
-      <!-- make everything li -->
+      <dialog class="confirmDialogItem">
+        <p class="confirmDialogItemText">
+          This will delete the category, are you sure?
+        </p>
+        <div class="confirmButtonsItem">
+          <button class="confirmYesItem">Delete</button>
+          <button class="confirmNoItem">Cancel</button>
+        </div>
+      </dialog>
       <div class="navIndicator"></div>
       <h1>OlexTask</h1>
       <div class="dividerLine"></div>
-      <button
+      <!-- missing ul container -->
+      <li
         data-data-i-d="allTasksID"
-        class="allTasks selectedTitle"
+        class="allTasks selectedTitle navButton"
         data-page-type="task"
       >
-        <span class="allTasksSVG"></span>All Tasks
-      </button>
-      <button
+        <span class="allTasksSVG"></span
+        ><span class="categoryName">All Tasks</span>
+      </li>
+      <li
         data-data-i-d="uncategorizedID"
-        class="uncategorized"
+        class="uncategorized navButton"
         data-page-type="task"
       >
         <span class="uncategorizedSVG"></span
-        ><span class="categoryName"> Uncategorized </span>
-      </button>
-      <button
+        ><span class="categoryName">Uncategorized</span>
+      </li>
+      <li
         data-data-i-d="completedID"
-        class="completed"
+        class="completed navButton"
         data-page-type="task"
       >
-        <span class="completedSVG"></span>Completed
-      </button>
+        <span class="completedSVG"></span
+        ><span class="categoryName">Completed</span>
+      </li>
 
       <div class="dividerLine bookmarkInsert"></div>
 
-      <button class="notes" data-page-type="notes">
-        <span class="notesSVG"></span>Notes
-      </button>
-      <button class="statistics" data-page-type="statistics">
-        <span class="statisticsSVG"></span>Statistics
-      </button>
-      <button class="settings" data-page-type="settings">
-        <span class="settingsSVG"></span>Settings
-      </button>
+      <li class="notes navButton" data-page-type="notes">
+        <span class="notesSVG"></span><span class="categoryName">Notes</span>
+      </li>
+      <li class="statistics navButton" data-page-type="statistics">
+        <span class="statisticsSVG"></span
+        ><span class="categoryName">Statistics</span>
+      </li>
+      <li class="settings navButton" data-page-type="settings">
+        <span class="settingsSVG"></span
+        ><span class="categoryName">Settings</span>
+      </li>
     </nav>
     <main>
       <button class="add"></button>

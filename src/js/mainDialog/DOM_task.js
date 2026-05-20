@@ -124,7 +124,7 @@ export function createTaskDOM(taskFromClass) {
               <button class="taskEdit">Edit</button>
               <button class="taskDelete">Delete</button>
             </div>
-          </div>
+    </div>
   </li>`,
   );
   if (taskFromClass.completion) {
