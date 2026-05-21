@@ -82,13 +82,21 @@ function handleResize() {
 // features to use: starting style
 // anchor positioning for next project
 
-// BUG: on initial open in AllTasks when u scroll down u see settings and stats
 // BUG: editing on pc window doesn't change texts in class
-// BUG: Not newest first on task/note creation
-// IMPORTANT: functioning edit/delete buttons on tasks, localstorage
 
+// ############################################
+// IMPORTANT
 // tasks:
-//
+// 5. fix checkbox sometimes not working
+// 6. push finished to bottom in all but completed category
+// 7. upon checkbox click refresh position or remove from completedPage if u r there
+
+// make the main dialog not chopped
+
+// add local storage
+// ###############################################
+
+// load in animation of tasks and notes upon clicking category
 
 // nav less relevant:
 // content resets position when opening nav

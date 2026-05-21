@@ -1,14 +1,14 @@
 import { TaskClass } from "../models.js";
 import { addGlobalEventListener } from "../DOM_helper.js";
-import { dateIcon, checkboxIcon } from "../icons.js";
+import { dateIcon, checkboxIcon, expandButtonSVGIcon } from "../icons.js";
 import exampleData from "../exampleData.json" with { type: "json" };
-// import exampleData from "../exampleData.json" with { type: "json" };
+import { format } from "date-fns";
+import { addEditListener, addDeleteListener } from "./addButtonsToItems.js";
 
 const prioButtons = document.querySelectorAll(".prioButton");
 const taskErrorField = document.querySelector(".taskErrorField");
 const taskSectionContainer = document.querySelector(".taskSectionContainer");
 
-// BUG: on creation of task in wrong category still creates DOM
 export function createExampleTasks() {
   exampleData.tasks.forEach((task) => {
     createTaskDOM(
@@ -78,9 +78,6 @@ function createTaskClass() {
   const taskID = "ID" + crypto.randomUUID();
   const taskTitle = document.querySelector("#taskTitle").value.trim();
   const taskDueDate = document.querySelector("#taskDate").value;
-  // const taskPrio = getComputedStyle(
-  //   document.querySelector(".selectedPrio"),
-  // ).backgroundColor;
   const taskPrio = document.querySelector(".selectedPrio").dataset.prio;
   const taskInCategory = document.querySelector("#taskBelong").value;
   const taskDesc = document.querySelector("#taskDescription").value.trim();
@@ -98,6 +95,12 @@ function createTaskClass() {
 }
 
 export function createTaskDOM(taskFromClass) {
+  let formattedDate = "";
+  let dateIconInsertion = "";
+  if (taskFromClass.dueDate) {
+    formattedDate = format(new Date(taskFromClass.dueDate), "MMM do, H:mm");
+    dateIconInsertion = dateIcon;
+  }
   taskSectionContainer.insertAdjacentHTML(
     "beforeend",
     `<li class="taskItem" data-data-i-d="${taskFromClass.id}">
@@ -110,11 +113,11 @@ export function createTaskDOM(taskFromClass) {
       <div class="taskItemContent">
         <h3 class="taskItemTitle">${taskFromClass.title}</h3>
         <div class="taskItemDate">
-          <span class="dateSVG">${dateIcon}</span>
-          <time datetime="${taskFromClass.dueDate}">${taskFromClass.dueDate}</time>
+          <span class="dateSVG">${dateIconInsertion}</span>
+          <time datetime="${taskFromClass.dueDate}">${formattedDate}</time>
         </div>
       </div>
-      <button class="taskItemOptions" aria-label="Expand task details">▾</button>
+      <button class="taskItemOptions" aria-label="Expand task details and options">${expandButtonSVGIcon}</button>
     </div>
     <div class="taskExpandCont">
             <p class="taskDesc">
@@ -127,10 +130,12 @@ export function createTaskDOM(taskFromClass) {
     </div>
   </li>`,
   );
+  const currentTask = document.querySelector(
+    `[data-data-i-d="${taskFromClass.id}"]`,
+  );
   if (taskFromClass.completion) {
-    const currentT = document.querySelector(
-      `[data-data-i-d="${taskFromClass.id}"]`,
-    );
-    currentT.querySelector(".checkboxInput").checked = true;
+    currentTask.querySelector(".checkboxInput").checked = true;
   }
+  addEditListener(currentTask, taskFromClass, TaskClass.all);
+  addDeleteListener(currentTask, taskFromClass, TaskClass.all);
 }

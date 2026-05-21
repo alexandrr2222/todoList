@@ -1,14 +1,11 @@
 import { changePageNewCategory } from "../DOM_nav.js";
 import { bookmarkSVGIcon, expandButtonSVGIcon } from "../icons.js";
-import { CategoryClass, TaskClass } from "../models.js";
+import { CategoryClass } from "../models.js";
 import { moveIndicator } from "../DOM_nav.js";
 import exampleData from "../exampleData.json" with { type: "json" };
 import { enforceCategoryNaming } from "../DOM_settings.js";
-import { routeEdit } from "../DOM_main.js";
+import { addEditListener, addDeleteListener } from "./addButtonsToItems.js";
 
-const confirmDialogItem = document.querySelector(".confirmDialogItem");
-const confirmYesItem = document.querySelector(".confirmYesItem");
-const confirmNoItem = document.querySelector(".confirmNoItem");
 let dividerLine, colorButtons, categoryErrorField;
 
 colorButtons = document.querySelectorAll(".colorButton");
@@ -78,60 +75,3 @@ function createCategoryDOM(categoryFromClass) {
   addDeleteListener(newCategory, categoryFromClass, CategoryClass.all);
   changePageNewCategory(newCategory);
 }
-function addEditListener(category, selectedClass, classArray) {
-  const editButton = category.querySelector(".categoryEditBtn");
-
-  editButton.addEventListener("click", (e) => {
-    e.stopPropagation();
-    const index = classArray.indexOf(selectedClass);
-    routeEdit(index, classArray);
-  });
-}
-
-function addDeleteListener(category, selectedClass, classArray) {
-  const deleteButton = category.querySelector(".categoryDeleteBtn");
-  deleteButton.addEventListener("click", (e) => {
-    const confirmDialogItemText = document.querySelector(
-      ".confirmDialogItemText",
-    );
-    confirmDialogItemText.textContent =
-      "Delete this category and all its tasks?";
-    e.stopPropagation();
-    useConfirmationDialogItem(() =>
-      deleteCategory(category, selectedClass, classArray),
-    );
-  });
-}
-function deleteCategory(category, selectedClass, classArray) {
-  const index = classArray.indexOf(selectedClass);
-  const previousCategory = category.previousElementSibling;
-  previousCategory.click();
-  const selectedTasks = TaskClass.all.filter(
-    (task) => task.inCategory === category.dataset.dataID,
-  );
-  selectedTasks.forEach((task) => {
-    const taskIndex = TaskClass.all.indexOf(task);
-    TaskClass.all.splice(taskIndex, 1);
-  });
-
-  classArray.splice(index, 1);
-  category.remove();
-}
-
-function useConfirmationDialogItem(callback) {
-  confirmDialogItem.showModal();
-  confirmYesItem.onclick = (e) => {
-    e.stopPropagation();
-    callback();
-    confirmDialogItem.close();
-  };
-  confirmNoItem.onclick = (e) => {
-    e.stopPropagation();
-    const openCategory = document.querySelector(".categoryItem.open");
-    openCategory.querySelector(".categoryOptions svg").classList.toggle("spin");
-    openCategory.classList.remove("open");
-    confirmDialogItem.close();
-  };
-}
-
-// enforce capital first letter on edit

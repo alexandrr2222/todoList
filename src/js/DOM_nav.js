@@ -157,7 +157,7 @@ function openRightHeaderAndPlusButton() {
   rightHeader.classList.remove("hidden");
   addButton.classList.remove("hidden");
 }
-function showPage(btn) {
+export function showPage(btn) {
   hideAllPages();
   resetSearchbar();
   restartSortMenu();

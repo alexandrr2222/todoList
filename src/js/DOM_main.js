@@ -7,6 +7,7 @@ import {
   selectDefaultPriority,
   enforceCategoryNaming,
 } from "./DOM_settings.js";
+import { showPage } from "./DOM_nav.js";
 let isEditMode = false;
 
 let addButton,
@@ -111,7 +112,7 @@ function resetDialog() {
   activeButton.classList.remove("activeButton");
   taskButton.classList.add("activeButton");
 }
-function populateCategorySelection() {
+export function populateCategorySelection() {
   taskBelong.querySelectorAll("option").forEach((opt) => {
     opt.remove();
   });
@@ -186,6 +187,18 @@ function submit() {
           `[data-data-i-d="${selectedCategory.id}"]`,
         );
         editSubmission(selectedDOM, CategoryClass.all, index);
+      } else if (dialogTitle.textContent === "Edit Task") {
+        const selectedTask = TaskClass.all.find(
+          (task) => task.id === addDialog.dataset.dataID,
+        );
+        const index = TaskClass.all.findIndex(
+          (task) => task.id === selectedTask.id,
+        );
+        const selectedDOM = document.querySelector(
+          `[data-data-i-d="${selectedTask.id}"]`,
+        );
+
+        editSubmission(selectedDOM, TaskClass.all, index);
       } else {
         let { interactiveItem, chosenClass, index } = interactItem(editCont);
         editSubmission(interactiveItem, chosenClass, index);
@@ -195,6 +208,8 @@ function submit() {
     }
     addDialogBtn.close();
     addForm.reset();
+    const selectedTitle = document.querySelector(".selectedTitle");
+    showPage(selectedTitle);
     updateStatOverview();
     updateStatProgress();
   });
@@ -257,7 +272,18 @@ export function routeEdit(index, selectedClass) {
   newOptions.style.display = "none";
   submitButton.textContent = "Edit";
   if (selectedClass === TaskClass.all) {
+    addDialog.dataset.dataID = selectedClass[index].id;
     dialogTitle.textContent = "Edit Task";
+    taskTitle.value = selectedClass[index].title;
+    taskDueDate.value = selectedClass[index].dueDate;
+    const prioButtons = Array.from(document.querySelectorAll(".prioButton"));
+    const foundPrio = prioButtons.find(
+      (btn) => btn.dataset.prio === selectedClass[index].priority,
+    );
+    document.querySelector(".selectedPrio").classList.remove("selectedPrio");
+    foundPrio.classList.add("selectedPrio");
+    taskBelong.value = selectedClass[index].inCategory;
+    taskDesc.value = selectedClass[index].description;
     helpDisplayOptions(taskContent, noteContent, categoryContent);
   } else if (selectedClass === NoteClass.all) {
     dialogTitle.textContent = "Edit Note";
@@ -307,5 +333,15 @@ function editSubmission(interactiveItem, chosenClass, index) {
     interactiveItem.querySelector(".categoryName").textContent = categoryTitle;
     interactiveItem.querySelector(".bookmarkSVG").style.color = selectedColor;
     if (document.querySelector("#enforceNaming.on")) enforceCategoryNaming();
+  } else if (interactiveItem.classList.contains("taskItem")) {
+    editValue("#taskTitle", chosenClass[index], "title");
+    editValue("#taskDescription", chosenClass[index], "description");
+    chosenClass[index].priority =
+      document.querySelector(".selectedPrio").dataset.prio;
+    editValue("#taskBelong", chosenClass[index], "inCategory");
+    editValue("#taskDate", chosenClass[index], "dueDate");
   }
+}
+function editValue(dialogInput, obj, key) {
+  obj[key] = document.querySelector(dialogInput).value.trim();
 }
