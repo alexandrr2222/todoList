@@ -8,6 +8,7 @@ import {
   enforceCategoryNaming,
 } from "./DOM_settings.js";
 import { showPage } from "./DOM_nav.js";
+import { saveProgress } from "./storage.js";
 let isEditMode = false;
 
 let addButton,
@@ -72,6 +73,7 @@ export function dialogMaster() {
   closeDialog();
   switchDialogOptions();
   switchColors();
+  checkTaskDateInput();
   submit();
   switchPrio();
   taskInit();
@@ -97,6 +99,7 @@ function resetTaskDialog() {
   taskTitle.value = "";
   taskDueDate.value = "";
   taskDesc.value = "";
+  document.querySelector(".dateCont").classList.remove("hasValue");
 }
 function resetDialog() {
   helpDisplayOptions(taskContent, noteContent, categoryContent);
@@ -126,6 +129,8 @@ export function populateCategorySelection() {
 function openDialog() {
   addButton.addEventListener("click", () => {
     populateCategorySelection();
+    document.body.classList.add("openDialog");
+    document.body.classList.add("openDialog");
     resetDialog();
     selectDefaultPriority();
     addDialogBtn.showModal();
@@ -134,6 +139,8 @@ function openDialog() {
 function closeDialog() {
   closeDialogBtn.addEventListener("click", () => {
     resetDialog();
+    document.body.classList.remove("openDialog");
+    document.body.classList.remove("openDialog");
     addDialogBtn.close();
   });
 }
@@ -215,6 +222,7 @@ function submit() {
     showPage(selectedTitle);
     updateStatOverview();
     updateStatProgress();
+    saveProgress();
   });
 }
 export function addContextMenuControls(container) {
@@ -347,4 +355,9 @@ function editSubmission(interactiveItem, chosenClass, index) {
 }
 function editValue(dialogInput, obj, key) {
   obj[key] = document.querySelector(dialogInput).value.trim();
+}
+function checkTaskDateInput() {
+  taskDueDate.addEventListener("input", () => {
+    document.querySelector(".dateCont").classList.add("hasValue");
+  });
 }

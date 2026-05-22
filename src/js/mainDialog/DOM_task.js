@@ -98,9 +98,18 @@ function createTaskClass() {
 export function createTaskDOM(taskFromClass) {
   let formattedDate = "";
   let dateIconInsertion = "";
+  let warning = "";
+
   if (taskFromClass.dueDate) {
     formattedDate = format(new Date(taskFromClass.dueDate), "MMM do, H:mm");
     dateIconInsertion = dateIcon;
+  }
+  if (
+    !taskFromClass.completion &&
+    taskFromClass.dueDate &&
+    new Date(taskFromClass.dueDate) < new Date()
+  ) {
+    warning = "!";
   }
   taskSectionContainer.insertAdjacentHTML(
     "beforeend",
@@ -113,9 +122,10 @@ export function createTaskDOM(taskFromClass) {
       </label>
       <div class="taskItemContent">
         <h3 class="taskItemTitle ${taskFromClass.completion}Title">${taskFromClass.title}</h3>
-        <div class="taskItemDate">
+        <div class="taskItemDate ">
           <span class="dateSVG">${dateIconInsertion}</span>
-          <time datetime="${taskFromClass.dueDate}">${formattedDate}</time>
+          <time datetime="${taskFromClass.dueDate}" >${formattedDate} </time>
+          <span class="dateWarning" >${warning}</span>
         </div>
       </div>
       <button class="taskItemOptions" aria-label="Expand task details and options">${expandButtonSVGIcon}</button>
@@ -159,9 +169,7 @@ function addCheckboxListener(currentTask, taskFromClass) {
       taskFromClass.completion = true;
       checkboxInput.checked = true;
     }
-    // na kliknuti te to hodi nahoru
-    // nech tasky co byly otevreny/expandovany otevrenymi
-    // animace
+
     showPage(selectedTitle);
   });
 }

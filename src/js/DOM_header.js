@@ -1,6 +1,7 @@
 import { NoteClass, TaskClass } from "./models.js";
 import { createNoteDOM } from "./mainDialog/DOM_note.js";
 import { createTaskDOM } from "./mainDialog/DOM_task.js";
+import { adjustCompletedTasks } from "./DOM_settings.js";
 const searchIcon = document.querySelector(".search");
 const searchbar = document.querySelector(".searchbar");
 const notesSectionSubcontainer = document.querySelector(
@@ -191,7 +192,12 @@ function filterByValue(items, searchValue) {
 }
 export function buildContent(filteredItems, container, createDOM) {
   container.innerHTML = "";
-  filteredItems.forEach((item) => {
+  let refilteredItems;
+  const selectedTitle = document.querySelector(".selectedTitle");
+  if (selectedTitle.dataset.dataID === "completedID")
+    refilteredItems = filteredItems;
+  else refilteredItems = adjustCompletedTasks(filteredItems);
+  refilteredItems.forEach((item) => {
     createDOM(item);
   });
 }

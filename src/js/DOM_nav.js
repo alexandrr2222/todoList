@@ -53,7 +53,7 @@ export function moveIndicator(currentButton) {
   const wasOpen = document.querySelector(".categoryItem.open");
   let categoryHeight;
   const selTitle = document.querySelector(".selectedTitle");
-  if (currentButton === selTitle) return;
+  // if (currentButton === selTitle) return;
   if (selTitle.compareDocumentPosition(currentButton) & 2) {
     const btnTop = currentButton.offsetTop;
     navIndicator.style.transform = `translateY(${btnTop}px)`;

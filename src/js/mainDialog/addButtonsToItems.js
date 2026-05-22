@@ -15,8 +15,10 @@ export function addEditListener(category, selectedClass, classArray) {
     editButton = category.querySelector(".taskEdit");
 
   editButton.addEventListener("click", (e) => {
+    if (selectedClass.dueDate)
+      document.querySelector(".dateCont").classList.add("hasValue");
     e.stopPropagation();
-    const index = classArray.indexOf(selectedClass);
+    const index = classArray.findIndex((item) => item.id === selectedClass.id);
     routeEdit(index, classArray);
   });
 }

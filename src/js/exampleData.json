@@ -2,17 +2,17 @@
   "tasks": [
     {
       "id": "exampleTask1",
-      "title": "Fix webpack config",
-      "dueDate": "2026-05-10T14:00",
+      "title": "Learn React",
+      "dueDate": "2026-09-10T14:00",
       "priority": "high",
       "inCategory": "exampleCategory3",
-      "description": "Entry point keeps breaking when adding new modules. Check output path and devtool settings.",
+      "description": "",
       "completion": false
     },
     {
       "id": "exampleTask2",
-      "title": "Buy groceries",
-      "dueDate": "2026-05-09T18:00",
+      "title": "Buy milk",
+      "dueDate": "2026-06-30T18:00",
       "priority": "mid",
       "inCategory": "exampleCategory2",
       "description": "",
@@ -20,16 +20,16 @@
     },
     {
       "id": "exampleTask3",
-      "title": "Prepare quarterly report",
+      "title": "Finish accounting for a client",
       "dueDate": "2026-05-12T09:00",
       "priority": "high",
       "inCategory": "exampleCategory1",
-      "description": "Compile revenue figures and expense breakdowns for Q1.",
+      "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore",
       "completion": true
     },
     {
       "id": "exampleTask4",
-      "title": "Read YDKJS chapter 3",
+      "title": "Read Programming TypeScript chapter 3",
       "dueDate": "",
       "priority": "low",
       "inCategory": "exampleCategory3",
@@ -39,16 +39,16 @@
     {
       "id": "exampleTask5",
       "title": "Send invoice to client",
-      "dueDate": "2026-05-08T11:00",
+      "dueDate": "2026-07-08T11:00",
       "priority": "mid",
       "inCategory": "exampleCategory1",
-      "description": "Invoice #2024-047 for monthly services. Check if VAT is correct.",
+      "description": "Invoice #2024-047 for monthly services",
       "completion": true
     },
     {
       "id": "exampleTask6",
       "title": "Clean apartment",
-      "dueDate": "2026-05-11T10:00",
+      "dueDate": "2026-06-11T10:00",
       "priority": "low",
       "inCategory": "exampleCategory2",
       "description": "",
@@ -56,17 +56,17 @@
     },
     {
       "id": "exampleTask7",
-      "title": "Review pull request",
+      "title": "Refactor noteCreation function",
       "dueDate": "",
       "priority": "high",
       "inCategory": "exampleCategory3",
-      "description": "Check the DOM helper refactor branch before merging.",
+      "description": "Insert it with innerhtml instead of building each component manually",
       "completion": false
     },
     {
       "id": "exampleTask8",
       "title": "Schedule team meeting",
-      "dueDate": "2026-05-15T08:00",
+      "dueDate": "2026-06-15T08:00",
       "priority": "mid",
       "inCategory": "uncategorizedID",
       "description": "",
@@ -75,7 +75,7 @@
     {
       "id": "exampleTask9",
       "title": "Update dependencies",
-      "dueDate": "2026-05-13T10:00",
+      "dueDate": "2026-05-25T10:00",
       "priority": "low",
       "inCategory": "exampleCategory3",
       "description": "Run npm audit and update outdated packages.",
@@ -84,7 +84,7 @@
     {
       "id": "exampleTask10",
       "title": "Email accountant",
-      "dueDate": "2026-05-09T09:00",
+      "dueDate": "2026-07-09T09:00",
       "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "",
@@ -101,7 +101,7 @@
     },
     {
       "id": "exampleTask12",
-      "title": "Pick up dry cleaning",
+      "title": "Pick up a delivery",
       "dueDate": "2026-05-10T17:00",
       "priority": "low",
       "inCategory": "uncategorizedID",
@@ -114,25 +114,25 @@
       "dueDate": "",
       "priority": "mid",
       "inCategory": "exampleCategory3",
-      "description": "Consolidate duplicate color values and clean up naming conventions.",
+      "description": "consolidate classes and remake the file structure",
       "completion": false
     },
     {
       "id": "exampleTask14",
       "title": "Call dentist",
-      "dueDate": "2026-05-14T08:00",
+      "dueDate": "2026-10-14T08:00",
       "priority": "high",
       "inCategory": "exampleCategory2",
-      "description": "Reschedule appointment to next week.",
+      "description": "Reschedule appointment.",
       "completion": false
     },
     {
       "id": "exampleTask15",
-      "title": "Prepare client presentation",
-      "dueDate": "2026-05-16T13:00",
+      "title": "Prepare presentation",
+      "dueDate": "2026-09-16T13:00",
       "priority": "high",
       "inCategory": "exampleCategory1",
-      "description": "Slides on monthly financial overview. Include charts for revenue and expenses.",
+      "description": "Include charts for revenue and expenses.",
       "completion": false
     },
     {
@@ -147,16 +147,16 @@
     {
       "id": "exampleTask17",
       "title": "Order new monitor",
-      "dueDate": "2026-05-11T12:00",
+      "dueDate": "2026-12-11T12:00",
       "priority": "low",
       "inCategory": "uncategorizedID",
-      "description": "Check Alza for 27 inch IPS panels under 8000 CZK.",
+      "description": "Check Ebay",
       "completion": false
     },
     {
       "id": "exampleTask18",
       "title": "File monthly tax return",
-      "dueDate": "2026-05-20T09:00",
+      "dueDate": "2026-06-20T09:00",
       "priority": "high",
       "inCategory": "exampleCategory1",
       "description": "",
@@ -168,13 +168,13 @@
       "dueDate": "",
       "priority": "mid",
       "inCategory": "exampleCategory3",
-      "description": "Click handler not firing on dynamically added tasks. Check closest selector.",
+      "description": "",
       "completion": true
     },
     {
       "id": "exampleTask20",
       "title": "Return library books",
-      "dueDate": "2026-05-12T16:00",
+      "dueDate": "2026-07-12T16:00",
       "priority": "low",
       "inCategory": "exampleCategory2",
       "description": "",
@@ -185,12 +185,12 @@
     {
       "id": "exampleNote1",
       "title": "Books to Read",
-      "description": "The Decline of the West, Being and Time, Revolt Against the Modern World, Storm of Steel, Beyond Good and Evil"
+      "description": "Clean Code, Pro Git, Think Like a Programmer, Code Complete 2"
     },
     {
       "id": "exampleNote2",
-      "title": "Prague Cafes",
-      "description": "Café Louvre, Kavárna Slavia, EMA Espresso Bar, Můj šálek kávy — all worth visiting"
+      "title": "Thessaloniki unvisited places",
+      "description": "Water museum, Museum of ancient greek technology, Municipal art gallery, Human body museum, Byzantine baths"
     },
     {
       "id": "exampleNote3",
@@ -202,16 +202,7 @@
       "title": "JS Reminders",
       "description": "find() returns undefined not error. filter() creates new array. splice() mutates original. at(-1) gets last item."
     },
-    {
-      "id": "exampleNote5",
-      "title": "Workout",
-      "description": "Monday: push. Wednesday: pull. Friday: legs. Saturday: cardio. Rest Sunday."
-    },
-    {
-      "id": "exampleNote6",
-      "title": "JS Patterns",
-      "description": "Module pattern: one master export function. DOM queries inside init. Pass elements as arguments not query inside functions."
-    },
+
     {
       "id": "exampleNote7",
       "title": "Vienna Trip",
@@ -224,7 +215,7 @@
     },
     {
       "id": "exampleNote9",
-      "title": "JS Gotchas",
+      "title": "JS random",
       "description": "setCustomValidity needs empty string to clear. findIndex returns -1 if not found. innerHTML overwrites all children."
     }
   ],

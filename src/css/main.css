@@ -3,6 +3,9 @@ main {
   flex: 1;
   position: relative;
 }
+body.openDialog {
+  overflow: hidden;
+}
 .add svg {
   color: var(--primaryAccent);
   pointer-events: none;
@@ -173,6 +176,7 @@ textarea {
 #taskDate {
   color-scheme: dark;
   font-size: 0.65rem;
+  -webkit-appearance: none;
 }
 .prioCont {
   display: flex;
@@ -182,6 +186,7 @@ textarea {
 #prioLabel {
   margin-bottom: 0.25rem;
 }
+
 .prioOptions {
   display: flex;
   gap: 0.6rem;
@@ -335,6 +340,23 @@ dialog[open] {
 }
 .add.hidden {
   display: none;
+}
+@media (pointer: coarse) {
+  .dateCont {
+    position: relative;
+  }
+  .dateCont::after {
+    content: "Select date...";
+    position: absolute;
+    left: 1rem;
+    bottom: 0.65rem;
+    color: #4a4745;
+    pointer-events: none;
+    font-size: 0.65rem;
+  }
+  .dateCont.hasValue::after {
+    display: none;
+  }
 }
 @keyframes dialogOpen {
   from {

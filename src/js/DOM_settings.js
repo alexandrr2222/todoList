@@ -3,6 +3,8 @@ import { moveIndicator } from "./DOM_nav.js";
 import { createExampleTasks } from "./mainDialog/DOM_task.js";
 import { createExampleNotes } from "./mainDialog/DOM_note.js";
 import { createExampleCategories } from "./mainDialog/DOM_category.js";
+import { saveProgress } from "./storage.js";
+import { saveSettings } from "./storage.js";
 const swatches = document.querySelectorAll(".swatch");
 const lowPrio = document.querySelector(".lowPrio");
 const midPrio = document.querySelector(".midPrio");
@@ -20,14 +22,22 @@ const showCompletedBtn = document.querySelector("#showCompleted");
 const confirmDialog = document.querySelector(".confirmDialog");
 const confirmYes = document.querySelector(".confirmYes");
 const confirmNo = document.querySelector(".confirmNo");
-
+const prioSelections = document.querySelectorAll(".settingSelect option");
 export function initSettings() {
   initSelectAccent();
   initShowCompletedTasks();
   initCategoryNaming();
+  savePrioSelection();
   initDeleteAllData();
   initRestoreExamples();
   initCancelConfirmation();
+}
+function savePrioSelection() {
+  prioSelections.forEach((prioBtn) => {
+    prioBtn.addEventListener("click", () => {
+      saveSettings();
+    });
+  });
 }
 function initSelectAccent() {
   swatches.forEach((btn) => {
@@ -40,6 +50,7 @@ function initSelectAccent() {
         "--primaryAccent",
         categoryColor,
       );
+      saveSettings();
     });
   });
 }
@@ -67,6 +78,7 @@ export function selectDefaultPriority() {
 function initShowCompletedTasks() {
   showCompletedBtn.addEventListener("click", () => {
     showCompletedBtn.classList.toggle("on");
+    saveSettings();
   });
 }
 
@@ -99,6 +111,7 @@ function initCategoryNaming() {
     enforceNamingBtn.classList.toggle("on");
     if (enforceNamingBtn.classList.contains("on")) enforceCategoryNaming();
     else removeCategoryNaming();
+    saveSettings();
   });
 }
 
@@ -112,6 +125,7 @@ function deleteAllData() {
   allCategories.forEach((category) => {
     category.remove();
   });
+  saveProgress();
 }
 function useConfirmationDialog(callback) {
   confirmDialog.showModal();
@@ -142,6 +156,7 @@ export function initRestoreExamples() {
       createExampleTasks();
       createExampleNotes();
       createExampleCategories();
+      saveProgress();
     });
   });
 }

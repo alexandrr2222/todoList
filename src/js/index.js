@@ -19,6 +19,8 @@ import { createExampleNotes } from "./mainDialog/DOM_note.js";
 import { createExampleTasks } from "./mainDialog/DOM_task.js";
 import { initSettings } from "./DOM_settings.js";
 import { initHeader } from "./DOM_header.js";
+import { loadProgress, loadSettings } from "./storage.js";
+
 // for debugging
 window.TaskClass = TaskClass;
 window.NoteClass = NoteClass;
@@ -33,9 +35,19 @@ initHeader();
 initSettings();
 changePage();
 dialogMaster();
-createExampleCategories();
-createExampleNotes();
-createExampleTasks();
+
+if (
+  localStorage.getItem("tasks") ||
+  localStorage.getItem("categories") ||
+  localStorage.getItem("notes")
+)
+  loadProgress();
+else {
+  createExampleCategories();
+  createExampleNotes();
+  createExampleTasks();
+}
+loadSettings();
 
 // last
 const allTasksButton = document.querySelector(".allTasks");
@@ -71,29 +83,21 @@ function handleResize() {
   });
 }
 
+// EXTRA
 // task addons - progress, subtask
-
-// JS
-
-// get rid of dom component and instead do queries with let
-
-// CSS
-// add amount of uncompleted tasks in each section
-// features to use: starting style
-// anchor positioning for next project
-
-// BUG: editing on pc window doesn't change texts in class
 
 // ############################################
 // IMPORTANT
 // tasks:
-// 6. push finished to bottom in all but completed category
+// 1. push finished to bottom in all but completed category
+// 3. responsive
+// 4. notes are fucked, editing on pc window doesn't change texts in class
 
-// add local storage
+// tasky     // na kliknuti te to hodi nahoru
+// nech tasky co byly otevreny/expandovany otevrenymi
+// animace
+
+// eclipse and limit too long categories
 // ###############################################
-
-// nav less relevant:
-// content resets position when opening nav
-// eclipse/limit too long categories
 
 // habits improve for next: comments and commits

@@ -22,7 +22,8 @@ export function switchColors() {
   });
 }
 export function createExampleCategories() {
-  new CategoryClass("uncategorizedID", "Uncategorized", "grey");
+  if (!CategoryClass.all.some((cat) => cat.id === "uncategorizedID"))
+    new CategoryClass("uncategorizedID", "Uncategorized", "grey");
   exampleData.categories.forEach((ctg) => {
     createCategoryDOM(new CategoryClass(ctg.id, ctg.name, ctg.color));
   });
@@ -50,7 +51,7 @@ function createCategoryClass() {
   const categoryID = "ID" + crypto.randomUUID();
   return new CategoryClass(categoryID, categoryName, categoryColor);
 }
-function createCategoryDOM(categoryFromClass) {
+export function createCategoryDOM(categoryFromClass) {
   const html = `
     <li class="categoryItem navButton" data-data-i-d="${categoryFromClass.id}" data-page-type="task">
       <div class="mainCategory">

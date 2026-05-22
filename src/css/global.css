@@ -29,13 +29,16 @@
   --standaloneIcons: 1.5rem;
   --textIcons: 1.5em;
 }
+* {
+  -webkit-tap-highlight-color: transparent;
+}
 body {
   display: flex;
   flex-direction: column;
   min-height: 100vh;
 }
 body.noScroll {
-  overflow: hidden;
+  /* overflow: hidden; */
 }
 li {
   list-style-type: none;
