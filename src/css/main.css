@@ -10,6 +10,9 @@ main {
   height: auto;
   filter: drop-shadow(0px 4px 4px rgba(0, 0, 0, 0.25));
 }
+.add:hover svg {
+  color: var(--hoverAccent);
+}
 .add {
   position: fixed;
   bottom: 2rem;
@@ -17,86 +20,309 @@ main {
   z-index: 99;
 }
 .addDialog {
-  background-color: var(--dialogBackground);
+  background-color: #25221f;
   border: none;
-  border-radius: var(--cornerRadius);
-  padding: 1.5rem;
+  border-radius: 0.5rem;
+  padding: 1.5rem 1.5rem;
   max-width: 90vw;
   width: 24rem;
+}
+.addDialog::backdrop {
+  background: rgba(0, 0, 0, 0.6);
 }
 .addForm {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
   position: relative;
 }
 .closeDialog {
-  width: 1.5rem;
+  width: 1.4rem;
   height: auto;
   color: var(--primaryAccent);
   position: absolute;
-  top: 0rem;
+  top: -0.7rem;
   right: 0rem;
 }
-dialog form h2 {
+.closeDialog:hover {
+  color: var(--hoverAccent);
+}
+.dialogTitle {
+  margin-top: 0.5rem;
+  text-align: center;
   font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
-  color: var(--mainTextColor);
   font-size: 1.5rem;
   font-weight: bold;
-  text-align: center;
+  color: var(--mainTextColor);
   margin-bottom: 0.5rem;
+  letter-spacing: 0.05rem;
 }
 .newOptions {
-  background-color: var(--inputBackground);
-  padding: 0.2rem;
-  border-radius: 0.3rem;
-}
-.optionButton {
-  font-size: 0.75rem;
-  color: var(--dialogTextColor);
-  padding: 0.5rem 1rem;
-  border-radius: 0.3rem;
-}
-.submitButton {
-  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
-  color: var(--mainTextColor);
-  font-size: 1.5rem;
-  font-weight: bold;
-  padding: 0.5rem 0.2rem;
-  border-radius: 0.3rem;
-  background-color: var(--primaryAccent);
-}
-
-.inputContainer {
   display: flex;
-  flex-direction: column;
-}
-.inputContainer input,
-textarea {
-  background-color: var(--inputBackground);
-  border: var(--primaryAccent) 1px solid;
-  padding: 0.2rem;
-  border-radius: 0.3rem;
-  color: var(--mainTextColor);
-}
-.inputContainer input:focus,
-textarea:focus {
-  border: var(--hoverAccent) 1px solid;
-  outline: none;
-}
-.inputContainer input::placeholder,
-textarea::placeholder {
-  opacity: 1;
-  color: var(--dialogTextColor);
+  gap: 0;
+  background: #1a1917;
+  border-radius: 0.5rem;
+  padding: 0.15rem;
+  margin-bottom: 1rem;
 }
 
+.optionButton {
+  flex: 1;
+  text-align: center;
+  padding: 0.5rem 0;
+  font-size: 0.65rem;
+  color: #6e6c6a;
+  border-radius: 0.3rem;
+  font-family: "Literata", serif;
+  transition: all 0.25s;
+}
 .activeButton {
   background-color: var(--primaryAccent);
   color: var(--mainTextColor);
 }
+.taskContent,
+.noteContent,
+.categoryContent {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+.noteContent,
+.categoryContent {
+  display: none;
+}
+.taskTitleLabel,
+.taskDateLabel,
+#prioLabel,
+.taskBelongLabel,
+.taskDescriptionLabel,
+#colorLabel,
+.noteTitleContainer label,
+.noteDescriptionContainer label,
+.categoryTitleContainer label {
+  margin-left: 0.3rem;
+  font-size: 0.65rem;
+  color: #6e6c6a;
+  letter-spacing: 0.04rem;
+}
+.inputContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+.inputContainer input,
+textarea,
+#taskDate {
+  width: 100%;
+  background: #1a1917;
+  border: 1px solid #33302d;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  color: var(--mainTextColor);
+  font-family: "Literata", serif;
+  font-size: 0.65rem;
+  outline: none;
+  transition: border-color 0.15s;
+  line-height: 1.4;
+}
+.inputContainer input:focus,
+textarea:focus,
+#taskDate:focus {
+  border-color: var(--primaryAccent);
+}
+#taskDate::-webkit-calendar-picker-indicator {
+  cursor: pointer;
+}
+.inputContainer input::placeholder,
+textarea::placeholder {
+  color: #4a4745;
+}
+textarea {
+  resize: vertical;
+  min-height: 4.5rem;
+}
+
+.taskErrorField,
+.noteErrorField,
+.categoryErrorField {
+  color: red;
+  opacity: 0.5;
+  font-size: 0.65rem;
+  display: none;
+}
+.taskTitleSubcontainer,
+.noteTitleSubcontainer,
+.categoryTitleSubcontainer {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+
+.datePrioCont {
+  display: flex;
+  gap: 0.9rem;
+  align-items: flex-end;
+  justify-content: space-between;
+}
+.dateCont {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  flex: 1;
+  min-width: 5rem;
+}
+#taskDate {
+  color-scheme: dark;
+  font-size: 0.65rem;
+}
+.prioCont {
+  display: flex;
+  flex-direction: column;
+  flex: 0 0 auto;
+}
+#prioLabel {
+  margin-bottom: 0.25rem;
+}
+.prioOptions {
+  display: flex;
+  gap: 0.6rem;
+  align-items: center;
+  height: 2.2rem;
+}
+.prioButton {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  outline-color: transparent;
+  transition: outline-color 0.25s;
+}
+.selectedPrio {
+  outline-color: var(--mainTextColor);
+  outline: 2px solid;
+}
+.lowPrio {
+  background-color: #2d8f3a;
+}
+.midPrio {
+  background-color: #b8952e;
+}
+.highPrio {
+  background-color: #973f3b;
+}
+.belongCont {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+}
+#taskBelong {
+  line-height: 1.4;
+  width: 100%;
+  background: #1a1917;
+  border: 1px solid #33302d;
+  border-radius: 0.5rem;
+  padding: 0.6rem 0.9rem;
+  color: var(--mainTextColor);
+  font-family: "Literata", serif;
+  font-size: 0.65rem;
+  outline: none;
+  cursor: pointer;
+  transition: border-color 0.15s;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12' fill='none' stroke='%236e6c6a' stroke-width='1.5'%3E%3Cpath d='M3 4.5L6 7.5L9 4.5'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.8rem center;
+  padding-right: 2.5rem;
+}
+#taskBelong:focus {
+  border-color: var(--primaryAccent);
+}
+
+.descCont {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-top: 1px solid #2c2a27;
+  padding-top: 1rem;
+}
+
+.noteDescriptionContainer {
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  border-top: 1px solid #2c2a27;
+  padding-top: 1rem;
+}
+.noteDescriptionContainer textarea {
+  min-height: 6rem;
+}
+
+#colorLabel {
+  border-top: 1px solid #2c2a27;
+  padding-top: 1rem;
+  margin-bottom: -0.7rem;
+}
+.colorOptions {
+  display: flex;
+  gap: 0.4rem;
+  flex-wrap: wrap;
+}
+.colorButton {
+  width: 1.2rem;
+  height: 1.2rem;
+  border-radius: 50%;
+  margin-left: 2px;
+  outline-color: transparent;
+  transition: outline-color 0.25s;
+}
+.selectedColor {
+  outline-color: var(--mainTextColor);
+  outline: 2px solid;
+}
+
+.submitButton {
+  width: 100%;
+  background-color: var(--primaryAccent);
+  color: var(--mainTextColor);
+  font-family: "Cormorant Garamond", "Times New Roman", Times, serif;
+  font-size: 1.25rem;
+  font-weight: bold;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  margin-top: 1rem;
+  letter-spacing: 0.05rem;
+  transition: background-color 0.15s;
+}
+.submitButton:hover {
+  background-color: var(--hoverAccent);
+}
+
+.redColor {
+  background-color: rgb(151 63 59);
+}
+.greenColor {
+  background-color: rgb(74 122 59);
+}
+.blueColor {
+  background-color: rgb(59 90 151);
+}
+.yellowColor {
+  background-color: rgb(151 122 59);
+}
+.pinkColor {
+  background-color: rgb(151 59 106);
+}
+.purpleColor {
+  background-color: rgb(90 59 151);
+}
+.tealColor {
+  background-color: rgb(59 122 106);
+}
+.orangeColor {
+  background-color: rgb(151 96 59);
+}
 dialog[open] {
   animation: dialogOpen 0.3s ease-out forwards;
 }
+
 .contextMenu {
   background-color: var(--navBackground);
   padding: 1rem 0.5rem;
@@ -106,23 +332,6 @@ dialog[open] {
   position: fixed;
   z-index: 101;
   border-radius: var(--cornerRadius);
-}
-.editCont,
-.deleteCont,
-.infoCont {
-  display: flex;
-  gap: 0.5rem;
-}
-.editCont span,
-.deleteCont span,
-.infoCont span {
-  color: var(--primaryAccent);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 1.2rem;
-  height: 1.2rem;
-  flex-shrink: 0;
 }
 .add.hidden {
   display: none;

@@ -16,6 +16,7 @@ import {
   buildContent,
   disableInvalidSortersForNotes,
   restoreSorters,
+  routePageType,
 } from "./DOM_header.js";
 import { createNoteDOM } from "./mainDialog/DOM_note.js";
 
@@ -160,15 +161,17 @@ function openRightHeaderAndPlusButton() {
 export function showPage(btn) {
   hideAllPages();
   resetSearchbar();
-  restartSortMenu();
+  // restartSortMenu();
   restoreSorters();
   const sectionContainer = document.querySelector(
     `.${btn.dataset.pageType}SectionContainer`,
   );
   sectionContainer.style.display = "block";
+  const selectedSorter = document.querySelector(".sortMenu li button.selected");
   if (btn.dataset.pageType === "settings") {
     hideRightHeaderAndPlusButton();
   } else if (btn.dataset.pageType === "notes") {
+    restartSortMenu();
     disableInvalidSortersForNotes();
     openRightHeaderAndPlusButton();
     buildContent(
@@ -184,24 +187,23 @@ export function showPage(btn) {
     openRightHeaderAndPlusButton();
     if (btn.dataset.dataID === "allTasksID") {
       removeTasksFromDom();
-      loadTasks(adjustCompletedTasks(sortByNewest(TaskClass.all)));
+      loadTasks(adjustCompletedTasks(TaskClass.all));
+      routePageType(selectedSorter);
     } else if (btn.dataset.dataID === "completedID") {
       const completedOnly = TaskClass.all.filter(
         (task) => task.completion === true,
       );
       removeTasksFromDom();
-      loadTasks(sortByNewest(completedOnly));
-
-      // delete everything dom (if not on same page already)
+      loadTasks(completedOnly);
+      routePageType(selectedSorter);
     } else {
       const localID = btn.dataset.dataID;
       const matchingCategory = TaskClass.all.filter(
         (task) => task.inCategory === localID,
       );
       removeTasksFromDom();
-      loadTasks(adjustCompletedTasks(sortByNewest(matchingCategory)));
-
-      // delete everything dom (if not on same page already)
+      loadTasks(adjustCompletedTasks(matchingCategory));
+      routePageType(selectedSorter);
     }
   }
 }

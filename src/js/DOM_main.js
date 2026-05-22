@@ -100,7 +100,7 @@ function resetTaskDialog() {
 }
 function resetDialog() {
   helpDisplayOptions(taskContent, noteContent, categoryContent);
-  newOptions.style.display = "block";
+  newOptions.style.display = "flex";
   submitButton.textContent = "Add";
   dialogTitle.textContent = "Add New";
   isEditMode = false;
@@ -138,7 +138,7 @@ function closeDialog() {
   });
 }
 function helpDisplayOptions(visible, hidden1, hidden2) {
-  visible.style.display = "block";
+  visible.style.display = "flex";
   hidden1.style.display = "none";
   hidden2.style.display = "none";
 }
@@ -148,6 +148,9 @@ function switchDialogOptions() {
       const activeButton = document.querySelector(".activeButton");
       activeButton.classList.remove("activeButton");
       btn.classList.add("activeButton");
+      resetNoteDialog();
+      resetCategoryDialog();
+      resetTaskDialog();
       if (btn.classList.contains("taskButton")) {
         helpDisplayOptions(taskContent, categoryContent, noteContent);
       } else if (btn.classList.contains("noteButton")) {

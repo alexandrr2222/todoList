@@ -72,7 +72,6 @@ function initSwitchSorters() {
     });
   });
 }
-
 function routeSorters(classArray, selectedSorter) {
   const sortMap = {
     sortByNewest,
@@ -87,7 +86,7 @@ function routeSorters(classArray, selectedSorter) {
   return sortMap[sortType](classArray);
 }
 
-function routePageType(selectedSorter) {
+export function routePageType(selectedSorter) {
   const pageType = document.querySelector(".selectedTitle").dataset.pageType;
   if (pageType === "notes") {
     const sortedArray = routeSorters(NoteClass.all, selectedSorter);

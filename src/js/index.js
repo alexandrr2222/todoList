@@ -87,16 +87,10 @@ function handleResize() {
 // ############################################
 // IMPORTANT
 // tasks:
-// 5. fix checkbox sometimes not working
 // 6. push finished to bottom in all but completed category
-// 7. upon checkbox click refresh position or remove from completedPage if u r there
-
-// make the main dialog not chopped
 
 // add local storage
 // ###############################################
-
-// load in animation of tasks and notes upon clicking category
 
 // nav less relevant:
 // content resets position when opening nav

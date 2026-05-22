@@ -60,7 +60,7 @@ function createProgressBar(tasks, barName, color) {
   document
     .querySelector(`[data-bar="${barID}"] .progressBarFill`)
     .animate([{ width: "0%" }, { width: `${finishedPercentage}%` }], {
-      duration: 600,
+      duration: 1000,
       iterations: 1,
       easing: "ease-in-out",
     });

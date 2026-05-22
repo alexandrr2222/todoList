@@ -12,10 +12,8 @@
   background-color: var(--todoBackground);
   margin-bottom: 1rem;
   /* box-shadow: 4px 4px 4px rgba(0, 0, 0, 0.25); */
-
-  /* border-top-left-radius: 0rem;
-  border-bottom-left-radius: 0rem; */
 }
+
 .taskStatic {
   display: flex;
   align-items: center;
@@ -31,16 +29,57 @@
   border-bottom-left-radius: 0.6rem;
   /* box-shadow: -1px 4px 4px rgba(0, 0, 0, 0.25); */
 }
+
+/* box-shadow:
+    inset 2px 2px 2px 1px rgba(0, 0, 0, 0.25),
+    2px 2px 5px 2px rgba(0, 0, 0, 0.25); */
 .taskItemCheckbox {
   height: 1.5rem;
   width: 1.5rem;
   margin-left: 0.75rem;
-  border-radius: 0.2rem;
+  border-radius: 50%;
   background-color: #232120;
   border: 1.5px solid #555250;
-  /* box-shadow:
-    inset 2px 2px 2px 1px rgba(0, 0, 0, 0.25),
-    2px 2px 5px 2px rgba(0, 0, 0, 0.25); */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition:
+    background-color 0.2s ease,
+    border-color 0.2s ease;
+}
+.checkboxFill {
+  color: #f5f2ec;
+  font-size: 0.7rem;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+.taskItemCheckbox.checked {
+  border-color: transparent;
+}
+.taskItemCheckbox.checked.lowPrio {
+  background-color: #2d8f3a;
+  border-color: #2d8f3a;
+}
+.taskItemCheckbox.checked.midPrio {
+  background-color: #b8952e;
+  border-color: #b8952e;
+}
+.taskItemCheckbox.checked.highPrio {
+  background-color: #973f3b;
+  border-color: #973f3b;
+}
+h3.trueTitle {
+  text-decoration: underline;
+  text-underline-offset: -30%;
+  text-decoration-skip-ink: none;
+  color: #5a5856;
+}
+.checkboxInput:checked ~ .checkboxFill {
+  opacity: 1;
+}
+.checkboxInput:checked + .checkboxFill {
+  opacity: 1;
 }
 .checkboxSVG svg {
   color: var(--primaryAccent);

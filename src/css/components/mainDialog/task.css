@@ -1,4 +1,4 @@
-.taskTitleSubcontainer {
+/* .taskTitleSubcontainer {
   display: flex;
 }
 .taskErrorField {
@@ -13,7 +13,7 @@
 }
 .datePrioCont {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
 }
 .belongCont {
   display: flex;
@@ -76,4 +76,4 @@
 .taskDescriptionLabel,
 .addDescButton {
   color: var(--dialogTextColor);
-}
+} */

@@ -1,9 +1,10 @@
 import { TaskClass } from "../models.js";
 import { addGlobalEventListener } from "../DOM_helper.js";
-import { dateIcon, checkboxIcon, expandButtonSVGIcon } from "../icons.js";
+import { dateIcon, expandButtonSVGIcon } from "../icons.js";
 import exampleData from "../exampleData.json" with { type: "json" };
 import { format } from "date-fns";
 import { addEditListener, addDeleteListener } from "./addButtonsToItems.js";
+import { showPage } from "../DOM_nav.js";
 
 const prioButtons = document.querySelectorAll(".prioButton");
 const taskErrorField = document.querySelector(".taskErrorField");
@@ -107,11 +108,11 @@ export function createTaskDOM(taskFromClass) {
     <div class="priorityIndicator ${taskFromClass.priority}Prio"></div>
     <div class="taskStatic">
       <label class="taskItemCheckbox">
-        <input type="checkbox" class="sr-only checkboxInput" />
-        <span class="checkboxSVG">${checkboxIcon}</span>
+        <input type="checkbox" class="checkboxInput sr-only" />
+        <span class="checkboxFill">✓</span>
       </label>
       <div class="taskItemContent">
-        <h3 class="taskItemTitle">${taskFromClass.title}</h3>
+        <h3 class="taskItemTitle ${taskFromClass.completion}Title">${taskFromClass.title}</h3>
         <div class="taskItemDate">
           <span class="dateSVG">${dateIconInsertion}</span>
           <time datetime="${taskFromClass.dueDate}">${formattedDate}</time>
@@ -134,8 +135,33 @@ export function createTaskDOM(taskFromClass) {
     `[data-data-i-d="${taskFromClass.id}"]`,
   );
   if (taskFromClass.completion) {
-    currentTask.querySelector(".checkboxInput").checked = true;
+    const checkboxInput = currentTask.querySelector(".checkboxInput");
+    const checkboxCont = currentTask.querySelector(".taskItemCheckbox");
+    checkboxInput.checked = true;
+    checkboxCont.classList.add("checked");
+    checkboxCont.classList.add(`${taskFromClass.priority}Prio`);
   }
   addEditListener(currentTask, taskFromClass, TaskClass.all);
   addDeleteListener(currentTask, taskFromClass, TaskClass.all);
+  addCheckboxListener(currentTask, taskFromClass);
+}
+
+function addCheckboxListener(currentTask, taskFromClass) {
+  const checkboxInput = currentTask.querySelector(".checkboxInput");
+  const selectedTitle = document.querySelector(".selectedTitle");
+
+  checkboxInput.addEventListener("click", (e) => {
+    e.stopPropagation();
+    if (taskFromClass.completion) {
+      taskFromClass.completion = false;
+      checkboxInput.checked = false;
+    } else {
+      taskFromClass.completion = true;
+      checkboxInput.checked = true;
+    }
+    // na kliknuti te to hodi nahoru
+    // nech tasky co byly otevreny/expandovany otevrenymi
+    // animace
+    showPage(selectedTitle);
+  });
 }

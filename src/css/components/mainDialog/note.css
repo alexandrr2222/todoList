@@ -1,4 +1,4 @@
-.noteContent {
+/* .noteContent {
   display: none;
 }
 .noteTitleContainer label {
@@ -17,7 +17,7 @@
 }
 .noteDescriptionContainer label {
   color: var(--dialogTextColor);
-}
+} */
 
 .notesSectionSubcontainer {
   padding: var(--cornerMargin);
