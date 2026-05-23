@@ -9,7 +9,8 @@
     "dev": "webpack serve --config webpack.dev.js",
     "deploy": "git subtree push --prefix dist origin gh-pages",
     "lint": "eslint src/js",
-    "format": "prettier --write src/js"
+    "format": "prettier --write src/js",
+    "deploy2": "npm run build && gh-pages -d dist"
   },
   "repository": {
     "type": "git",
@@ -27,6 +28,7 @@
     "@eslint/js": "^10.0.1",
     "css-loader": "^7.1.4",
     "eslint": "^10.2.0",
+    "gh-pages": "^6.3.0",
     "globals": "^17.5.0",
     "html-loader": "^5.1.0",
     "html-webpack-plugin": "^5.6.6",

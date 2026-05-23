@@ -130,7 +130,6 @@ function openDialog() {
   addButton.addEventListener("click", () => {
     populateCategorySelection();
     document.body.classList.add("openDialog");
-    document.body.classList.add("openDialog");
     resetDialog();
     selectDefaultPriority();
     addDialogBtn.showModal();
@@ -139,7 +138,6 @@ function openDialog() {
 function closeDialog() {
   closeDialogBtn.addEventListener("click", () => {
     resetDialog();
-    document.body.classList.remove("openDialog");
     document.body.classList.remove("openDialog");
     addDialogBtn.close();
   });
@@ -218,6 +216,7 @@ function submit() {
     }
     addDialogBtn.close();
     addForm.reset();
+    document.body.classList.remove("openDialog");
     const selectedTitle = document.querySelector(".selectedTitle");
     showPage(selectedTitle);
     updateStatOverview();

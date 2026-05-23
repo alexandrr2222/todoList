@@ -152,6 +152,7 @@ export function createTaskDOM(taskFromClass) {
     checkboxCont.classList.add("checked");
     checkboxCont.classList.add(`${taskFromClass.priority}Prio`);
   }
+
   addEditListener(currentTask, taskFromClass, TaskClass.all);
   addDeleteListener(currentTask, taskFromClass, TaskClass.all);
   addCheckboxListener(currentTask, taskFromClass);
