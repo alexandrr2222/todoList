@@ -338,6 +338,25 @@ dialog[open] {
   z-index: 101;
   border-radius: var(--cornerRadius);
 }
+.editCont,
+.deleteCont {
+  gap: 0.5rem;
+  display: flex;
+}
+.editSVG,
+.deleteSVG {
+  display: flex;
+  align-items: center;
+}
+.editSVG svg,
+.deleteSVG svg {
+  height: 1rem;
+  width: auto;
+  color: var(--primaryAccent);
+}
+body:has(main .contextMenu.blockScroll) {
+  overflow: hidden;
+}
 .add.hidden {
   display: none;
 }

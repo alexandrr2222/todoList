@@ -20,13 +20,21 @@
         <input class="searchbar" placeholder="Search..." />
       </div>
       <div class="rightHeader">
-        <input class="searchbar" />
+        <!-- <input class="searchbar" /> -->
         <button class="search"></button>
         <button class="threeDots"></button>
         <menu class="sortMenu">
           <span class="sortMenuLabel">Sort by</span>
           <li>
-            <button class="sortNewest selected" data-sort="sortByNewest">
+            <button
+              class="sortCompletion selected"
+              data-sort="sortByCompletion"
+            >
+              <span class="checkIcon">✓</span>Uncompleted
+            </button>
+          </li>
+          <li>
+            <button class="sortNewest" data-sort="sortByNewest">
               <span class="checkIcon">✓</span>Newest first
             </button>
           </li>
@@ -357,7 +365,7 @@
                 id="taskTitle"
                 name="taskTitle"
                 required
-                maxlength="100"
+                maxlength="50"
                 minlength="3"
                 placeholder="Task Title..."
                 autocomplete="off"
@@ -417,6 +425,7 @@
                 >Description</label
               >
               <textarea
+                maxlength="500"
                 name="taskDescription"
                 id="taskDescription"
                 placeholder="Describe your task..."
@@ -447,6 +456,7 @@
                 name="noteDescription"
                 id="noteDescription"
                 placeholder="Describe your note..."
+                maxlength="500"
               ></textarea>
             </div>
           </div>
@@ -462,7 +472,7 @@
                 id="categoryTitle"
                 name="categoryTitle"
                 required
-                maxlength="100"
+                maxlength="30"
                 minlength="3"
                 placeholder="Category Name..."
                 autocomplete="off"

@@ -5,6 +5,7 @@ import exampleData from "../exampleData.json" with { type: "json" };
 import { format } from "date-fns";
 import { addEditListener, addDeleteListener } from "./addButtonsToItems.js";
 import { showPage } from "../DOM_nav.js";
+import { saveProgress } from "../storage.js";
 
 const prioButtons = document.querySelectorAll(".prioButton");
 const taskErrorField = document.querySelector(".taskErrorField");
@@ -162,6 +163,7 @@ function addCheckboxListener(currentTask, taskFromClass) {
 
   checkboxInput.addEventListener("click", (e) => {
     e.stopPropagation();
+    console.log("hi");
     if (taskFromClass.completion) {
       taskFromClass.completion = false;
       checkboxInput.checked = false;
@@ -171,5 +173,6 @@ function addCheckboxListener(currentTask, taskFromClass) {
     }
 
     showPage(selectedTitle);
+    saveProgress();
   });
 }

@@ -243,13 +243,16 @@ function closeContextMenu() {
   // spamming on every click
   document.addEventListener("click", () => {
     contextMenu.style.display = "none";
+    contextMenu.classList.remove("blockScroll");
   });
 }
 function showContextMenu(item) {
   const itemPosition = item.getBoundingClientRect();
   contextMenu.style.display = "flex";
-  contextMenu.style.top = `calc(${itemPosition.bottom}px - 1rem)`;
+  contextMenu.classList.add("blockScroll");
+  // contextMenu.style.top = `calc(${itemPosition.bottom}px - 1rem)`;
   contextMenu.style.left = itemPosition.left + "px";
+  contextMenu.style.top = `calc(${itemPosition.top}px - 1rem)`;
   deleteCont.dataset.currentItem = item.dataset.dataID;
   editCont.dataset.currentItem = item.dataset.dataID;
 }

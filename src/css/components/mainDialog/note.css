@@ -49,6 +49,8 @@
   color: var(--mainTextColor);
   font-size: 1rem;
   font-weight: bold;
+  overflow: hidden;
+  text-overflow: ellipsis;
   margin-top: -0.15rem;
 }
 

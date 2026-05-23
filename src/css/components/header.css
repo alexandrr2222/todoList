@@ -16,6 +16,8 @@ header {
     width 0.2s ease;
   white-space: nowrap;
   overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 30rem;
 }
 .currentTitle.hidden {
   opacity: 0;
@@ -53,17 +55,19 @@ header {
   display: none;
 }
 .searchbar {
-  background-color: var(--inputBackground);
-  border: none;
+  background-color: #1a1917;
+  border: 1px solid #33302d;
   height: calc(var(--headerHeight) - 2.25rem);
-  border-radius: var(--cornerRadius);
+  border-radius: 0.5rem;
   color: var(--mainTextColor);
   font-family: "Literata", serif;
-  font-size: 0.85rem;
+  font-size: 0.65rem;
+
   flex: 0;
   width: 0;
   opacity: 0;
   overflow: hidden;
+  margin-right: 1rem;
   transition:
     flex 0.25s ease,
     opacity 0.2s ease,
@@ -126,12 +130,14 @@ header {
 .sortMenu button:hover {
   background-color: rgba(255, 255, 255, 0.06);
 }
+
 .sortMenu button.selected {
   color: var(--mainTextColor);
 }
 .sortDueDate.hidden,
 .sortPriorityLH.hidden,
-.sortPriorityHL.hidden {
+.sortPriorityHL.hidden,
+.sortCompletion.hidden {
   display: none;
 }
 .checkIcon {
@@ -148,5 +154,21 @@ header {
   .search:hover svg,
   .threeDots:hover svg {
     color: var(--hoverAccent);
+  }
+}
+@media (min-width: 768px) {
+  .leftHeader {
+    display: flex;
+    justify-content: start;
+  }
+  .searchbar {
+    margin: 0 auto;
+    flex: 1;
+    opacity: 1;
+    padding: 0.5rem 0.75rem;
+    max-width: 15rem;
+  }
+  .rightHeader .search svg {
+    display: none;
   }
 }

@@ -17,11 +17,17 @@ const priorityOrder = {
   mid: 2,
   high: 3,
 };
-
+const sortNewest = document.querySelector(".sortNewest");
 const sortDueDate = document.querySelector(".sortDueDate");
 const sortPriorityLH = document.querySelector(".sortPriorityLH");
 const sortPriorityHL = document.querySelector(".sortPriorityHL");
-const NoteInvalidSorters = [sortDueDate, sortPriorityLH, sortPriorityHL];
+const sortUncompleted = document.querySelector(".sortCompletion");
+const NoteInvalidSorters = [
+  sortDueDate,
+  sortPriorityLH,
+  sortPriorityHL,
+  sortUncompleted,
+];
 
 export function initHeader() {
   initOpenSearchbar();
@@ -29,6 +35,14 @@ export function initHeader() {
   initOpenSortMenu();
   initHideSortMenu();
   initSwitchSorters();
+}
+export function disableInvalidSortersForCompleted() {
+  sortUncompleted.classList.add("hidden");
+  const selectedCompletion = document.querySelector(".sortCompletion.selected");
+  if (selectedCompletion) {
+    selectedCompletion.classList.remove("selected");
+    sortNewest.classList.add("selected");
+  }
 }
 export function disableInvalidSortersForNotes() {
   NoteInvalidSorters.forEach((sorter) => {
@@ -44,7 +58,7 @@ export function restoreSorters() {
 export function restartSortMenu() {
   const selectedButton = document.querySelector(".sortMenu li button.selected");
   selectedButton.classList.remove("selected");
-  const sortNewest = document.querySelector(".sortNewest");
+  const sortNewest = document.querySelector(".sortCompletion");
   sortNewest.classList.add("selected");
 }
 function initOpenSortMenu() {
@@ -75,6 +89,7 @@ function initSwitchSorters() {
 }
 function routeSorters(classArray, selectedSorter) {
   const sortMap = {
+    sortByCompletion,
     sortByNewest,
     sortByOldest,
     sortByTitleAZ,
@@ -97,6 +112,10 @@ export function routePageType(selectedSorter) {
     const sortedArray = routeSorters(currentTasks, selectedSorter);
     buildContent(sortedArray, taskSectionContainer, createTaskDOM);
   }
+}
+export function sortByCompletion(classArray) {
+  const newestArray = sortByNewest(classArray);
+  return newestArray.sort((a, b) => a.completion - b.completion);
 }
 export function sortByNewest(classArray) {
   return [...classArray].reverse();
@@ -153,6 +172,7 @@ export function resetSearchbar() {
 
 function initOpenSearchbar() {
   searchIcon.addEventListener("click", () => {
+    if (window.innerWidth >= 768) return;
     currentTitle.classList.toggle("hidden");
     searchbar.classList.toggle("expanded");
     if (searchbar.classList.contains("expanded")) {
@@ -165,7 +185,12 @@ function initSearchbar() {
   searchbar.addEventListener("input", (e) => {
     const searchValue = e.target.value;
     const pageType = document.querySelector(".selectedTitle").dataset.pageType;
-    if (pageType === "notes") {
+    if (!searchValue) {
+      const selectedSorter = document.querySelector(
+        ".sortMenu li button.selected",
+      );
+      routePageType(selectedSorter);
+    } else if (pageType === "notes") {
       const filteredItems = filterByValue(NoteClass.all, searchValue);
       buildContent(filteredItems, notesSectionSubcontainer, createNoteDOM);
     } else if (pageType === "task") {

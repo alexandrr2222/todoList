@@ -102,11 +102,21 @@ h3.trueTitle {
   display: flex;
   flex-direction: column;
   gap: 0.1rem;
+  min-width: 0;
+  flex: 1;
 }
 .taskItemTitle {
   color: var(--mainTextColor);
   font-size: 0.9rem;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  margin-right: 2.5rem;
 }
+.taskItem:has(.taskExpandCont.open) .taskItemTitle {
+  white-space: normal;
+}
+
 .taskItemDate {
   color: var(--todoDate);
   font-size: 0.55rem;

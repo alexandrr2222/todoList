@@ -15,6 +15,7 @@ import {
   restartSortMenu,
   buildContent,
   disableInvalidSortersForNotes,
+  disableInvalidSortersForCompleted,
   restoreSorters,
   routePageType,
 } from "./DOM_header.js";
@@ -172,6 +173,9 @@ export function showPage(btn) {
     hideRightHeaderAndPlusButton();
   } else if (btn.dataset.pageType === "notes") {
     restartSortMenu();
+    selectedSorter.classList.remove("selected");
+    const sortNewest = document.querySelector(".sortNewest");
+    sortNewest.classList.add("selected");
     disableInvalidSortersForNotes();
     openRightHeaderAndPlusButton();
     buildContent(
@@ -188,8 +192,10 @@ export function showPage(btn) {
     if (btn.dataset.dataID === "allTasksID") {
       removeTasksFromDom();
       loadTasks(adjustCompletedTasks(TaskClass.all));
+
       routePageType(selectedSorter);
     } else if (btn.dataset.dataID === "completedID") {
+      disableInvalidSortersForCompleted();
       const completedOnly = TaskClass.all.filter(
         (task) => task.completion === true,
       );
@@ -203,6 +209,7 @@ export function showPage(btn) {
       );
       removeTasksFromDom();
       loadTasks(adjustCompletedTasks(matchingCategory));
+
       routePageType(selectedSorter);
     }
   }

@@ -89,7 +89,6 @@ function handleResize() {
 // ############################################
 // IMPORTANT
 // tasks:
-// 1. push finished to bottom in all but completed category
 // 3. responsive
 // 4. notes are fucked, editing on pc window doesn't change texts in class
 
@@ -97,7 +96,6 @@ function handleResize() {
 // nech tasky co byly otevreny/expandovany otevrenymi
 // animace
 
-// eclipse and limit too long categories
 // ###############################################
 
 // habits improve for next: comments and commits
