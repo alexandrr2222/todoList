@@ -169,7 +169,6 @@ export function showPage(btn) {
   );
   if (btn.dataset.pageType === "task") {
     sectionContainer.style.display = "grid";
-    sectionContainer.style.gridTemplateColumns = "1fr";
   } else sectionContainer.style.display = "block";
   const selectedSorter = document.querySelector(".sortMenu li button.selected");
   if (btn.dataset.pageType === "settings") {
