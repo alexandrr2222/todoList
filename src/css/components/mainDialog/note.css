@@ -63,8 +63,17 @@
   top: 0.5rem;
   right: 0.5rem;
 }
+@media (min-width: 768px) {
+  .notesSectionSubcontainer {
+    columns: 4;
+  }
+}
 @media (min-width: 1024px) {
   .noteItem .closeSVG {
     display: block;
   }
+  .notesSectionSubcontainer {
+    columns: 4;
+  }
 }
+/* @media (min-width: 1); */

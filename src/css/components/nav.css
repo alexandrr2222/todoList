@@ -277,3 +277,31 @@ nav h1 {
   font-family: "Literata", serif;
   font-size: 0.85rem;
 }
+@media (min-width: 1024px) {
+  .menu {
+    display: none;
+  }
+  body {
+    display: grid;
+    grid-template-columns: 320px 1fr;
+    grid-template-rows: auto 1fr;
+  }
+  nav {
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    overflow-y: auto;
+    transform: translateX(0%);
+    width: 320px;
+    grid-row: 1 / -1;
+  }
+  header {
+    grid-column: 2;
+  }
+  main {
+    grid-column: 2;
+  }
+  .overlay {
+    display: none;
+  }
+}

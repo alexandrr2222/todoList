@@ -1,8 +1,9 @@
 .taskSectionContainer {
   padding: var(--cornerMargin);
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
 }
+
 .taskItem {
   padding: 0.5rem;
   min-height: 3.45rem;
@@ -109,9 +110,10 @@ h3.trueTitle {
   color: var(--mainTextColor);
   font-size: 0.9rem;
   overflow: hidden;
-  white-space: nowrap;
+  white-space: normal;
   text-overflow: ellipsis;
   margin-right: 2.5rem;
+  min-width: 0;
 }
 .taskItem:has(.taskExpandCont.open) .taskItemTitle {
   white-space: normal;
@@ -188,4 +190,31 @@ h3.trueTitle {
   right: 2rem;
   color: var(--dialogTextColor);
   transition: transform 0.3s ease;
+}
+@media (min-width: 768px) {
+  .taskItemTitle {
+    font-size: 1.1rem;
+  }
+  .taskItemDate {
+    font-size: 0.7rem;
+  }
+  .taskDesc {
+    font-size: 0.7rem;
+  }
+  .taskItemCheckbox {
+    height: 1.75rem;
+    width: 1.75rem;
+  }
+  .taskItemOptions svg {
+    height: 1.2rem;
+  }
+}
+@media (min-width: 1024px) {
+  .taskSectionContainer {
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+  }
+  .taskItem {
+    margin-bottom: 0;
+  }
 }

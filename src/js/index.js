@@ -89,7 +89,6 @@ function handleResize() {
 // ############################################
 // IMPORTANT
 // tasks:
-// 3. responsive
 // 4. notes are fucked, editing on pc window doesn't change texts in class
 
 // tasky     // na kliknuti te to hodi nahoru

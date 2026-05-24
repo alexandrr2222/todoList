@@ -89,3 +89,39 @@
   text-align: right;
   flex-shrink: 0;
 }
+@media (min-width: 768px) {
+  .statisticsSectionContainer {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 2rem 3rem;
+  }
+  .statBlocks {
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: 1fr;
+    gap: 1.5rem;
+  }
+  .statBlock {
+    padding: 1.5rem;
+    font-size: 0.75rem;
+  }
+  .totalTasksStat,
+  .overdueStat,
+  .totalNotesStat,
+  .categoriesStat {
+    font-size: 2.5rem;
+  }
+  .statSubheader {
+    font-size: 2rem;
+  }
+  .progressItem > span:first-child {
+    font-size: 0.9rem;
+    width: 8rem;
+  }
+  .progressBar {
+    height: 0.7rem;
+  }
+  .progressItem > span:last-child {
+    font-size: 0.85rem;
+    width: 3rem;
+  }
+}

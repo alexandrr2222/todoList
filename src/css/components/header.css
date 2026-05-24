@@ -167,6 +167,7 @@ header {
     opacity: 1;
     padding: 0.5rem 0.75rem;
     max-width: 15rem;
+    font-size: 0.8rem;
   }
   .rightHeader .search svg {
     display: none;
