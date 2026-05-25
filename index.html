@@ -1,1 +1,486 @@
-<!doctype html><html lang="en"><head><meta charset="UTF-8"/><meta name="viewport" content="width=device-width,initial-scale=1"/><title>OlexTask - To Do List</title><link rel="preconnect" href="https://fonts.googleapis.com"/><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap" rel="stylesheet"/><script defer="defer" src="app.bundle.js"></script></head><body><div class="overlay"></div><header><div class="leftHeader"><button class="menu"></button><h2 class="currentTitle">All Tasks</h2><input class="searchbar" placeholder="Search..."/></div><div class="rightHeader"><button class="search"></button> <button class="threeDots"></button><menu class="sortMenu"><span class="sortMenuLabel">Sort by</span><li><button class="sortCompletion selected" data-sort="sortByCompletion"><span class="checkIcon">✓</span>Uncompleted</button></li><li><button class="sortNewest" data-sort="sortByNewest"><span class="checkIcon">✓</span>Newest first</button></li><li><button class="sortOldest" data-sort="sortByOldest"><span class="checkIcon">✓</span>Oldest first</button></li><li><button class="sortTitleAZ" data-sort="sortByTitleAZ"><span class="checkIcon">✓</span>Title A-Z</button></li><li><button class="sortTitleZA" data-sort="sortByTitleZA"><span class="checkIcon">✓</span>Title Z-A</button></li><li><button class="sortDueDate" data-sort="sortByDueDate"><span class="checkIcon">✓</span>Due date</button></li><li><button class="sortPriorityLH" data-sort="sortByPriorityLH"><span class="checkIcon">✓</span>Priority (low first)</button></li><li><button class="sortPriorityHL" data-sort="sortByPriorityHL"><span class="checkIcon">✓</span>Priority (high first)</button></li></menu></div></header><nav class="mainNav"><dialog class="confirmDialogItem"><p class="confirmDialogItemText">This will delete the category, are you sure?</p><div class="confirmButtonsItem"><button class="confirmYesItem">Delete</button> <button class="confirmNoItem">Cancel</button></div></dialog><div class="navIndicator"></div><h1>OlexTask</h1><div class="dividerLine"></div><li data-data-i-d="allTasksID" class="allTasks selectedTitle navButton" data-page-type="task"><span class="allTasksSVG"></span><span class="categoryName">All Tasks</span></li><li data-data-i-d="uncategorizedID" class="uncategorized navButton" data-page-type="task"><span class="uncategorizedSVG"></span><span class="categoryName">Uncategorized</span></li><li data-data-i-d="completedID" class="completed navButton" data-page-type="task"><span class="completedSVG"></span><span class="categoryName">Completed</span></li><div class="dividerLine bookmarkInsert"></div><li class="notes navButton" data-page-type="notes"><span class="notesSVG"></span><span class="categoryName">Notes</span></li><li class="statistics navButton" data-page-type="statistics"><span class="statisticsSVG"></span><span class="categoryName">Statistics</span></li><li class="settings navButton" data-page-type="settings"><span class="settingsSVG"></span><span class="categoryName">Settings</span></li></nav><main><button class="add"></button><menu class="contextMenu"><li><button class="editCont"><span class="editSVG"></span>Edit</button></li><li><button class="deleteCont"><span class="deleteSVG"></span>Delete</button></li></menu><ul class="taskSectionContainer section"></ul><div class="notesSectionContainer section"><div class="notesSectionSubcontainer"></div></div><section class="statisticsSectionContainer section"><h3 class="statSubheader">Overview</h3><div class="statBlocks"><div class="statBlock totalTasksBlock"><span class="totalTasksStat">0</span>Total Tasks</div><div class="statBlock overdueBlock"><span class="overdueStat">0</span>Overdue</div><div class="statBlock totalNotesBlock"><span class="totalNotesStat">0</span>Total Notes</div><div class="statBlock categoriesBlock"><span class="categoriesStat">0</span>Categories</div></div><h3 class="statSubheader">Progress</h3><ul class="statProgress"></ul></section><section class="settingsSectionContainer section"><dialog class="confirmDialog"><p>This will delete all data, are you sure?</p><div class="confirmButtons"><button class="confirmYes">Delete</button> <button class="confirmNo">Cancel</button></div></dialog><div class="settingsGroup"><span class="settingsGroupLabel">Appearance</span><div class="settingRow"><div><span class="settingLabel">Accent color</span> <span class="settingDesc">Changes buttons, highlights, and UI accents</span><div class="colorSwatches"><button class="swatch redColorSet active" data-color="redColorSet"></button> <button class="swatch greenColorSet" data-color="greenColorSet"></button> <button class="swatch blueColorSet" data-color="blueColorSet"></button> <button class="swatch yellowColorSet" data-color="yellowColorSet"></button> <button class="swatch pinkColorSet" data-color="pinkColorSet"></button> <button class="swatch purpleColorSet" data-color="purpleColorSet"></button> <button class="swatch tealColorSet" data-color="tealColorSet"></button> <button class="swatch orangeColorSet" data-color="orangeColorSet"></button></div></div></div></div><div class="settingsGroup"><span class="settingsGroupLabel">Behavior</span><div class="settingRow"><div><span class="settingLabel">Default priority</span> <span class="settingDesc">Priority for new tasks when not specified</span></div><select class="settingSelect" id="defaultPriority"><option value="low">Low</option><option value="medium" selected="selected">Medium</option><option value="high">High</option></select></div><div class="settingRow"><div><span class="settingLabel">Show completed tasks</span> <span class="settingDesc">Display completed tasks in category views</span></div><button class="toggle on" id="showCompleted"><span class="toggleKnob"></span></button></div><div class="settingRow"><div><span class="settingLabel">Enforce category naming</span> <span class="settingDesc">Auto-capitalize first letter, lowercase rest</span></div><button class="toggle on" id="enforceNaming"><span class="toggleKnob"></span></button></div></div><div class="settingsGroup"><span class="settingsGroupLabel">Data</span><div class="settingRow deleteRow"><div><span class="settingLabel">Delete all data</span> <span class="settingDesc">Delete all tasks, notes, and categories</span></div><button class="dataReset">Delete</button></div><div class="settingRow loadExampelsRow"><div><span class="settingLabel">Restore examples</span> <span class="settingDesc">Delete all data and restore default exemplary tasks, notes, and categories</span></div><button class="dataRestore">Restore</button></div></div></section><dialog class="addDialog"><form action="/" class="addForm" novalidate><button class="closeDialog closeSVG" type="button"></button><h2 class="dialogTitle">Add New</h2><div class="newOptions" aria-label="Add options"><button type="button" role="radio" aria-checked="true" class="optionButton activeButton taskButton">Task</button> <button role="radio" aria-checked="false" class="optionButton noteButton" type="button">Note</button> <button role="radio" aria-checked="false" class="optionButton categoryButton" type="button">Category</button></div><div class="taskContent"><div class="taskTitleContainer inputContainer"><div class="taskTitleSubcontainer"><label class="taskTitleLabel" for="taskTitle">Title</label><div class="taskErrorField">Title can't be empty!</div></div><input id="taskTitle" name="taskTitle" required maxlength="50" minlength="3" placeholder="Task Title..." autocomplete="off"/></div><div class="datePrioCont"><div class="dateCont inputContainer"><label class="taskDateLabel" for="taskDate">Due Date</label> <input type="datetime-local" id="taskDate" name="taskDate" required/></div><div class="prioCont"><div id="prioLabel">Priority</div><div class="prioOptions" aria-labelledby="prioLabel" role="group"><button type="button" role="radio" aria-checked="true" class="prioButton lowPrio selectedPrio" data-prio="low"></button> <button type="button" role="radio" aria-checked="false" class="prioButton midPrio" data-prio="mid"></button> <button type="button" role="radio" aria-checked="false" class="prioButton highPrio" data-prio="high"></button></div></div></div><div class="belongCont"><label class="taskBelongLabel" for="taskBelong">Category</label> <select name="taskBelong" id="taskBelong"><button><selectedcontent></selectedcontent></button></select></div><div class="descCont"><label class="taskDescriptionLabel" for="taskDescription">Description</label> <textarea maxlength="500" name="taskDescription" id="taskDescription" placeholder="Describe your task..."></textarea></div></div><div class="noteContent"><div class="noteTitleContainer inputContainer"><div class="noteTitleSubcontainer"><label for="noteTitle">Title</label><div class="noteErrorField">Note can't be empty!</div></div><input id="noteTitle" name="noteTitle" required maxlength="100" minlength="3" placeholder="Note Title..." autocomplete="off"/></div><div class="noteDescriptionContainer inputContainer"><label for="noteDescription">Description</label> <textarea name="noteDescription" id="noteDescription" placeholder="Describe your note..." maxlength="500"></textarea></div></div><div class="categoryContent"><div class="categoryTitleContainer inputContainer"><div class="categoryTitleSubcontainer"><label for="categoryTitle">Name</label><div class="categoryErrorField">Name can't be empty!</div></div><input id="categoryTitle" name="categoryTitle" required maxlength="30" minlength="3" placeholder="Category Name..." autocomplete="off"/></div><div id="colorLabel">Color</div><div class="colorOptions" aria-labelledby="colorLabel" role="group"><button type="button" role="radio" aria-checked="true" class="colorButton redColor selectedColor" aria-label="Red"></button> <button type="button" role="radio" aria-checked="false" class="colorButton greenColor" aria-label="Green"></button> <button type="button" role="radio" aria-checked="false" class="colorButton blueColor" aria-label="Blue"></button> <button type="button" role="radio" aria-checked="false" class="colorButton yellowColor" aria-label="Yellow"></button> <button type="button" role="radio" aria-checked="false" class="colorButton pinkColor" aria-label="Pink"></button> <button type="button" role="radio" aria-checked="false" class="colorButton purpleColor" aria-label="Purple"></button> <button type="button" role="radio" aria-checked="false" class="colorButton tealColor" aria-label="Teal"></button> <button type="button" role="radio" aria-checked="false" class="colorButton orangeColor" aria-label="Orange"></button></div></div><button class="submitButton" type="submit">Add</button></form></dialog></main></body></html>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>OlexTask - To Do List</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Literata:ital,opsz,wght@0,7..72,200..900;1,7..72,200..900&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="manifest" href="manifest.json" />
+    <meta name="theme-color" content="#2a2826" />
+    <script defer="defer" src="app.bundle.js"></script>
+  </head>
+  <body>
+    <div class="overlay"></div>
+    <header>
+      <div class="leftHeader">
+        <button class="menu"></button>
+        <h2 class="currentTitle">All Tasks</h2>
+        <input class="searchbar" placeholder="Search..." />
+      </div>
+      <div class="rightHeader">
+        <button class="search"></button> <button class="threeDots"></button>
+        <menu class="sortMenu">
+          <span class="sortMenuLabel">Sort by</span>
+          <li>
+            <button
+              class="sortCompletion selected"
+              data-sort="sortByCompletion"
+            >
+              <span class="checkIcon">✓</span>Uncompleted
+            </button>
+          </li>
+          <li>
+            <button class="sortNewest" data-sort="sortByNewest">
+              <span class="checkIcon">✓</span>Newest first
+            </button>
+          </li>
+          <li>
+            <button class="sortOldest" data-sort="sortByOldest">
+              <span class="checkIcon">✓</span>Oldest first
+            </button>
+          </li>
+          <li>
+            <button class="sortTitleAZ" data-sort="sortByTitleAZ">
+              <span class="checkIcon">✓</span>Title A-Z
+            </button>
+          </li>
+          <li>
+            <button class="sortTitleZA" data-sort="sortByTitleZA">
+              <span class="checkIcon">✓</span>Title Z-A
+            </button>
+          </li>
+          <li>
+            <button class="sortDueDate" data-sort="sortByDueDate">
+              <span class="checkIcon">✓</span>Due date
+            </button>
+          </li>
+          <li>
+            <button class="sortPriorityLH" data-sort="sortByPriorityLH">
+              <span class="checkIcon">✓</span>Priority (low first)
+            </button>
+          </li>
+          <li>
+            <button class="sortPriorityHL" data-sort="sortByPriorityHL">
+              <span class="checkIcon">✓</span>Priority (high first)
+            </button>
+          </li>
+        </menu>
+      </div>
+    </header>
+    <nav class="mainNav">
+      <dialog class="confirmDialogItem">
+        <p class="confirmDialogItemText">
+          This will delete the category, are you sure?
+        </p>
+        <div class="confirmButtonsItem">
+          <button class="confirmYesItem">Delete</button>
+          <button class="confirmNoItem">Cancel</button>
+        </div>
+      </dialog>
+      <div class="navIndicator"></div>
+      <h1>OlexTask</h1>
+      <div class="dividerLine"></div>
+      <li
+        data-data-i-d="allTasksID"
+        class="allTasks selectedTitle navButton"
+        data-page-type="task"
+      >
+        <span class="allTasksSVG"></span
+        ><span class="categoryName">All Tasks</span>
+      </li>
+      <li
+        data-data-i-d="uncategorizedID"
+        class="uncategorized navButton"
+        data-page-type="task"
+      >
+        <span class="uncategorizedSVG"></span
+        ><span class="categoryName">Uncategorized</span>
+      </li>
+      <li
+        data-data-i-d="completedID"
+        class="completed navButton"
+        data-page-type="task"
+      >
+        <span class="completedSVG"></span
+        ><span class="categoryName">Completed</span>
+      </li>
+      <div class="dividerLine bookmarkInsert"></div>
+      <li class="notes navButton" data-page-type="notes">
+        <span class="notesSVG"></span><span class="categoryName">Notes</span>
+      </li>
+      <li class="statistics navButton" data-page-type="statistics">
+        <span class="statisticsSVG"></span
+        ><span class="categoryName">Statistics</span>
+      </li>
+      <li class="settings navButton" data-page-type="settings">
+        <span class="settingsSVG"></span
+        ><span class="categoryName">Settings</span>
+      </li>
+    </nav>
+    <main>
+      <button class="add"></button>
+      <menu class="contextMenu">
+        <li>
+          <button class="editCont"><span class="editSVG"></span>Edit</button>
+        </li>
+        <li>
+          <button class="deleteCont">
+            <span class="deleteSVG"></span>Delete
+          </button>
+        </li>
+      </menu>
+      <ul class="taskSectionContainer section"></ul>
+      <div class="notesSectionContainer section">
+        <div class="notesSectionSubcontainer"></div>
+      </div>
+      <section class="statisticsSectionContainer section">
+        <h3 class="statSubheader">Overview</h3>
+        <div class="statBlocks">
+          <div class="statBlock totalTasksBlock">
+            <span class="totalTasksStat">0</span>Total Tasks
+          </div>
+          <div class="statBlock overdueBlock">
+            <span class="overdueStat">0</span>Overdue
+          </div>
+          <div class="statBlock totalNotesBlock">
+            <span class="totalNotesStat">0</span>Total Notes
+          </div>
+          <div class="statBlock categoriesBlock">
+            <span class="categoriesStat">0</span>Categories
+          </div>
+        </div>
+        <h3 class="statSubheader">Progress</h3>
+        <ul class="statProgress"></ul>
+      </section>
+      <section class="settingsSectionContainer section">
+        <dialog class="confirmDialog">
+          <p>This will delete all data, are you sure?</p>
+          <div class="confirmButtons">
+            <button class="confirmYes">Delete</button>
+            <button class="confirmNo">Cancel</button>
+          </div>
+        </dialog>
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Appearance</span>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Accent color</span>
+              <span class="settingDesc"
+                >Changes buttons, highlights, and UI accents</span
+              >
+              <div class="colorSwatches">
+                <button
+                  class="swatch redColorSet active"
+                  data-color="redColorSet"
+                ></button>
+                <button
+                  class="swatch greenColorSet"
+                  data-color="greenColorSet"
+                ></button>
+                <button
+                  class="swatch blueColorSet"
+                  data-color="blueColorSet"
+                ></button>
+                <button
+                  class="swatch yellowColorSet"
+                  data-color="yellowColorSet"
+                ></button>
+                <button
+                  class="swatch pinkColorSet"
+                  data-color="pinkColorSet"
+                ></button>
+                <button
+                  class="swatch purpleColorSet"
+                  data-color="purpleColorSet"
+                ></button>
+                <button
+                  class="swatch tealColorSet"
+                  data-color="tealColorSet"
+                ></button>
+                <button
+                  class="swatch orangeColorSet"
+                  data-color="orangeColorSet"
+                ></button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Behavior</span>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Default priority</span>
+              <span class="settingDesc"
+                >Priority for new tasks when not specified</span
+              >
+            </div>
+            <select class="settingSelect" id="defaultPriority">
+              <option value="low">Low</option>
+              <option value="medium" selected="selected">Medium</option>
+              <option value="high">High</option>
+            </select>
+          </div>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Show completed tasks</span>
+              <span class="settingDesc"
+                >Display completed tasks in category views</span
+              >
+            </div>
+            <button class="toggle on" id="showCompleted">
+              <span class="toggleKnob"></span>
+            </button>
+          </div>
+          <div class="settingRow">
+            <div>
+              <span class="settingLabel">Enforce category naming</span>
+              <span class="settingDesc"
+                >Auto-capitalize first letter, lowercase rest</span
+              >
+            </div>
+            <button class="toggle on" id="enforceNaming">
+              <span class="toggleKnob"></span>
+            </button>
+          </div>
+        </div>
+        <div class="settingsGroup">
+          <span class="settingsGroupLabel">Data</span>
+          <div class="settingRow deleteRow">
+            <div>
+              <span class="settingLabel">Delete all data</span>
+              <span class="settingDesc"
+                >Delete all tasks, notes, and categories</span
+              >
+            </div>
+            <button class="dataReset">Delete</button>
+          </div>
+          <div class="settingRow loadExampelsRow">
+            <div>
+              <span class="settingLabel">Restore examples</span>
+              <span class="settingDesc"
+                >Delete all data and restore default exemplary tasks, notes, and
+                categories</span
+              >
+            </div>
+            <button class="dataRestore">Restore</button>
+          </div>
+        </div>
+      </section>
+      <dialog class="addDialog">
+        <form action="/" class="addForm" novalidate>
+          <button class="closeDialog closeSVG" type="button"></button>
+          <h2 class="dialogTitle">Add New</h2>
+          <div class="newOptions" aria-label="Add options">
+            <button
+              type="button"
+              role="radio"
+              aria-checked="true"
+              class="optionButton activeButton taskButton"
+            >
+              Task
+            </button>
+            <button
+              role="radio"
+              aria-checked="false"
+              class="optionButton noteButton"
+              type="button"
+            >
+              Note
+            </button>
+            <button
+              role="radio"
+              aria-checked="false"
+              class="optionButton categoryButton"
+              type="button"
+            >
+              Category
+            </button>
+          </div>
+          <div class="taskContent">
+            <div class="taskTitleContainer inputContainer">
+              <div class="taskTitleSubcontainer">
+                <label class="taskTitleLabel" for="taskTitle">Title</label>
+                <div class="taskErrorField">Title can't be empty!</div>
+              </div>
+              <input
+                id="taskTitle"
+                name="taskTitle"
+                required
+                maxlength="50"
+                minlength="3"
+                placeholder="Task Title..."
+                autocomplete="off"
+              />
+            </div>
+            <div class="datePrioCont">
+              <div class="dateCont inputContainer">
+                <label class="taskDateLabel" for="taskDate">Due Date</label>
+                <input
+                  type="datetime-local"
+                  id="taskDate"
+                  name="taskDate"
+                  required
+                />
+              </div>
+              <div class="prioCont">
+                <div id="prioLabel">Priority</div>
+                <div
+                  class="prioOptions"
+                  aria-labelledby="prioLabel"
+                  role="group"
+                >
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="true"
+                    class="prioButton lowPrio selectedPrio"
+                    data-prio="low"
+                  ></button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    class="prioButton midPrio"
+                    data-prio="mid"
+                  ></button>
+                  <button
+                    type="button"
+                    role="radio"
+                    aria-checked="false"
+                    class="prioButton highPrio"
+                    data-prio="high"
+                  ></button>
+                </div>
+              </div>
+            </div>
+            <div class="belongCont">
+              <label class="taskBelongLabel" for="taskBelong">Category</label>
+              <select name="taskBelong" id="taskBelong">
+                <button><selectedcontent></selectedcontent></button>
+              </select>
+            </div>
+            <div class="descCont">
+              <label class="taskDescriptionLabel" for="taskDescription"
+                >Description</label
+              >
+              <textarea
+                maxlength="500"
+                name="taskDescription"
+                id="taskDescription"
+                placeholder="Describe your task..."
+              ></textarea>
+            </div>
+          </div>
+          <div class="noteContent">
+            <div class="noteTitleContainer inputContainer">
+              <div class="noteTitleSubcontainer">
+                <label for="noteTitle">Title</label>
+                <div class="noteErrorField">Note can't be empty!</div>
+              </div>
+              <input
+                id="noteTitle"
+                name="noteTitle"
+                required
+                maxlength="100"
+                minlength="3"
+                placeholder="Note Title..."
+                autocomplete="off"
+              />
+            </div>
+            <div class="noteDescriptionContainer inputContainer">
+              <label for="noteDescription">Description</label>
+              <textarea
+                name="noteDescription"
+                id="noteDescription"
+                placeholder="Describe your note..."
+                maxlength="500"
+              ></textarea>
+            </div>
+          </div>
+          <div class="categoryContent">
+            <div class="categoryTitleContainer inputContainer">
+              <div class="categoryTitleSubcontainer">
+                <label for="categoryTitle">Name</label>
+                <div class="categoryErrorField">Name can't be empty!</div>
+              </div>
+              <input
+                id="categoryTitle"
+                name="categoryTitle"
+                required
+                maxlength="30"
+                minlength="3"
+                placeholder="Category Name..."
+                autocomplete="off"
+              />
+            </div>
+            <div id="colorLabel">Color</div>
+            <div class="colorOptions" aria-labelledby="colorLabel" role="group">
+              <button
+                type="button"
+                role="radio"
+                aria-checked="true"
+                class="colorButton redColor selectedColor"
+                aria-label="Red"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton greenColor"
+                aria-label="Green"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton blueColor"
+                aria-label="Blue"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton yellowColor"
+                aria-label="Yellow"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton pinkColor"
+                aria-label="Pink"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton purpleColor"
+                aria-label="Purple"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton tealColor"
+                aria-label="Teal"
+              ></button>
+              <button
+                type="button"
+                role="radio"
+                aria-checked="false"
+                class="colorButton orangeColor"
+                aria-label="Orange"
+              ></button>
+            </div>
+          </div>
+          <button class="submitButton" type="submit">Add</button>
+        </form>
+      </dialog>
+    </main>
+  </body>
+</html>
